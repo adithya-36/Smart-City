@@ -1,13 +1,15 @@
+import { href } from "react-router-dom";
+
 const navigation = [
     {
-      name: 'Home',
+      name: 'Home',href:'/',
       dropdown: [
-        { name: 'City Profile', href: '#' },
-        { name: `What is a 'Smart City'`, href: '#' },
-        { name: `About 'Smart City Mission'`, href: '#' },
-        { name: 'Smart Cities Challenge', href: '#' },
-        { name: 'Vision & Strategy', href: '#' },
-        { name: 'Project Milestones', href: '#' },
+        { name: 'City Profile', href: '/CityProfile' },
+        { name: `What is a 'Smart City'`, href: '/SmartCityDef' },
+        { name: `About 'Smart City Mission'`, href: '/MissionAbout' },
+        { name: 'Smart Cities Challenge', href: '/MissonChallenge' },
+        { name: 'Vision & Strategy', href: '/MissonVision' },
+        { name: 'Project Milestones', href: '/ProjectMilestone' },
       ],
     },
     {
