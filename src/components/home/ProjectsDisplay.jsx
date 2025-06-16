@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import ArrowUp from '../../assets/images/arrowUp.png';
 import ArrowDown from '../../assets/images/downArrow.png';
-
+import RightArrow from '../../assets/images/rightArrow.png'
+import RightArrowTail from '../../assets/images/rightArrowTail.png'
 const ProjectsDisplay = () => {
   const [activeProject, setActiveProject] = useState(null);
   
@@ -137,9 +138,7 @@ const ProjectsDisplay = () => {
                         
                         <button className="mt-3 text-blue-600 hover:text-blue-800 text-xs md:text-sm font-medium flex items-center">
                           View details
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
+                          <img className='w-5 h-4 ml-1' src={RightArrow} alt="Right arrow" />
                         </button>
                       </div>
                     ))}
@@ -148,9 +147,7 @@ const ProjectsDisplay = () => {
                   <div className="p-4 md:p-6 bg-blue-50 border-t border-blue-100">
                     <button className="text-blue-700 font-medium hover:text-blue-900 flex items-center justify-center md:mx-auto text-sm md:text-base">
                       View all {type.title}
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
+                      <img className='w-6 h-6 ml-2' src={RightArrowTail} alt="Right Arrow with Tail" />
                     </button>
                   </div>
                 </div>
