@@ -77,11 +77,11 @@ const navigation = [
       ],
     },
     {
-      name: 'Contact Us',
+      name: 'Contact Us',href:'/ContactUs',
       dropdown: [
-        { name: 'Register a Complaint', href: '#' },
-        { name: 'Poll', href: '#' },
-        { name: 'RTI', href: '#' },
+        { name: 'Register a Complaint', href: '/registerComplaint' },
+        { name: 'Poll', href: '/poll' },
+        { name: 'RTI', href: '/RTI' },
       ],
     },
     {

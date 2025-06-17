@@ -18,6 +18,10 @@ import TenderTable from './pages/Tenders/TenderTable'
 import EnteKeralam from './pages/EnteKeralam/EnteKeralam'
 import GovernmentOrders from './pages/Downloads/GovernmentOrders'
 import ProjectPage from './pages/Project/ProjectPage'
+import ContactUs from './pages/Contact/ContactUs'
+import RegisterComplaint from './pages/Contact/RegisterComplaint'
+import Poll from './pages/Contact/Poll'
+import RTI from './pages/Contact/RTI'
 
 const App = () => {
   return (
@@ -41,6 +45,11 @@ const App = () => {
             
             <Route path="/Projects" element={<ProjectPage/>} />
             <Route path="/Tenders" element={<TenderTable/>} />
+            <Route path="/ContactUs" element={<ContactUs/>} />
+            <Route path="/registerComplaint" element={<RegisterComplaint/>} />
+            <Route path="/poll" element={<Poll/>} />
+            <Route path="/RTI" element={<RTI/>} />
+
             <Route path="/EnteKeralam" element={<EnteKeralam/>} />
             <Route path="/GovernmentOrders" element={<GovernmentOrders/>} />
 
