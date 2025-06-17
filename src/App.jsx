@@ -14,6 +14,10 @@ import CityHighlight from './pages/Home/ExploreCity/CityHighlight'
 import CityOverview from './pages/Home/ExploreCity/CityOverview'
 import CityProject from './pages/Home/ExploreCity/CityProject'
 import ABDArea from './pages/Home/ExploreCity/ABDArea'
+import TenderTable from './pages/Tenders/TenderTable'
+import EnteKeralam from './pages/EnteKeralam/EnteKeralam'
+import GovernmentOrders from './pages/Downloads/GovernmentOrders'
+import ProjectPage from './pages/Project/ProjectPage'
 
 const App = () => {
   return (
@@ -34,6 +38,12 @@ const App = () => {
             <Route path="/smart-city-overview" element={<CityOverview/>} />
             <Route path="/project-area" element={<CityProject/>} />
             <Route path="/abd-area" element={<ABDArea/>} />
+            
+            <Route path="/Projects" element={<ProjectPage/>} />
+            <Route path="/Tenders" element={<TenderTable/>} />
+            <Route path="/EnteKeralam" element={<EnteKeralam/>} />
+            <Route path="/GovernmentOrders" element={<GovernmentOrders/>} />
+
           </Routes>
         </main>
         <Footer/>

@@ -23,7 +23,7 @@ const navigation = [
       ],
     },
     {
-      name: 'Projects',
+      name: 'Projects',href:'/Projects',
       dropdown: [
         { name: 'ABD Projects', href: '#' },
         { name: 'Pancity Projects', href: '#' },
@@ -34,7 +34,7 @@ const navigation = [
       ],
     },
     {
-      name: 'Tenders',
+      name: 'Tenders',href:'/Tenders',
     },
     {
       name: 'Events',
@@ -57,7 +57,7 @@ const navigation = [
     {
       name: 'Downloads',
       dropdown: [
-        { name: `Government Order's(GO's)`, href: '#' },
+        { name: `Government Order's(GO's)`, href: '/GovernmentOrders' },
       ],
     },
     {
@@ -94,6 +94,6 @@ const navigation = [
         { name: 'GIS', href: '#' },
       ],
     },
-    { name: 'Ente Keralam', href: '#' },
+    { name: 'Ente Keralam', href: '/EnteKeralam' },
   ];
 export default navigation;
