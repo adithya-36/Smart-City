@@ -25,12 +25,13 @@ const navigation = [
     {
       name: 'Projects',href:'/Projects',
       dropdown: [
-        { name: 'ABD Projects', href: '#' },
-        { name: 'Pancity Projects', href: '#' },
+        { name: 'ABD Projects', href: '/ABDProject' },
+        { name: 'Pancity Projects', href: '/PancityProject' },
         { name: 'Dashboard', href: '#' },
-        { name: 'Ongoing Projects', href: '#' },
-        { name: 'Completed and Ongoing', href: '#' },
-        { name: 'SCTL Project', href: '#' },
+        { name: 'MPR', href: '/MPR' },
+        { name: 'Ongoing Projects', href: '/OngoingProject' },
+        { name: 'Completed Projects', href: '/CompletedProject' },
+        { name: 'SCTL Project', href: '/SCTLProject' },
       ],
     },
     {
@@ -50,8 +51,8 @@ const navigation = [
     {
       name: 'Gallery',
       dropdown: [
-        { name: 'Photo Gallery', href: '#' },
-        { name: 'Video Gallery', href: '#' },
+        { name: 'Photo Gallery', href: '/photoGallery' },
+        { name: 'Video Gallery', href: '/videoGallery' },
       ],
     },
     {
@@ -61,10 +62,10 @@ const navigation = [
       ],
     },
     {
-      name: 'Careers',
+      name: 'Careers',href:'/careers',
       dropdown: [
-        { name: 'Internships', href: '#' },
-        { name: 'Tulip internship', href: '#' },
+        { name: 'Internships', href: '/internship' },
+        { name: 'Tulip internship', href: '/tulip-internship' },
       ],
     },
     {
