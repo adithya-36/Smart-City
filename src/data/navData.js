@@ -19,7 +19,7 @@ const navigation = [
         { name: 'Special Purpose Vehicle', href: '#' },
         { name: 'Consultant (PMC)', href: '#' },
         { name: 'Project Funds', href: '#' },
-        { name: 'Financials', href: '#' },
+        { name: 'Financials', href: '/financials' },
       ],
     },
     {
@@ -46,6 +46,7 @@ const navigation = [
         { name: 'Media Coverage', href: '#' },
         { name: '8th Anniversary of Smartcity Mission', href: '#' },
         { name: 'Inauguration', href: '#' },
+        { name: 'Ente Keralam', href: '/EnteKeralam' },
       ],
     },
     {
@@ -85,7 +86,7 @@ const navigation = [
         { name: 'RTI', href: '/RTI' },
       ],
     },
-    {
+    {/*{
       name: 'BI - Dashboard',
       dropdown: [
         { name: 'Mosquito Density System', href: '#' },
@@ -94,7 +95,8 @@ const navigation = [
         { name: 'LEIP', href: '#' },
         { name: 'GIS', href: '#' },
       ],
-    },
-    { name: 'Ente Keralam', href: '/EnteKeralam' },
+    },*/}
+
+
   ];
 export default navigation;

@@ -33,6 +33,7 @@ import OngoingProject from './pages/Project/OngoingProject'
 import CompletedProject from './pages/Project/CompletedProject'
 import PancityProject from './pages/Project/PancityProject'
 import MPR from './pages/Project/MPR'
+import Financials from './pages/SCTL/Financials'
 const App = () => {
   return (
     <BrowserRouter>
@@ -53,6 +54,7 @@ const App = () => {
             <Route path='/CompletedProject' element={<CompletedProject/>} />
             <Route path='/MPR' element={<MPR/>} />
             <Route path='/PancityProject' element={<PancityProject/>} />
+            <Route path='/financials'  element={<Financials/>} />
 
             <Route path='/ProjectMilestone' element={<ProjectMilestone/>} />
             <Route path="/city-highlights" element={<CityHighlight/>} />
