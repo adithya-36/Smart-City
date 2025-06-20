@@ -17,8 +17,8 @@ const navigation = [
       dropdown: [
         { name: 'Creation of SPV', href: '#' },
         { name: 'Special Purpose Vehicle', href: '#' },
-        { name: 'Consultant (PMC)', href: '#' },
-        { name: 'Project Funds', href: '#' },
+        { name: 'Consultant (PMC)', href: '/pmc_consultant' },
+        { name: 'Project Funds', href: '/funds' },
         { name: 'Financials', href: '/financials' },
       ],
     },
@@ -27,7 +27,7 @@ const navigation = [
       dropdown: [
         { name: 'ABD Projects', href: '/ABDProject' },
         { name: 'Pancity Projects', href: '/PancityProject' },
-        { name: 'Dashboard', href: '#' },
+        { name: 'CITIIS 2.0', href: '/citiis' },
         { name: 'MPR', href: '/MPR' },
         { name: 'Ongoing Projects', href: '/OngoingProject' },
         { name: 'Completed Projects', href: '/CompletedProject' },

@@ -34,6 +34,9 @@ import CompletedProject from './pages/Project/CompletedProject'
 import PancityProject from './pages/Project/PancityProject'
 import MPR from './pages/Project/MPR'
 import Financials from './pages/SCTL/Financials'
+import CITIIS from './pages/Project/CITIIS'
+import ProjectFunds from './pages/SCTL/ProjectFunds'
+import Consultant from './pages/SCTL/Consultant'
 const App = () => {
   return (
     <BrowserRouter>
@@ -54,6 +57,9 @@ const App = () => {
             <Route path='/CompletedProject' element={<CompletedProject/>} />
             <Route path='/MPR' element={<MPR/>} />
             <Route path='/PancityProject' element={<PancityProject/>} />
+            <Route path='/citiis' element={<CITIIS/>} />
+            <Route path='/funds' element={<ProjectFunds/>} />
+            <Route path='/pmc_consultant' element={<Consultant/>} />
             <Route path='/financials'  element={<Financials/>} />
 
             <Route path='/ProjectMilestone' element={<ProjectMilestone/>} />

@@ -33,7 +33,6 @@ const CompletedProject = () => {
     { no: 20, projectName: "Installation of Drinking Water Kiosks at 25 locations", amount: "2.2" },
     { no: 21, projectName: "Construction of Vending Zone at RKV Road", amount: "2.02" },
     { no: 22, projectName: "Urban Street heat - Chantrina Veachii Including Sree Chitra Park", amount: "1.99" },
-    { no: 22, projectName: "Urban Street heat - Chantrina Veedhi Including Sree Chitra Park", amount: "199" },
     { no: 23, projectName: "Redevelopment of Childrens Park, KWA Linked Green Activity", amount: "193" },
     { no: 24, projectName: "Cultural Streets - Manaveeyam Veedhi I", amount: "184" },
     { no: 25, projectName: "Upgradation of Public Health Centre at Rajaj", amount: "18" },
