@@ -2,7 +2,6 @@ import React from 'react';
 import Banner from '../../assets/banners/fundBanner.png';
 import FundUtilization from '../../assets/images/fundUtilization.jpg';
 import FundSource from '../../assets/images/fund_source.jpg';
-
 const ProjectFunds = () => {
   return (
     <div className="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen">

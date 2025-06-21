@@ -42,7 +42,7 @@ const Header = () => {
             </div>
             <div className="p-2">
               <div className="flex items-start justify-center">
-                <img className='h-12' src={GovKerala} alt="Govt of kerala" />
+                <img className='h-14' src={GovKerala} alt="Govt of kerala" />
               </div>
             </div>
           </div>

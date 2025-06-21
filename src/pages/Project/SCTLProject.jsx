@@ -1,6 +1,6 @@
 import React from 'react';
 import Image1 from '../../assets/images/SCTL Projects/manaveeyamImg1.png';
-import Image2 from '../../assets/images/SCTL Projects/mlcpImg2.png';
+import Image2 from '../../assets/images/SCTL Projects/mlcpImg2.jpg';
 import Image3 from '../../assets/images/SCTL Projects/Open-Air_AuditoriumImg3.png';
 import Image4 from '../../assets/images/SCTL Projects/Biomining_of_Wastes_at_Chalaiimg4.png';
 import Image5 from '../../assets/images/SCTL Projects/img5.jpg';
@@ -96,161 +96,138 @@ const SCTLProject = () => {
 
   return (
     <div className="bg-gradient-to-b from-blue-50 to-indigo-50">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-blue-800 to-indigo-900 text-white py-16 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">SCTL Projects Portfolio</h1>
-          <p className="text-xl text-blue-200 max-w-3xl mx-auto">
-            Transforming Thiruvananthapuram through innovative urban development projects
-          </p>
-        </div>
-      </div>
-
-      {/* Stats Summary */}
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-          <div className="bg-white p-4 rounded-lg shadow-md">
-            <div className="text-3xl font-bold text-blue-700">8</div>
-            <div className="text-gray-600">Featured Projects</div>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-md">
-            <div className="text-3xl font-bold text-blue-700">₹250+ Cr</div>
-            <div className="text-gray-600">Total Investment</div>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-md">
-            <div className="text-3xl font-bold text-blue-700">12+</div>
-            <div className="text-gray-600">Locations Transformed</div>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-md">
-            <div className="text-3xl font-bold text-blue-700">100%</div>
-            <div className="text-gray-600">Projects Completed</div>
+      {/* Hero Section */}
+      <div className="relative bg-[#184E77] text-white py-24 px-4 overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Transforming <span className="text-[#76C893]">Thiruvananthapuram</span>
+            </h1>
+            <p className="text-xl text-blue-200 max-w-3xl mx-auto mb-10">
+              Innovative urban development projects creating sustainable futures
+            </p>
           </div>
         </div>
+        
+        {/* Decorative elements */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#184E77] to-[#0d3b61] z-0"></div>
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#1E6091] to-transparent z-0"></div>
       </div>
-
       {/* Projects Section */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="space-y-20">
-          {projects.map((project, index) => (
-            <div 
-              key={index} 
-              className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 items-center`}
-            >
-              {/* Image Section */}
-              <div className="w-full md:w-1/2">
-                {project.images ? (
-                  <div className="grid grid-cols-2 gap-4">
-                    {project.images.map((img, imgIndex) => (
-                      <div 
-                        key={imgIndex} 
-                        className="rounded-xl overflow-hidden shadow-xl h-80 transition-transform duration-300 hover:scale-[1.03]"
-                      >
-                        <img 
-                          src={img} 
-                          alt={`${project.title} ${imgIndex + 1}`} 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="rounded-xl overflow-hidden shadow-xl h-96 transition-transform duration-300 hover:scale-[1.03]">
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                )}
-              </div>
-              
-              {/* Content Section */}
-              <div className="w-full md:w-1/2">
-                <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 border border-blue-100 relative">
-                  {/* Project number badge */}
-                  <div className="absolute -top-4 left-6 bg-blue-600 text-white text-lg font-bold py-2 px-4 rounded-lg">
-                    Project {index + 1}
-                  </div>
-                  
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 pt-4">
-                    {project.title}
-                  </h2>
-                  
-                  {/* Stats */}
-                  <div className="flex flex-wrap gap-3 mb-6">
-                    {project.stats.map((stat, statIndex) => (
-                      <div key={statIndex} className="bg-blue-50 text-blue-700 px-3 py-2 rounded-lg text-sm">
-                        <span className="font-semibold">{stat.label}:</span> {stat.value}
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <p className="text-gray-600 leading-relaxed mb-6">
-                    {project.content}
-                  </p>
-                  
-                  <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-                    <div className="flex items-center">
-                      <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                      <span className="text-green-700 font-medium">Project Completed</span>
+      <div className="py-12">
+        {projects.map((project, index) => (
+          <div 
+            key={index} 
+            className={`py-16 ${index % 2 === 0 ? 'bg-gradient-to-r from-blue-50 to-white' : 'bg-white'}`}
+          >
+            <div className="max-w-7xl mx-auto px-4">
+              <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-12 items-center`}>
+                {/* Image Section - w-1/2 */}
+                <div className="w-full lg:w-1/2">
+                  {project.images ? (
+                    <div className="grid grid-cols-2 gap-4">
+                      {project.images.map((img, imgIndex) => (
+                        <div 
+                          key={imgIndex} 
+                          className="overflow-hidden h-72"
+                        >
+                          <img 
+                            src={img} 
+                            alt={`${project.title} ${imgIndex + 1}`} 
+                            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                          />
+                        </div>
+                      ))}
                     </div>
-                    <div className="text-blue-600 font-medium">
-                      SCTL Initiative
+                  ) : (
+                    <div className="overflow-hidden h-80">
+                      <img 
+                        src={project.image} 
+                        alt={project.title} 
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                      />
+                    </div>
+                  )}
+                </div>
+                
+                {/* Content Section - w-1/2 */}
+                <div className="w-full lg:w-1/2">
+                  <div className="relative">
+                    <span className="text-8xl font-bold text-blue-50 absolute -top-8 -left-2 opacity-50 z-0">
+                      {index + 1}
+                    </span>
+                    
+                    <div className="relative z-10">
+                      <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
+                        {project.title}
+                      </h2>
+                      
+                      {/* Stats */}
+                      <div className="flex flex-wrap gap-3 mb-6">
+                        {project.stats.map((stat, statIndex) => (
+                          <div key={statIndex} className="bg-blue-50 text-[#184E77] px-3 py-2 border border-blue-100">
+                            <span className="font-semibold">{stat.label}:</span> {stat.value}
+                          </div>
+                        ))}
+                      </div>
+                      
+                      <p className="text-gray-600 leading-relaxed mb-8">
+                        {project.content}
+                      </p>
+                      
+                      <div className="flex items-center gap-4 border-t border-gray-200 pt-6">
+                        <div className="flex items-center">
+                          <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                          <span className="text-green-700 font-medium">Project Completed</span>
+                        </div>
+                        <div className="text-[#184E77] font-medium">
+                          SCTL Initiative
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
 
       {/* Impact Section */}
-      <div className="bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Transformative Impact</h2>
+      <div className="py-24 bg-gradient-to-br from-[#184E77] to-[#0d3b61] text-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Transformative Urban Impact</h2>
             <p className="text-blue-200 max-w-3xl mx-auto">
-              Our projects have created sustainable value across Thiruvananthapuram
+              Our projects create sustainable value across Thiruvananthapuram
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-blue-800/30 p-6 rounded-xl backdrop-blur-sm">
-              <h3 className="text-xl font-bold mb-3">Urban Renewal</h3>
-              <p>Revitalized public spaces, enhanced cultural hubs, and improved urban infrastructure</p>
-            </div>
-            <div className="bg-blue-800/30 p-6 rounded-xl backdrop-blur-sm">
-              <h3 className="text-xl font-bold mb-3">Sustainable Mobility</h3>
-              <p>Reduced traffic congestion through smart parking solutions and electric public transport</p>
-            </div>
-            <div className="bg-blue-800/30 p-6 rounded-xl backdrop-blur-sm">
-              <h3 className="text-xl font-bold mb-3">Environmental Stewardship</h3>
-              <p>Waste management solutions and renewable energy adoption reducing carbon footprint</p>
-            </div>
+            {[
+              { 
+                title: "Urban Renewal", 
+                desc: "Revitalized public spaces, enhanced cultural hubs, and improved urban infrastructure",
+                icon: "🏙️"
+              },
+              { 
+                title: "Sustainable Mobility", 
+                desc: "Reduced traffic congestion through smart parking solutions and electric public transport",
+                icon: "🚌"
+              },
+              { 
+                title: "Environmental Stewardship", 
+                desc: "Waste management solutions and renewable energy adoption reducing carbon footprint",
+                icon: "🌿"
+              }
+            ].map((item, index) => (
+              <div key={index} className="bg-[#1E6091]/50 p-8 backdrop-blur-sm border border-[#34A0A4]/30 rounded-lg">
+                <div className="text-4xl mb-4">{item.icon}</div>
+                <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+                <p className="text-blue-100">{item.desc}</p>
+              </div>
+            ))}
           </div>
-        </div>
-      </div>
-
-      {/* Call to Action */}
-      <div className="max-w-7xl mx-auto px-4 py-16 text-center">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">Explore More Projects</h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-8">
-          Discover how SCTL is transforming Thiruvananthapuram into a model smart city
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <a href="/photoGallery">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition-colors">
-            View Project Gallery
-          </button>
-          </a>
-          <a href={PDF}
-          target="_blank" rel="noopener noreferrer">
-            <button className="bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-3 px-8 rounded-lg transition-colors">
-            Download Project Reports
-          </button>
-          </a>
-          
         </div>
       </div>
     </div>

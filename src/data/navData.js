@@ -40,12 +40,10 @@ const navigation = [
     {
       name: 'Events',
       dropdown: [
-        { name: 'AKAM 2021', href: '#' },
-        { name: 'Conclave', href: '#' },
-        { name: 'News', href: '#' },
-        { name: 'Media Coverage', href: '#' },
-        { name: '8th Anniversary of Smartcity Mission', href: '#' },
-        { name: 'Inauguration', href: '#' },
+        { name: 'News', href: '/news' },
+        { name: 'Conclave', href: '/conclave' },
+        { name: '8th Anniversary of Smartcity Mission', href: '/Anniversary' },
+        { name: 'Inauguration', href: '/inauguration' },
         { name: 'Ente Keralam', href: '/EnteKeralam' },
       ],
     },

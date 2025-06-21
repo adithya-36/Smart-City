@@ -27,6 +27,8 @@ import img3a from '../../assets/images/smart road/img1.jpeg';
 import img3b from '../../assets/images/smart road/img2.jpeg';
 import img3c from '../../assets/images/smart road/img3.jpeg';
 import img3d from '../../assets/images/smart road/img4.jpeg';
+import img3e from '../../assets/images/smart road/image5.jpg';
+import img3f from '../../assets/images/smart road/img6.jpg';
 
 import thumb4 from '../../assets/images/meeting/thumb.jpg';
 import img4a from '../../assets/images/meeting/img1.jpeg';
@@ -45,37 +47,31 @@ import img6c from '../../assets/images/TRIDA/img.jpeg';
 const photoGroups = [
   {
     title: 'Execution Photographs',
-    count: 12,
     thumbnail: thumb1,
     images: [img1a, img1b, img1c, img1d, img1e, img1f, img1g, img1h, img1i, img1j, img1k, img1l],
   },
   {
     title: 'Sreechithra Park Redevelopment',
-    count: 4,
     thumbnail: thumb2,
     images: [img2a, img2b, img2c, img2d],
   },
   {
     title: 'Smart Road (Corporation)',
-    count: 4,
     thumbnail: thumb3,
-    images: [img3a, img3b, img3c, img3d],
+    images: [img3e, img3f,img3a, img3b, img3c, img3d],
   },
   {
     title: 'TSCCC Meeting',
-    count: 1,
     thumbnail: thumb4,
     images: [img4a],
   },
   {
-    title: 'Thampanoor MLCP Piling',
-    count: 4,
+    title: 'Thampanoor MLCP',
     thumbnail: thumb5,
     images: [img5a, img5b, img5c, img5d],
   },
   {
     title: 'Discussions with TRIDA',
-    count: 3,
     thumbnail: thumb6,
     images: [img6a, img6b, img6c],
   },
@@ -98,8 +94,12 @@ const PhotoGallery = () => {
   };
   
   const closeModal = () => {
-    setViewMode('grid');
-    setActiveAlbum(null);
+    if (viewMode === 'single') {
+      setViewMode('album');
+    } else {
+      setViewMode('grid');
+      setActiveAlbum(null);
+    }
   };
   
   const navigateImage = (direction) => {
@@ -110,33 +110,49 @@ const PhotoGallery = () => {
     setCurrentImageIndex(newIndex);
   };
 
+  // Handle keyboard navigation
+  React.useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (viewMode === 'single') {
+        if (e.key === 'ArrowRight') {
+          navigateImage('next');
+        } else if (e.key === 'ArrowLeft') {
+          navigateImage('prev');
+        } else if (e.key === 'Escape') {
+          closeModal();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [viewMode, currentImageIndex, activeAlbum]);
+
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen">
+    <div className="bg-gray-50 min-h-screen">
       {/* Banner */}
       <div className="relative h-48 md:h-64 w-full overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(to right, rgba(0, 60, 80, 0.85), rgba(0, 128, 128, 0.6)), url(${Banner})`,
+            backgroundImage: `linear-gradient(to right, rgba(24, 78, 119, 0.9), rgba(30, 96, 145, 0.8)), url(${Banner})`,
           }}
         ></div>
         <div className="relative z-10 flex items-center justify-center h-full">
-          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold text-center px-4 drop-shadow-lg">
+          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold text-center px-4">
             Photo Gallery
           </h1>
         </div>
       </div>
 
       {/* Main Gallery */}
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        
-        
+      <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Album Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {photoGroups.map((album, index) => (
             <div 
               key={index}
-              className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer"
+              className="bg-white shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
               onClick={() => openAlbum(index)}
             >
               <div className="relative">
@@ -147,7 +163,7 @@ const PhotoGallery = () => {
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
                   <h3 className="text-white text-lg font-bold">{album.title}</h3>
-                  <p className="text-gray-300 text-sm">{album.count} photos</p>
+                  <p className="text-gray-300 text-sm">{album.images.length} photos</p>
                 </div>
               </div>
             </div>
@@ -183,7 +199,7 @@ const PhotoGallery = () => {
                   <img 
                     src={img} 
                     alt={`${photoGroups[activeAlbum].title} ${index + 1}`} 
-                    className="w-full h-40 object-cover rounded-lg shadow-md group-hover:opacity-75 transition-opacity"
+                    className="w-full h-40 object-cover group-hover:opacity-75 transition-opacity"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -204,14 +220,14 @@ const PhotoGallery = () => {
           onClick={closeModal}
         >
           <button 
-            className="absolute top-4 left-4 text-white text-2xl z-70 hover:text-gray-300"
+            className="absolute top-4 right-4 text-white text-2xl z-70 hover:text-gray-300"
             onClick={(e) => {
               e.stopPropagation();
-              navigateImage('prev');
+              closeModal();
             }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
           
@@ -227,20 +243,21 @@ const PhotoGallery = () => {
             </div>
           </div>
           
+          {/* Navigation Arrows */}
           <button 
-            className="absolute top-4 right-4 text-white text-2xl z-70 hover:text-gray-300"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-2xl z-70 hover:text-gray-300"
             onClick={(e) => {
               e.stopPropagation();
-              closeModal();
+              navigateImage('prev');
             }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           
           <button 
-            className="absolute top-4 right-16 text-white text-2xl z-70 hover:text-gray-300"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-2xl z-70 hover:text-gray-300"
             onClick={(e) => {
               e.stopPropagation();
               navigateImage('next');
@@ -255,23 +272,23 @@ const PhotoGallery = () => {
 
       {/* Gallery Stats */}
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="bg-gradient-to-r from-teal-50 to-blue-50 rounded-xl p-6 border border-teal-200">
-          <h3 className="text-xl font-bold text-center mb-4" style={{ color: '#1A759F' }}>
+        <div className="bg-white shadow-md p-6">
+          <h3 className="text-xl font-bold text-center mb-4 text-[#1E6091]">
             Gallery Statistics
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
             <div>
-              <div className="text-3xl font-bold" style={{ color: '#1E6091' }}>{photoGroups.length}</div>
+              <div className="text-3xl font-bold text-[#1E6091]">{photoGroups.length}</div>
               <p className="text-gray-600">Albums</p>
             </div>
             <div>
-              <div className="text-3xl font-bold" style={{ color: '#168AAD' }}>
-                {photoGroups.reduce((total, album) => total + album.count, 0)}+
+              <div className="text-3xl font-bold text-[#1E6091]">
+                {photoGroups.reduce((total, album) => total + album.images.length, 0)}
               </div>
               <p className="text-gray-600">Photos</p>
             </div>
             <div>
-              <div className="text-3xl font-bold" style={{ color: '#34A0A4' }}>6+</div>
+              <div className="text-3xl font-bold text-[#1E6091]">{photoGroups.length}</div>
               <p className="text-gray-600">Categories</p>
             </div>
           </div>

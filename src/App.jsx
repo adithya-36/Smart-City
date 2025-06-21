@@ -37,6 +37,10 @@ import Financials from './pages/SCTL/Financials'
 import CITIIS from './pages/Project/CITIIS'
 import ProjectFunds from './pages/SCTL/ProjectFunds'
 import Consultant from './pages/SCTL/Consultant'
+import Anniversary from './pages/Events/Anniversary'
+import Conclave from './pages/Events/Conclave'
+import Inauguration from './pages/Events/Inauguration'
+import News from './pages/Events/News'
 const App = () => {
   return (
     <BrowserRouter>
@@ -71,6 +75,10 @@ const App = () => {
             <Route path='/videoGallery' element={<VideoGallery/>} />
             <Route path="/Projects" element={<ProjectPage/>} />
             <Route path="/Tenders" element={<TenderTable/>} />
+            <Route path="/news" element={<News/>} />
+            <Route path="/conclave" element={<Conclave/>} />
+            <Route path="/Anniversary" element={<Anniversary/>} />
+            <Route path="/inauguration" element={<Inauguration/>} />
             <Route path="/ContactUs" element={<ContactUs/>} />
             <Route path="/registerComplaint" element={<RegisterComplaint/>} />
             <Route path="/poll" element={<Poll/>} />

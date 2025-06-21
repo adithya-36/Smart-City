@@ -6,6 +6,7 @@ import RTIAct from './PDFFile/RTI2005Act.pdf'
 import RTIForm from './PDFFile/RTIApplication.pdf'
 import RTIGuideline from './PDFFile/Guidelines.pdf'
 import PDFIcon from '../../assets/images/pdfFile.png'
+
 const RTI = () => {
   const officers = [
     {
@@ -29,29 +30,30 @@ const RTI = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-gray-100">
+    <div className="bg-gray-50">
       {/* Banner */}
       <div className="relative h-48 md:h-64 w-full overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(to right, rgba(0, 60, 80, 0.85), rgba(0, 128, 128, 0.6)), url(${Banner})`,
+            backgroundImage: `linear-gradient(to right, rgba(24, 78, 119, 0.9), rgba(30, 96, 145, 0.8)), url(${Banner})`,
           }}
         ></div>
         <div className="relative z-10 flex items-center justify-center h-full">
-          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold text-center px-4 drop-shadow-lg">
+          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold text-center px-4">
             Right to Information Act
           </h1>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4" style={{ color: '#1A759F' }}>
+      <div className="max-w-6xl mx-auto px-4 py-12">
+        {/* Information Officers Section */}
+        <div className=" shadow-md p-6 md:p-8 mb-8 ">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[#1E6091]">
             Information Officers of Smart City Thiruvananthapuram Limited
           </h2>
-          <p className="text-gray-700 mb-6">
+          <p className="text-gray-700 mb-8">
             As per the Right to Information Act, 2005, the following officers are designated as the Information Officers of Smart City Thiruvananthapuram Limited.
           </p>
 
@@ -59,17 +61,17 @@ const RTI = () => {
             {officers.map((officer, index) => (
               <div
                 key={index}
-                className="border rounded-lg p-5 hover:shadow-md transition-shadow"
+                className="border p-5 shadow-sm hover:shadow-md transition-shadow"
                 style={{
                   borderColor: index === 0 ? '#1E6091' :
-                    index === 1 ? '#168AAD' : '#34A0A4'
+                    index === 1 ? '#184E77' : '#1A759F'
                 }}
               >
                 <h3
-                  className="font-bold text-lg mb-3 pb-2 border-b"
+                  className="font-bold text-lg mb-3 pb-2 border-b border-gray-200"
                   style={{
                     color: index === 0 ? '#1E6091' :
-                      index === 1 ? '#168AAD' : '#34A0A4'
+                      index === 1 ? '#184E77' : '#1A759F'
                   }}
                 >
                   {officer.title}
@@ -78,7 +80,7 @@ const RTI = () => {
                 <p className="text-gray-600 mb-3">{officer.designation}</p>
                 <a
                   href={`mailto:${officer.email}`}
-                  className="text-blue-600 hover:underline flex items-start"
+                  className="text-[#1A759F] hover:text-[#184E77] flex items-start"
                 >
                   <img src={MailBlack} alt="Email" className="w-4 h-4 mr-2 mt-1" />
                   {officer.email}
@@ -87,8 +89,8 @@ const RTI = () => {
             ))}
           </div>
 
-          <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
-            <h3 className="text-xl font-bold mb-4" style={{ color: '#1A759F' }}>Office Address</h3>
+          <div className="bg-gray-50 p-6 ">
+            <h3 className="text-xl font-bold mb-4 text-[#1E6091]">Office Address</h3>
             <div className="space-y-2 text-gray-700">
               <p>4th Floor, Felicity Square Building,</p>
               <p>Opp AG Office, Statue,</p>
@@ -98,13 +100,13 @@ const RTI = () => {
                 <div className="flex items-center">
                   <img src={MailBlack} alt="Email" className="w-5 h-5 mr-2" />
                   <span>
-                    Email: <a href="mailto:info@smartcitytvm.in" className="text-blue-600 hover:underline">info@smartcitytvm.in</a>
+                    Email: <a href="mailto:info@smartcitytvm.in" className="text-[#1A759F] hover:text-[#184E77]">info@smartcitytvm.in</a>
                   </span>
                 </div>
                 <div className="flex items-center">
                   <img src={PhoneBlack} alt="Phone" className="w-5 h-5 mr-2" />
                   <span>
-                    Phone: <a href="tel:+9104714010374" className="text-blue-600 hover:underline">+91 - 0471 - 4010374</a>
+                    Phone: <a href="tel:+9104714010374" className="text-[#1A759F] hover:text-[#184E77]">+91 - 0471 - 4010374</a>
                   </span>
                 </div>
               </div>
@@ -112,18 +114,18 @@ const RTI = () => {
           </div>
         </div>
 
-        {/* Additional Information */}
-        <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-          <h2 className="text-2xl font-bold mb-4" style={{ color: '#1A759F' }}>About the Right to Information Act</h2>
+        {/* About RTI Section */}
+        <div className="bg-white shadow-md p-6 md:p-8 ">
+          <h2 className="text-2xl font-bold mb-6 text-[#1E6091]">About the Right to Information Act</h2>
 
-          <div className="space-y-4 text-gray-700">
+          <div className="space-y-6 text-gray-700">
             <p>
               The Right to Information Act, 2005 (RTI Act) empowers citizens to seek information from public authorities to promote transparency and accountability in the working of every public authority.
             </p>
 
-            <div className="bg-gray-50 p-4 rounded-lg border-l-4" style={{ borderColor: '#52B69A' }}>
-              <h3 className="font-bold mb-2">Key Provisions:</h3>
-              <ul className="list-disc list-inside space-y-1 pl-2">
+            <div className="bg-gray-50 p-4 ">
+              <h3 className="font-bold mb-3 text-[#1E6091]">Key Provisions:</h3>
+              <ul className="list-disc list-inside space-y-2 pl-2">
                 <li>Citizens can request information from any public authority</li>
                 <li>Authorities must respond within 30 days</li>
                 <li>Information should be provided in the requested format</li>
@@ -131,9 +133,9 @@ const RTI = () => {
               </ul>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-              <div className="border rounded-lg p-4" style={{ borderColor: '#76C893' }}>
-                <h3 className="font-bold mb-3" style={{ color: '#168AAD' }}>How to File an RTI Request</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className=" p-4" style={{ borderColor: '#1A759F' }}>
+                <h3 className="font-bold mb-4 text-[#1E6091]">How to File an RTI Request</h3>
                 <ol className="list-decimal list-inside space-y-2 pl-2">
                   <li>Submit a written request in English or Malayalam</li>
                   <li>Include your contact information</li>
@@ -143,18 +145,18 @@ const RTI = () => {
                 </ol>
               </div>
 
-              <div className="border rounded-lg p-4" style={{ borderColor: '#99D98C' }}>
-                <h3 className="font-bold mb-3" style={{ color: '#1A759F' }}>RTI Fee Structure</h3>
-                <ul className="space-y-2">
-                  <li className="flex justify-between border-b pb-2">
+              <div className=" p-4" style={{ borderColor: '#184E77' }}>
+                <h3 className="font-bold mb-4 text-[#1E6091]">RTI Fee Structure</h3>
+                <ul className="space-y-3">
+                  <li className="flex justify-between border-b border-gray-200 pb-2">
                     <span>Application Fee:</span>
                     <span>₹10</span>
                   </li>
-                  <li className="flex justify-between border-b pb-2">
+                  <li className="flex justify-between border-b border-gray-200 pb-2">
                     <span>Per Page (A4/A3):</span>
                     <span>₹2</span>
                   </li>
-                  <li className="flex justify-between border-b pb-2">
+                  <li className="flex justify-between border-b border-gray-200 pb-2">
                     <span>Inspection of Records:</span>
                     <span>No fee for first hour</span>
                   </li>
@@ -168,35 +170,35 @@ const RTI = () => {
           </div>
         </div>
 
-        {/* Resources */}
-        <div className="mt-8 text-center">
-          <h3 className="text-xl font-bold mb-4" style={{ color: '#1A759F' }}>Download RTI Forms & Resources</h3>
+        {/* Resources Section */}
+        <div className="mt-12 text-center">
+          <h3 className="text-xl font-bold mb-6 text-[#1E6091]">Download RTI Forms & Resources</h3>
           <div className="flex flex-wrap justify-center gap-4">
             <a
               href={RTIForm}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white border border-blue-300 text-blue-700 font-medium py-2 px-4 rounded-lg shadow hover:bg-blue-50 transition flex items-center"
+              className="bg-white border border-gray-300 text-[#1E6091] font-medium py-2 px-4 shadow-sm hover:bg-gray-50 transition flex items-center"
             >
-              <img className='w-5 mx-2' src={PDFIcon} alt="" />
+              <img className='w-5 mr-2' src={PDFIcon} alt="PDF icon" />
               RTI Application Form
             </a>
             <a
               href={RTIAct}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white border border-blue-300 text-blue-700 font-medium py-2 px-4 rounded-lg shadow hover:bg-blue-50 transition flex items-center"
+              className="bg-white border border-gray-300 text-[#1E6091] font-medium py-2 px-4 shadow-sm hover:bg-gray-50 transition flex items-center"
             >
-              <img className='w-5 mx-2' src={PDFIcon} alt="" />
+              <img className='w-5 mr-2' src={PDFIcon} alt="PDF icon" />
               RTI Act, 2005 (Full Text)
             </a>
             <a
               href={RTIGuideline}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white border border-blue-300 text-blue-700 font-medium py-2 px-4 rounded-lg shadow hover:bg-blue-50 transition flex items-center"
+              className="bg-white border border-gray-300 text-[#1E6091] font-medium py-2 px-4 shadow-sm hover:bg-gray-50 transition flex items-center"
             >
-              <img className='w-5 mx-2' src={PDFIcon} alt="" />
+              <img className='w-5 mr-2' src={PDFIcon} alt="PDF icon" />
               RTI Guidelines
             </a>
           </div>
