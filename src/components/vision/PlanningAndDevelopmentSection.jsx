@@ -97,59 +97,53 @@ const PlanningAndDevelopmentSection = () => {
   const toggleAccordion = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
-  const bgColors = [
-    'bg-[#D9ED92]', 'bg-[#B5E48C]', 'bg-[#99D98C]', 
-    'bg-[#76C893]', 'bg-[#52B69A]', 'bg-[#34A0A4]',
-    'bg-[#168AAD]', 'bg-[#1A759F]', 'bg-[#1E6091]', 'bg-[#18AE77]'
-  ];
 
   return (
-    <div className="mb-16">
-      <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center" style={{ color: '#1A759F' }}>
-        Planning and Development Strategies
-      </h1>
-      
-      <div className="max-w-5xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
-        {strategies.map((item, index) => (
-          <div 
-            key={index} 
-            className="border-b border-gray-200"
-          >
-            <button
-              className={`w-full text-left px-6 py-4 focus:outline-none transition-colors duration-300 ${
-                openIndex === index 
-                  ? `${bgColors[index]} text-gray-900` 
-                  : 'bg-white hover:bg-gray-50 text-gray-800'
-              }`}
-              onClick={() => toggleAccordion(index)}
-            >
-              <div className="flex justify-between items-center">
-                <span className="font-bold text-lg">{item.title}</span>
-                <svg 
-                  className={`w-5 h-5 transition-transform duration-300 ${
-                    openIndex === index ? 'transform rotate-180' : ''
-                  }`} 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-            </button>
+    <div className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center text-[#184E77]">
+          Planning and Development Strategies
+        </h1>
+        
+        <div className="space-y-1">
+          {strategies.map((item, index) => (
+            <div key={index} className="border border-gray-200 shadow-sm">
+              <button
+                className={`w-full text-left px-6 py-5 focus:outline-none transition-colors duration-200 ${
+                  openIndex === index 
+                    ? 'bg-[#1E6091] text-white' 
+                    : 'bg-white hover:bg-gray-100 text-gray-800'
+                }`}
+                onClick={() => toggleAccordion(index)}
+              >
+                <div className="flex justify-between items-center">
+                  <span className="font-semibold text-lg">{item.title}</span>
+                  <svg 
+                    className={`w-5 h-5 transition-transform duration-200 ${
+                      openIndex === index ? 'transform rotate-180 text-white' : 'text-[#1E6091]'
+                    }`} 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </button>
 
-            {openIndex === index && (
-              <div className="px-6 py-4 bg-gray-50 text-gray-700">
-                <p className="mb-4">{item.description}</p>
-                <ul className="list-disc list-inside space-y-2">
-                  {item.goals.map((goal, i) => (
-                    <li key={i} className="ml-4">{goal}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        ))}
+              {openIndex === index && (
+                <div className="px-6 py-4 bg-white border-t border-gray-200 text-gray-700">
+                  <p className="mb-4 text-gray-600">{item.description}</p>
+                  <ul className="list-disc list-inside space-y-2">
+                    {item.goals.map((goal, i) => (
+                      <li key={i} className="ml-4 text-gray-700">{goal}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

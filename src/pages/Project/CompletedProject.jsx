@@ -59,31 +59,19 @@ const CompletedProject = () => {
   const galleryData = [
     {
       id: 1,
-      image: Image1,
-      title: "Urban Street Haat",
-      location: "Charithra Veedhi, East Fort",
-      description: "A vibrant cultural marketplace revitalizing the historic East Fort area with traditional craft stalls and cultural activities."
+      image: Image1
     },
     {
       id: 2,
-      image: Image2,
-      title: "Multi-Level Car Parking",
-      location: "Thampanoor Railway Station",
-      description: "Modern parking facility with EV charging stations, reducing congestion near the busy railway station."
+      image: Image2
     },
     {
       id: 3,
-      image: Image3,
-      title: "Smart Roads",
-      location: "KRFB Phase 1 Implementation",
-      description: "Intelligent transportation infrastructure with smart sensors and traffic management systems."
+      image: Image3
     },
     {
       id: 4,
-      image: Image4,
-      title: "Children's Park",
-      location: "KWA Linked Green Activity",
-      description: "Eco-friendly recreational space with interactive play equipment and green landscaping."
+      image: Image4
     }
   ];
 
@@ -96,57 +84,74 @@ const CompletedProject = () => {
     setLightboxOpen(false);
   };
 
+  // Calculate total investment
+  const totalInvestment = tableData.reduce((sum, project) => {
+    const amount = parseFloat(project.amount) || 0;
+    return sum + amount;
+  }, 0).toFixed(2);
+
   return (
     <div className="bg-gray-50">
       {/* Banner */}
-      <div className="relative h-48 md:h-64 w-full overflow-hidden">
+      <div className="relative h-64 w-full overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center object-cover"
+          className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(to right, rgba(0, 60, 80, 0.85), rgba(0, 128, 128, 0.6)), url(${Banner})`,
+            backgroundImage: `linear-gradient(to right, rgba(24, 78, 119, 0.9), rgba(30, 96, 145, 0.8)), url(${Banner})`,
           }}
         ></div>
         <div className="relative z-10 flex items-center justify-center h-full">
-          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold text-center px-4 drop-shadow-lg">
-            Completed Projects
-          </h1>
+          <div className="text-center px-4">
+            <h1 className="text-white text-4xl md:text-5xl font-bold mb-4">
+              Completed Projects
+            </h1>
+            <p className="text-white text-lg md:text-xl max-w-2xl mx-auto opacity-90">
+              Celebrating our successful urban transformation initiatives
+            </p>
+          </div>
         </div>
       </div>
 
       {/* Content Container */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
         {/* Introduction */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Celebrating Our Achievements
+            Our Achievements
           </h2>
+          <div className="h-0.5 w-24 bg-[#184E77] mx-auto mb-6"></div>
           <p className="text-gray-600 max-w-3xl mx-auto text-lg">
-            Explore the diverse range of projects we've successfully completed across Thiruvananthapuram. 
-            Each initiative represents our commitment to transforming our city into a smarter, more sustainable urban environment.
+            These successfully completed projects demonstrate our commitment to building a smarter, 
+            more sustainable Thiruvananthapuram across various sectors.
           </p>
         </div>
 
         {/* Projects Table */}
-        <div className="mb-16">
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+        <div className="mb-20">
+          <div className="flex justify-between items-center mb-6">
+            <h3 className="text-2xl font-bold text-gray-800">Completed Projects List</h3>
+            <div className="text-sm text-gray-500">{tableData.length} projects completed</div>
+          </div>
+          
+          <div className="border border-gray-200 bg-white">
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gradient-to-r from-blue-700 to-indigo-700 text-white">
+                <thead className="bg-[#184E77] text-white">
                   <tr>
-                    <th className="py-4 px-4 text-left text-sm md:text-base font-semibold">No</th>
-                    <th className="py-4 px-4 text-left text-sm md:text-base font-semibold">Project Name</th>
-                    <th className="py-4 px-4 text-right text-sm md:text-base font-semibold">Amount (₹ in Cr)</th>
+                    <th className="py-4 px-6 text-left font-medium">No</th>
+                    <th className="py-4 px-6 text-left font-medium">Project Name</th>
+                    <th className="py-4 px-6 text-right font-medium">Amount (₹ in Cr)</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody className="divide-y divide-gray-200">
                   {tableData.map((item, index) => (
                     <tr 
                       key={index} 
-                      className={`transition-colors duration-150 ${index % 2 === 0 ? 'bg-white' : 'bg-blue-50'}`}
+                      className="hover:bg-gray-50 transition-colors"
                     >
-                      <td className="py-4 px-4 text-gray-700 font-medium">{item.no}</td>
-                      <td className="py-4 px-4 text-gray-700">{item.projectName}</td>
-                      <td className="py-4 px-4 text-right text-gray-700 font-medium">{item.amount}</td>
+                      <td className="py-4 px-6 text-gray-700 font-medium">{item.no}</td>
+                      <td className="py-4 px-6 text-gray-700">{item.projectName}</td>
+                      <td className="py-4 px-6 text-right text-gray-700 font-medium">{item.amount}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -155,87 +160,85 @@ const CompletedProject = () => {
           </div>
         </div>
 
-        {/* Enhanced Gallery Section */}
-        <div className="mt-16">
+        {/* Gallery Section */}
+        <div className="mb-20">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-800">Project Gallery</h2>
+            <h3 className="text-2xl font-bold text-gray-800">Project Highlights</h3>
             <div className="text-sm text-gray-500">Click images to view details</div>
           </div>
           
-          {/* Masonry Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
             {/* Left Column */}
-            <div className="md:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="md:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Large Featured Image */}
               <div 
-                className="md:col-span-2 rounded-xl overflow-hidden shadow-lg cursor-pointer group relative"
+                className="md:col-span-2 h-96 overflow-hidden cursor-pointer group relative"
                 onClick={() => openLightbox(galleryData[0])}
               >
                 <img 
                   src={Image1} 
                   alt="Urban Street Haat" 
-                  className="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div>
-                    <h3 className="text-xl font-bold text-white">Urban Street Haat</h3>
-                    <p className="text-blue-200">Charithra Veedhi, East Fort</p>
+                    <h3 className="text-xl font-bold text-white">{galleryData[0].title}</h3>
+                    <p className="text-gray-300">{galleryData[0].location}</p>
                   </div>
                 </div>
               </div>
               
-              {/* Medium Image */}
+              {/* Medium Images */}
               <div 
-                className="rounded-xl overflow-hidden shadow-lg cursor-pointer group relative"
+                className="h-80 overflow-hidden cursor-pointer group relative"
                 onClick={() => openLightbox(galleryData[1])}
               >
                 <img 
                   src={Image2} 
                   alt="Multi-Level Car Parking" 
-                  className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div>
-                    <h3 className="text-xl font-bold text-white">Multi-Level Car Parking</h3>
-                    <p className="text-blue-200">Thampanoor Railway Station</p>
+                    <h3 className="text-xl font-bold text-white">{galleryData[1].title}</h3>
+                    <p className="text-gray-300">{galleryData[1].location}</p>
                   </div>
                 </div>
               </div>
               
-              {/* Medium Image */}
               <div 
-                className="rounded-xl overflow-hidden shadow-lg cursor-pointer group relative"
+                className="h-80 overflow-hidden cursor-pointer group relative"
                 onClick={() => openLightbox(galleryData[2])}
               >
                 <img 
                   src={Image3} 
                   alt="Smart Roads" 
-                  className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div>
-                    <h3 className="text-xl font-bold text-white">Smart Roads</h3>
-                    <p className="text-blue-200">KRFB Phase 1 Implementation</p>
+                    <h3 className="text-xl font-bold text-white">{galleryData[2].title}</h3>
+                    <p className="text-gray-300">{galleryData[2].location}</p>
                   </div>
                 </div>
               </div>
             </div>
             
             {/* Right Column - Vertical Image */}
-            <div className="md:col-span-5">
+            <div className="md:col-span-5 ">
               <div 
-                className="h-full rounded-xl overflow-hidden shadow-lg cursor-pointer group relative"
+                className="h-full overflow-hidden cursor-pointer group relative"
                 onClick={() => openLightbox(galleryData[3])}
               >
                 <img 
                   src={Image4} 
                   alt="Children's Park" 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div>
-                    <h3 className="text-xl font-bold text-white">Children's Park</h3>
-                    <p className="text-blue-200">KWA Linked Green Activity</p>
+                    <h3 className="text-xl font-bold text-white">{galleryData[3].title}</h3>
+                    <p className="text-gray-300">{galleryData[3].location}</p>
                   </div>
                 </div>
               </div>
@@ -244,26 +247,26 @@ const CompletedProject = () => {
         </div>
 
         {/* Summary Section */}
-        <div className="mt-16 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8 border border-blue-100">
+        <div className="bg-[#184E77] text-white p-8 border border-[#1E6091]">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Making a Difference Together</h2>
-            <p className="text-gray-700 text-lg mb-6">
-              With over 42 projects successfully completed across various sectors including transportation, 
-              renewable energy, urban development, and public amenities, we're proud of the progress we've made 
-              in transforming Thiruvananthapuram into a smarter, more livable city.
+            <h2 className="text-3xl font-bold mb-4">Transformation in Numbers</h2>
+            <div className="h-0.5 w-24 bg-white mx-auto mb-6"></div>
+            <p className="text-gray-300 text-lg mb-8">
+              Our completed projects have made a significant impact across the city, 
+              improving infrastructure, mobility, and quality of life for residents.
             </p>
-            <div className="flex flex-wrap justify-center gap-6">
-              <div className="bg-white rounded-lg p-4 shadow-md text-center min-w-[150px]">
-                <div className="text-3xl font-bold text-blue-700">42</div>
-                <div className="text-gray-600">Projects Completed</div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-white p-4 text-[#184E77]">
+                <div className="text-3xl font-bold mb-2">{tableData.length}</div>
+                <div className="text-gray-700 font-medium">Projects Completed</div>
               </div>
-              <div className="bg-white rounded-lg p-4 shadow-md text-center min-w-[150px]">
-                <div className="text-3xl font-bold text-blue-700">₹285.31 Cr</div>
-                <div className="text-gray-600">Total Investment</div>
+              <div className="bg-white p-4 text-[#184E77]">
+                <div className="text-3xl font-bold mb-2">₹{totalInvestment} Cr</div>
+                <div className="text-gray-700 font-medium">Total Investment</div>
               </div>
-              <div className="bg-white rounded-lg p-4 shadow-md text-center min-w-[150px]">
-                <div className="text-3xl font-bold text-blue-700">24+</div>
-                <div className="text-gray-600">Locations Transformed</div>
+              <div className="bg-white p-4 text-[#184E77]">
+                <div className="text-3xl font-bold mb-2">24+</div>
+                <div className="text-gray-700 font-medium">Locations Transformed</div>
               </div>
             </div>
           </div>
@@ -273,7 +276,7 @@ const CompletedProject = () => {
       {/* Lightbox Modal */}
       {lightboxOpen && currentImage && (
         <div 
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-gray-900/90 z-50 flex items-center justify-center p-4"
           onClick={closeLightbox}
         >
           <div 
@@ -281,7 +284,7 @@ const CompletedProject = () => {
             onClick={e => e.stopPropagation()}
           >
             <button 
-              className="absolute top-4 right-4 text-white bg-black/50 rounded-full p-2 z-10"
+              className="absolute top-4 right-4 text-white bg-gray-800 p-2 hover:bg-gray-700 transition-colors"
               onClick={closeLightbox}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -289,17 +292,12 @@ const CompletedProject = () => {
               </svg>
             </button>
             
-            <div className="bg-white rounded-xl overflow-hidden shadow-2xl">
+            <div className="bg-white border border-gray-200 overflow-hidden">
               <img 
                 src={currentImage.image} 
                 alt={currentImage.title} 
                 className="w-full max-h-[70vh] object-contain"
               />
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-gray-800 mb-2">{currentImage.title}</h3>
-                <p className="text-blue-600 font-medium mb-4">{currentImage.location}</p>
-                <p className="text-gray-700">{currentImage.description}</p>
-              </div>
             </div>
           </div>
         </div>

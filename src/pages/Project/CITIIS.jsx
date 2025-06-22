@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from '../../assets/images/CIITS 2.0/image.png'
 import Banner from '../../assets/banners/citiisBanner.png';
 import Image1 from '../../assets/images/CIITS 2.0/img1.jpg';
 import Image2 from '../../assets/images/CIITS 2.0/img2.jpg';
@@ -88,7 +89,7 @@ const CITIIS = () => {
                 <div className="absolute bottom-0 left-0 w-16 h-1 bg-[#1E6091]"></div>
               </h2>
               <div className="bg-gray-200 border-2 border-dashed w-full h-64 flex items-center justify-center text-gray-500">
-                Program Infographic
+                <img src={Image} alt="CITIIS 2.0 Infographic" className="w-full h-full" />
               </div>
             </div>
             

@@ -10,35 +10,37 @@ const ABDProject = () => {
   return (
     <div className="bg-gray-50">
       {/* Banner */}
-      <div className="relative h-48 md:h-64 w-full overflow-hidden">
+      <div className="relative h-64 w-full overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center object-cover"
+          className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(to right, rgba(0, 60, 80, 0.85), rgba(0, 128, 128, 0.6)), url(${Banner})`,
+            backgroundImage: `linear-gradient(to right, rgba(24, 78, 119, 0.9), rgba(30, 96, 145, 0.8)), url(${Banner})`,
           }}
         ></div>
         <div className="relative z-10 flex items-center justify-center h-full">
-          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold text-center px-4 drop-shadow-lg">
-            ABD Projects
-          </h1>
+          <div className="text-center px-4">
+            <h1 className="text-white text-4xl md:text-5xl font-bold mb-4">ABD Projects</h1>
+            <div className="w-24 h-1 bg-white mx-auto"></div>
+          </div>
         </div>
       </div>
 
-      {/* Project 1 - Left image */}
-      <div className="py-12 px-4 md:px-8 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center gap-8 mb-20">
+      {/* Projects Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+        {/* Project 1 */}
+        <div className="flex flex-col md:flex-row items-center gap-8 mb-16">
           <div className="w-full md:w-1/2">
             <img
               src={ParkImage}
               alt="Children's Park"
-              className="rounded-xl shadow-lg w-full h-auto object-cover transition-transform duration-300 hover:scale-[1.02]"
+              className="w-full h-auto object-cover shadow-sm hover:shadow-md transition-shadow duration-300"
             />
           </div>
           <div className="w-full md:w-1/2">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 pb-2 border-b-2 border-blue-500 inline-block">
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#184E77] mb-4 pb-2 border-b border-[#1E6091]">
               Redevelopment of Children's Park, KWA Linked Green Activity
-            </h1>
-            <p className="text-gray-600 leading-relaxed">
+            </h2>
+            <p className="text-gray-700 leading-relaxed">
               Children's Park is opposite Museum Junction, owned by Kerala Water Authority and maintained by Rotary Club.
               In SCTL's proposal, apart from improved landscape, illumination and rejuvenation of existing water fountain works,
               there are many more elements of interest introduced like live size open chess, water features, rope bridge,
@@ -48,24 +50,24 @@ const ABDProject = () => {
           </div>
         </div>
 
-        {/* Project 2 - Right image */}
-        <div className="flex flex-col md:flex-row-reverse items-center gap-8 mb-20">
+        {/* Project 2 */}
+        <div className="flex flex-col md:flex-row-reverse items-center gap-8 mb-16">
           <div className="w-full md:w-1/2">
             <img
               src={DrinkingWaterImage}
               alt="Drinking Water Kiosk"
-              className="rounded-xl shadow-lg w-full h-auto object-cover transition-transform duration-300 hover:scale-[1.02]"
+              className="w-full h-auto object-cover shadow-sm hover:shadow-md transition-shadow duration-300"
             />
           </div>
           <div className="w-full md:w-1/2">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 pb-2 border-b-2 border-green-500 inline-block">
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#184E77] mb-4 pb-2 border-b border-[#1E6091]">
               Installation of Drinking Water Kiosks at 25 locations
-            </h1>
-            <p className="text-gray-600 leading-relaxed mb-4">
+            </h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
               This project aims at making potable water available at 25 public locations throughout the ABD area.
               Drinking Water Kiosk Project Locations are as follows:
             </p>
-            <ol className="grid grid-cols-1 md:grid-cols-2 gap-2 pl-5 text-gray-600">
+            <ol className="grid grid-cols-1 md:grid-cols-2 gap-2 pl-5 text-gray-700">
               <li className="list-decimal">Inside Sree Chithra Park</li>
               <li className="list-decimal">Corporation Campus-1</li>
               <li className="list-decimal">Corporation Campus-2</li>
@@ -94,20 +96,20 @@ const ABDProject = () => {
           </div>
         </div>
 
-        {/* Project 3 - Left image */}
-        <div className="flex flex-col md:flex-row items-center gap-8 mb-20">
+        {/* Project 3 */}
+        <div className="flex flex-col md:flex-row items-center gap-8 mb-16">
           <div className="w-full md:w-1/2">
             <img
               src={Gateway}
               alt="Putharikkandam Maidanam Gateway"
-              className="rounded-xl shadow-lg w-full h-auto object-cover transition-transform duration-300 hover:scale-[1.02]"
+              className="w-full h-auto object-cover shadow-sm hover:shadow-md transition-shadow duration-300"
             />
           </div>
           <div className="w-full md:w-1/2">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 pb-2 border-b-2 border-amber-500 inline-block">
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#184E77] mb-4 pb-2 border-b border-[#1E6091]">
               Construction of OAT and Park at Putharikkandam Maidanam
-            </h1>
-            <p className="text-gray-600 leading-relaxed">
+            </h2>
+            <p className="text-gray-700 leading-relaxed">
               This project aims at redeveloping Putharikandam Maidanam at East Fort. The proposal includes Entrance Gateway
               which is being extended to create a grand entry to the maidanam, a tensile roofing over E K Nayanar Memorial Plaza
               in order to bring a permanent shade to the area, OAT, renovating the compound wall, introducing a theme park,
@@ -117,20 +119,20 @@ const ABDProject = () => {
           </div>
         </div>
 
-        {/* Project 4 - Right image */}
-        <div className="flex flex-col md:flex-row-reverse items-center gap-8 mb-20">
+        {/* Project 4 */}
+        <div className="flex flex-col md:flex-row-reverse items-center gap-8 mb-16">
           <div className="w-full md:w-1/2">
             <img
               src={MLCPImage}
               alt="Multi Level Car Parking"
-              className="rounded-xl shadow-lg w-full h-auto object-cover transition-transform duration-300 hover:scale-[1.02]"
+              className="w-full h-auto object-cover shadow-sm hover:shadow-md transition-shadow duration-300"
             />
           </div>
           <div className="w-full md:w-1/2">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 pb-2 border-b-2 border-purple-500 inline-block">
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#184E77] mb-4 pb-2 border-b border-[#1E6091]">
               Construction of Multi Level Car Parking at Thampanoor
-            </h1>
-            <p className="text-gray-600 leading-relaxed">
+            </h2>
+            <p className="text-gray-700 leading-relaxed">
               Construction of Multilevel car and bike parking at Corporation land: area 50.25 cents,
               opposite Thampanoor Railway Station. This project envisages creation of a G+4 storeyed
               smart parking system for 22 cars and around 400 bike parking spaces along with an electric
@@ -139,20 +141,20 @@ const ABDProject = () => {
           </div>
         </div>
 
-        {/* Project 5 - Left image */}
+        {/* Project 5 */}
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="w-full md:w-1/2">
             <img
               src={SreeChitraPark}
               alt="Sree Chitra Park"
-              className="rounded-xl shadow-lg w-full h-auto object-cover transition-transform duration-300 hover:scale-[1.02]"
+              className="w-full h-auto object-cover shadow-sm hover:shadow-md transition-shadow duration-300"
             />
           </div>
           <div className="w-full md:w-1/2">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 pb-2 border-b-2 border-rose-500 inline-block">
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#184E77] mb-4 pb-2 border-b border-[#1E6091]">
               Redevelopment of Sree Chitra Park
-            </h1>
-            <p className="text-gray-600 leading-relaxed">
+            </h2>
+            <p className="text-gray-700 leading-relaxed">
               The project 'Urban Street Haat: Charithra Veedhi' aims to create a new landmark location
               for Trivandrum city within the East Fort. Sree Chithra Park and a part of the adjacent Taluk
               Road is being reimagined in this project. The interventions would be redevelopment of Sree

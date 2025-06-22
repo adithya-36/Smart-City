@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaUser } from "react-icons/fa";
 import UserIcon from '../../assets/images/user.png';
 import PhoneIcon from '../../assets/images/mobile.png';
 import SmartPhoneIcon from '../../assets/images/smartphone.png';
@@ -92,7 +93,7 @@ const Header = () => {
               href="#"
               className="flex items-center hover:text-[#2DC7FF] transition-colors text-sm"
             >
-              <img src={UserIcon} alt="user" className="mr-2 w-4" />
+              <FaUser className="mr-2 w-4 h-4" />
               {content.citizenPortal[language]}
             </a>
 
@@ -132,7 +133,7 @@ const Header = () => {
                 <span>+91 - 0471 - 4010374</span>
               </a>
               <a
-                href="mailto:info@smartcitytvm.in"
+                href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJTNqQXwmBbzWGnbDMBlwNKFpvQlNpHtCLzKmJWMjXGVFBhnGmvhZZWVgmzpvMhTMJgfSxB"
                 className="flex items-center gap-2 text-sm"
               >
                 <img src={EmailIcon} alt="email" className="w-4 h-4" />

@@ -36,10 +36,10 @@ const ProjectMilestone = () => {
         <div className="flex flex-col gap-5">
           {/* Milestone 1 */}
           <div 
-            className="relative rounded-2xl overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105"
+            className="relative overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105"
             style={{ backgroundColor: colors[0] }}
           >
-            <div className="absolute top-4 left-4 bg-white bg-opacity-90 px-3 py-1 rounded-full z-10">
+            <div className="absolute top-4 left-4 bg-white bg-opacity-90 px-3 py-1 z-10">
               <span className="font-bold" style={{ color: colors[8] }}>Milestone 1</span>
             </div>
             <img 
@@ -47,22 +47,14 @@ const ProjectMilestone = () => {
               alt="Milestone 1" 
               className="w-full object-cover"
             />
-            <div className="p-4 bg-white bg-opacity-90">
-              <h3 className="text-xl font-bold mb-2" style={{ color: colors[7] }}>
-                Project Initiation
-              </h3>
-              <p className="text-gray-700">
-                Initial planning and stakeholder alignment for the Smart City project.
-              </p>
-            </div>
           </div>
 
           {/* Milestone 2 */}
           <div 
-            className="relative rounded-2xl overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105"
+            className="relative  overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105"
             style={{ backgroundColor: colors[1] }}
           >
-            <div className="absolute top-4 left-4 bg-white bg-opacity-90 px-3 py-1 rounded-full z-10">
+            <div className="absolute top-4 left-4 bg-white bg-opacity-90 px-3 py-1 z-10">
               <span className="font-bold" style={{ color: colors[8] }}>Milestone 2</span>
             </div>
             <img 
@@ -70,22 +62,14 @@ const ProjectMilestone = () => {
               alt="Milestone 2" 
               className="w-full  object-cover"
             />
-            <div className="p-4 bg-white bg-opacity-90">
-              <h3 className="text-xl font-bold mb-2" style={{ color: colors[7] }}>
-                Infrastructure Development
-              </h3>
-              <p className="text-gray-700">
-                Construction of core infrastructure including roads and utilities.
-              </p>
-            </div>
           </div>
 
           {/* Milestone 3 */}
           <div 
-            className="relative rounded-2xl overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105"
+            className="relative overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105"
             style={{ backgroundColor: colors[2] }}
           >
-            <div className="absolute top-4 left-4 bg-white bg-opacity-90 px-3 py-1 rounded-full z-10">
+            <div className="absolute top-4 left-4 bg-white bg-opacity-90 px-3 py-1 z-10">
               <span className="font-bold" style={{ color: colors[8] }}>Milestone 3</span>
             </div>
             <img 
@@ -93,22 +77,14 @@ const ProjectMilestone = () => {
               alt="Milestone 3" 
               className="w-full  object-cover"
             />
-            <div className="p-4 bg-white bg-opacity-90">
-              <h3 className="text-xl font-bold mb-2" style={{ color: colors[7] }}>
-                Technology Implementation
-              </h3>
-              <p className="text-gray-700">
-                Deployment of smart systems for traffic, energy, and public services.
-              </p>
-            </div>
           </div>
 
           {/* Milestone 4 */}
           <div 
-            className="relative rounded-2xl overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105"
+            className="relative overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105"
             style={{ backgroundColor: colors[3] }}
           >
-            <div className="absolute top-4 left-4 bg-white bg-opacity-90 px-3 py-1 rounded-full z-10">
+            <div className="absolute top-4 left-4 bg-white bg-opacity-90 px-3 py-1 z-10">
               <span className="font-bold" style={{ color: colors[8] }}>Milestone 4</span>
             </div>
             <img 
@@ -116,22 +92,14 @@ const ProjectMilestone = () => {
               alt="Milestone 4" 
               className="w-full  object-cover"
             />
-            <div className="p-4 bg-white bg-opacity-90">
-              <h3 className="text-xl font-bold mb-2" style={{ color: colors[7] }}>
-                Community Integration
-              </h3>
-              <p className="text-gray-700">
-                Engaging citizens and integrating community feedback into development.
-              </p>
-            </div>
           </div>
 
           {/* Milestone 5 */}
           <div 
-            className="relative rounded-2xl overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105"
+            className="relative overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105"
             style={{ backgroundColor: colors[4] }}
           >
-            <div className="absolute top-4 left-4 bg-white bg-opacity-90 px-3 py-1 rounded-full z-10">
+            <div className="absolute top-4 left-4 bg-white bg-opacity-90 px-3 py-1 z-10">
               <span className="font-bold" style={{ color: colors[8] }}>Milestone 5</span>
             </div>
             <img 
@@ -139,19 +107,11 @@ const ProjectMilestone = () => {
               alt="Milestone 5" 
               className="w-full  object-cover"
             />
-            <div className="p-4 bg-white bg-opacity-90">
-              <h3 className="text-xl font-bold mb-2" style={{ color: colors[7] }}>
-                Sustainable Operations
-              </h3>
-              <p className="text-gray-700">
-                Establishing long-term sustainable operations and maintenance systems.
-              </p>
-            </div>
           </div>
 
           {/* Progress Summary Card */}
           <div 
-            className="relative rounded-2xl overflow-hidden shadow-xl p-6 flex flex-col justify-between"
+            className="relative overflow-hidden shadow-xl p-6 flex flex-col justify-between"
             style={{ 
               backgroundColor: colors[5],
               gridColumn: '1 / -1',
@@ -166,15 +126,15 @@ const ProjectMilestone = () => {
                 {[1, 2, 3, 4, 5].map((milestone) => (
                   <div 
                     key={milestone} 
-                    className="bg-white bg-opacity-80 rounded-lg p-3 text-center"
+                    className="bg-white bg-opacity-80  p-3 text-center"
                   >
                     <div className="text-lg font-bold" style={{ color: colors[7] }}>
                       Milestone {milestone}
                     </div>
                     <div className="mt-2">
-                      <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                      <div className="h-2 bg-gray-200 overflow-hidden">
                         <div 
-                          className="h-full rounded-full"
+                          className="h-full"
                           style={{ 
                             width: `${milestone * 20}%`,
                             backgroundColor: colors[8]

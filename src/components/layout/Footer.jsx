@@ -1,193 +1,127 @@
-import React, { useEffect, useState } from 'react';
-import Logo from '../../assets/images/smart-city-logo-new.png';
-import LinkedIn from '../../assets/images/linkedin.png'
-import Twitter from '../../assets/images/twitter.png'
-import Instagram from '../../assets/images/instagram.png'
-import Location from '../../assets/images/location.png'
-import Mail from '../../assets/images/mail.png'
-import Mobile from '../../assets/images/mobile.png'
+import React from 'react';
+import Logo from '../../assets/images/SCTLLogo.png';
+import {
+  FaPhoneAlt,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaFacebookF,
+  FaLinkedinIn,
+  FaTwitter,
+  FaInstagram,
+  FaYoutube,
+} from 'react-icons/fa';
+
 const Footer = () => {
-  const [dateTime, setDateTime] = useState({
-    date: '',
-    time: '',
-    day: '',
-  });
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-      const date = `${now.getFullYear()}-${(now.getMonth() + 1)
-        .toString()
-        .padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
-
-      const time = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes()
-        .toString()
-        .padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
-
-      const day = days[now.getDay()];
-      setDateTime({ date, time, day });
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div className='bg-gradient-to-br from-[#1E6091] to-[#0d3b61] text-white px-4 py-10 w-full mt-auto'>
-      <div className='grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto'>
-        {/* CONTACT US */}
-        <div className='md:col-span-1'>
-          <p className='text-lg font-bold mb-4 pb-2 uppercase border-b-2 border-[#34A0A4]'>Contact Us</p>
-          <ul className='text-sm space-y-3'>
-            <li className='flex items-start gap-2 '>
-              <img className='w-5' src={Location} alt="Location" />
-              <div className='space-y-1'>
-                <p className='font-medium'>4th Floor, Felicity Square Building</p>
-                <p>Opp AG Office, Statue</p>
-                <p>Thiruvananthapuram</p>
-                <p className='font-semibold text-[#B5E48C]'>Pincode: 695001</p>
-              </div>
+    <footer
+      className="bg-[#184E77] text-white px-6 md:px-16 py-10 w-full transition-opacity duration-100"
+      style={{
+        position: 'relative',
+      }}
+    >
+      <div className="grid md:grid-cols-4 gap-10">
+        {/* Column 1 */}
+        <div>
+          <img src={Logo} alt="Smart City Thiruvananthapuram Logo" className="w-24" />
+          <p className="text-sm leading-relaxed mb-4">
+            Smart City Thiruvananthapuram is an integrated knowledge-based initiative for sustainable urban development.
+          </p>
+          <div className="text-sm space-y-1">
+            <p className="flex items-center gap-2"><span>📅</span> 22-06-2025 (Sunday)</p>
+            <p className="flex items-center gap-2"><span>⏰</span> 13 : 46 : 42</p>
+            <p className="flex items-center gap-2"><span>👤</span> Visitors: 125,847</p>
+          </div>
+        </div>
+
+        {/* Column 2 */}
+        <div>
+          <h3 className="text-lg font-semibold mb-4 border-b border-gray-500 pb-1">In Media</h3>
+          <ul className="space-y-3 text-sm">
+            <li>
+              <p className="font-semibold hover:text-gray-300 transition">Smart City Thiruvananthapuram launches new digital governance initiative</p>
+              <span className="text-gray-300">December 15, 2024</span>
             </li>
-            <li className='flex items-center mt-4 gap-2'>
-              <img className='w-5' src={Mobile} alt="" />
-              <span className='font-medium'>+91 - 0471 - 4010374</span>
+            <li>
+              <p className="font-semibold hover:text-gray-300 transition">Public Wi-Fi expansion project reaches 500 hotspots across the city</p>
+              <span className="text-gray-300">December 12, 2024</span>
             </li>
-            <li className='flex items-center mt-4 gap-2 '>
-              <img className='w-5' src={Mail} alt="" />
-              <span className='font-medium'>info@smartcitytvm.in</span>
+            <li>
+              <p className="font-semibold hover:text-gray-300 transition">Smart traffic management system reduces congestion by 30%</p>
+              <span className="text-gray-300">December 10, 2024</span>
             </li>
           </ul>
         </div>
 
-        {/* INFO LINKS - Expanded to 2 columns */}
-        <div className='md:col-span-1'>
-          <p className='text-lg font-bold mb-4 pb-2 uppercase border-b-2 border-[#34A0A4]'>Quick Links</p>
-          <div className='grid grid-cols-2 gap-6'>
-            <ul className='space-y-3'>
-              <li className='hover:text-[#B5E48C] transition-colors cursor-pointer flex items-center'>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-[#52B69A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                Terms and Conditions
-              </li>
-              <li className='hover:text-[#B5E48C] transition-colors cursor-pointer flex items-center'>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-[#52B69A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                Copyright policy
-              </li>
-              <li className='hover:text-[#B5E48C] transition-colors cursor-pointer flex items-center'>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-[#52B69A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                Hyperlink Policy
-              </li>
-              <li className='hover:text-[#B5E48C] transition-colors cursor-pointer flex items-center'>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-[#52B69A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                Privacy Policy
-              </li>
-              <li className='hover:text-[#B5E48C] transition-colors cursor-pointer flex items-center'>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-[#52B69A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                Downloads
-              </li>
-            </ul>
-            <ul className='space-y-3'>
-              <li className='hover:text-[#B5E48C] transition-colors cursor-pointer flex items-center'>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-[#52B69A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                Disclaimer
-              </li>
-              <li className='hover:text-[#B5E48C] transition-colors cursor-pointer flex items-center'>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-[#52B69A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                FAQ
-              </li>
-              <li className='hover:text-[#B5E48C] transition-colors cursor-pointer flex items-center'>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-[#52B69A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                RTI
-              </li>
-              <li className='hover:text-[#B5E48C] transition-colors cursor-pointer flex items-center'>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-[#52B69A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                Tenders
-              </li>
-              <li className='hover:text-[#B5E48C] transition-colors cursor-pointer flex items-center'>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-[#52B69A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                Gallery
-              </li>
-            </ul>
-          </div>
+        {/* Column 3 */}
+        <div>
+          <h3 className="text-lg font-semibold mb-4 border-b border-gray-500 pb-1">Recent Events</h3>
+          <ul className="space-y-4 text-sm">
+            <li className="flex gap-3">
+              <div className="w-14 h-10 bg-gray-300" />
+              <div>
+                <p className="font-semibold hover:text-gray-300 transition">Smart City Innovation Summit 2024</p>
+                <span className="text-gray-300">January 15, 2025</span>
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <div className="w-14 h-10 bg-gray-300" />
+              <div>
+                <p className="font-semibold hover:text-gray-300 transition">Digital Literacy Workshop for Citizens</p>
+                <span className="text-gray-300">January 20, 2025</span>
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <div className="w-14 h-10 bg-gray-300" />
+              <div>
+                <p className="font-semibold hover:text-gray-300 transition">Green Energy Initiative Launch</p>
+                <span className="text-gray-300">January 25, 2025</span>
+              </div>
+            </li>
+          </ul>
         </div>
 
-        {/* DATE TIME & LOGO - Expanded section */}
-        <div className='flex flex-col justify-between md:col-span-1'>
-          <div className='bg-[#184E77] p-5 rounded-lg mb-6 border border-[#34A0A4]'>
-            <p className='font-bold mb-3 text-[#B5E48C] flex items-center'>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Current Status
+        {/* Column 4 */}
+        <div>
+          <h3 className="text-lg font-semibold mb-4 border-b border-gray-500 pb-1">Contact Us</h3>
+          <div className="space-y-4 text-sm">
+            <p className="flex items-start gap-2"><FaPhoneAlt className="mt-1" /> +91 - 0471 - 4010374</p>
+            <p className="flex items-start gap-2"><FaEnvelope className="mt-1" /> info@smartcitytvm.in</p>
+            <p className="flex items-start gap-2">
+              <FaMapMarkerAlt className="mt-1" />
+              <span>
+                4th Floor, Felicity Square Building<br />
+                Opp AG Office, Statue<br />
+                Thiruvananthapuram<br />
+                <strong>Pincode: 695001</strong>
+              </span>
             </p>
-            <div className='space-y-2'>
-              <div className='flex justify-between items-center'>
-                <span className='text-[#99D98C] font-medium'>Date:</span> 
-                <span className='font-mono bg-[#1E6091]/50 px-2 py-1 rounded'>{dateTime.date}</span>
-              </div>
-              <div className='flex justify-between items-center'>
-                <span className='text-[#99D98C] font-medium'>Time:</span> 
-                <span className='font-mono bg-[#1E6091]/50 px-2 py-1 rounded'>{dateTime.time}</span>
-              </div>
-              <div className='flex justify-between items-center'>
-                <span className='text-[#99D98C] font-medium'>Day:</span> 
-                <span className='font-mono bg-[#1E6091]/50 px-2 py-1 rounded'>{dateTime.day}</span>
-              </div>
-            </div>
           </div>
-          
-          <div className='flex flex-col items-center'>
-            <img 
-              src={Logo} 
-              alt="Smart City Trivandrum Logo" 
-              className='bg-white p-2 max-w-[220px] rounded-lg shadow-lg hover:opacity-100 transition-opacity opacity-95 mb-4' 
-            />
-            <div className='text-center'>
-              <p className='text-sm text-[#B5E48C] mb-2'>Connect with us</p>
-              <div className='flex justify-center space-x-4'>
-                <a href="#" className='bg-[#1E6091] p-2 rounded-full hover:bg-[#34A0A4] transition-colors'>
-                  <img className='w-6 rounded-full' src={LinkedIn} alt="linkedin" />
-                </a>
-                <a href="#" className='bg-[#1E6091] p-2 rounded-full hover:bg-[#34A0A4] transition-colors'>
-                  <img className='w-6 rounded-full' src={Twitter} alt="twitter" />
-                </a>
-                <a href="#" className='bg-[#1E6091] p-2 rounded-full hover:bg-[#34A0A4] transition-colors'>
-                  <img className='w-6 rounded-full ' src={Instagram} alt="instagram" />
-                </a>
-              </div>
+
+          <div className="mt-6">
+            <p className="mb-2 font-semibold">Follow Us</p>
+            <div className="flex gap-4 text-white text-lg">
+              {[FaFacebookF, FaLinkedinIn, FaTwitter, FaInstagram, FaYoutube].map((Icon, i) => (
+                <Icon
+                  key={i}
+                  className="cursor-pointer hover:scale-110 transition-transform duration-300 hover:text-gray-300"
+                />
+              ))}
             </div>
           </div>
         </div>
       </div>
 
-      {/* COPYRIGHT */}
-      <div className='mt-10 pt-6 border-t border-[#34A0A4]/30 text-center text-sm text-[#B5E48C]'>
-        <p className='mb-1'>© {new Date().getFullYear()} Smart City Trivandrum Limited. All rights reserved.</p>
-        <p className='text-xs opacity-80'>Designed and developed with ❤️ for the people of Thiruvananthapuram</p>
+      {/* Bottom Bar */}
+      <div className="border-t border-gray-600 mt-10 pt-4 flex flex-col md:flex-row justify-between text-sm text-gray-300">
+        <p>Copyright © 2025 Smart City Thiruvananthapuram - All Rights Reserved</p>
+        <div className="flex gap-4 mt-2 md:mt-0">
+          <a href="#" className="hover:text-white transition">Terms & Conditions</a>
+          <a href="#" className="hover:text-white transition">Privacy Policy</a>
+          <a href="#" className="hover:text-white transition">Disclaimer</a>
+          <a href="#" className="hover:text-white transition">SiteMap</a>
+        </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

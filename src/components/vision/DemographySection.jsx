@@ -1,4 +1,3 @@
-// DemographySection.jsx
 import React from 'react'
 import AreaDemographyImage from '../../assets/images/visionArea.jpg'
 
@@ -12,8 +11,8 @@ const DemographySection = () => {
   ];
 
   return (
-    <div className="mb-16">
-      <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center" style={{ color: '#1A759F' }}>
+    <div className="mb-16 max-w-6xl mx-auto px-4 md:px-8">
+      <h1 className="text-2xl md:text-3xl font-bold mb-8 text-center text-[#184E77]">
         Area and Demography
       </h1>
       
@@ -22,20 +21,19 @@ const DemographySection = () => {
           <img 
             src={AreaDemographyImage} 
             alt="Area Demography" 
-            className="w-full h-96 px-12 rounded-xl shadow-lg"
+            className="w-full h-auto"
           />
         </div>
         
-        <div className="bg-white p-6 rounded-xl shadow-lg">
+        <div className="bg-white border border-gray-200 p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {stats.map((stat, index) => (
               <div 
                 key={index} 
-                className="p-4 rounded-lg border border-gray-200"
-                style={{ backgroundColor: index % 2 === 0 ? '#f0f9ff' : '#f8fafc' }}
+                className="p-4 border border-gray-200"
               >
-                <p className="font-semibold" style={{ color: '#1E6091' }}>{stat.label}</p>
-                <p className="text-lg font-bold mt-1" style={{ color: '#168AAD' }}>{stat.value}</p>
+                <p className="font-semibold text-[#1E6091]">{stat.label}</p>
+                <p className="text-lg font-bold mt-1 text-[#184E77]">{stat.value}</p>
               </div>
             ))}
           </div>

@@ -1,27 +1,24 @@
 import React, { useState } from 'react';
 import Banner from '../../assets/banners/ongoingProjectBanner.png';
-import Image1 from '../../assets/images/Ongoing Projects/mlcp_med_clg.jpg'
-import Image2 from '../../assets/images/Ongoing Projects/mlcp_putharikandom.jpg'
-import Image3 from '../../assets/images/Ongoing Projects/mlcp_rajaji.jpg'
-import Image4 from '../../assets/images/Ongoing Projects/mlcp_vaniyamkulam.jpg'
-import Image5 from '../../assets/images/Ongoing Projects/mlcp_med_clg.jpg'
+import Image1 from '../../assets/images/Ongoing Projects/mlcp_med_clg.jpg';
+import Image2 from '../../assets/images/Ongoing Projects/mlcp_putharikandom.jpg';
+import Image3 from '../../assets/images/Ongoing Projects/mlcp_rajaji.jpg';
+import Image4 from '../../assets/images/Ongoing Projects/mlcp_vaniyamkulam.jpg';
+import Image5 from '../../assets/images/Ongoing Projects/mlcp_med_clg.jpg';
 
 const OngoingProject = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   
-  // Function to open image modal
   const openImageModal = (image) => {
     setSelectedImage(image);
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
   };
   
-  // Function to close image modal
   const closeImageModal = () => {
     setSelectedImage(null);
-    document.body.style.overflow = 'auto'; // Restore background scrolling
+    document.body.style.overflow = 'auto';
   };
 
-  // Updated table data with completion dates
   const allProjects = [
     { 
       no: 1, 
@@ -96,16 +93,15 @@ const OngoingProject = () => {
     },
   ];
 
-  // Calculate statistics
   const totalProjects = allProjects.length;
   const totalInvestment = allProjects.reduce((sum, project) => sum + parseFloat(project.scm), 0).toFixed(2);
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-indigo-50">
+    <div className="bg-gray-50">
       {/* Image Modal */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-gray-900 bg-opacity-90 z-50 flex items-center justify-center p-4"
           onClick={closeImageModal}
         >
           <div 
@@ -119,7 +115,7 @@ const OngoingProject = () => {
             />
             <button 
               onClick={closeImageModal}
-              className="absolute top-4 right-4 text-white bg-black bg-opacity-50 p-2 rounded hover:bg-opacity-100 transition-all"
+              className="absolute top-4 right-4 text-white bg-gray-800 p-2 hover:bg-gray-700 transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -130,77 +126,84 @@ const OngoingProject = () => {
       )}
       
       {/* Banner */}
-      <div className="relative h-48 md:h-64 w-full overflow-hidden">
+      <div className="relative h-64 w-full overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center object-cover"
+          className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(to right, rgba(0, 60, 80, 0.85), rgba(0, 128, 128, 0.6)), url(${Banner})`,
+            backgroundImage: `linear-gradient(to right, rgba(24, 78, 119, 0.9), rgba(30, 96, 145, 0.8)), url(${Banner})`,
           }}
         ></div>
         <div className="relative z-10 flex items-center justify-center h-full">
-          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold text-center px-4 drop-shadow-lg">
-            Ongoing Projects
-          </h1>
+          <div className="text-center px-4">
+            <h1 className="text-white text-4xl md:text-5xl font-bold mb-4 drop-shadow">
+              Ongoing Projects
+            </h1>
+            <p className="text-white text-lg md:text-xl max-w-2xl mx-auto opacity-90">
+              Current initiatives transforming Thiruvananthapuram
+            </p>
+          </div>
         </div>
       </div>
 
       {/* Content Container */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
         {/* Introduction */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Current Initiatives Transforming Our City
+            Building a Smarter City
           </h2>
-          <p className="text-gray-600 max-w-3xl mx-auto text-lg">
-            Explore the wide range of projects currently underway across Thiruvananthapuram.
-            These initiatives represent our ongoing commitment to creating a smarter, more sustainable urban environment.
+          <div className="h-1 w-24 bg-[#184E77] mx-auto mb-6"></div>
+          <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
+            These strategic projects represent our commitment to urban transformation, 
+            addressing infrastructure, mobility, housing, and digital solutions across the city.
           </p>
         </div>
 
         {/* Key Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className=" shadow-md p-6 flex flex-col items-center">
-            <div className="text-5xl font-bold text-[#184E77]">{totalProjects}</div>
-            <div className="text-lg text-gray-600 mt-2">Active Projects</div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div className="bg-white p-8 border border-gray-200">
+            <div className="text-5xl font-bold text-[#184E77] mb-2">{totalProjects}</div>
+            <div className="text-lg text-gray-600 uppercase tracking-wider font-medium">Active Projects</div>
           </div>
 
-          <div className="shadow-md p-6 flex flex-col items-center">
-            <div className="text-5xl font-bold text-[#184E77]">₹{totalInvestment} Cr</div>
-            <div className="text-lg text-gray-600 mt-2">Total Investment</div>
+          <div className="bg-white p-8 border border-gray-200">
+            <div className="text-5xl font-bold text-[#184E77] mb-2">₹{totalInvestment} Cr</div>
+            <div className="text-lg text-gray-600 uppercase tracking-wider font-medium">Total Investment</div>
           </div>
 
-          <div className="shadow-md p-6 flex flex-col items-center">
-            <div className="text-5xl font-bold text-[#184E77]">24+</div>
-            <div className="text-lg text-gray-600 mt-2">Development Zones</div>
+          <div className="bg-white p-8 border border-gray-200">
+            <div className="text-5xl font-bold text-[#184E77] mb-2">24+</div>
+            <div className="text-lg text-gray-600 uppercase tracking-wider font-medium">Development Zones</div>
           </div>
         </div>
 
         {/* Projects Table */}
-        <div className="shadow-md overflow-hidden">
+        <div className="mb-20">
+          <h3 className="text-2xl font-bold text-gray-800 mb-6">Project Portfolio</h3>
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full border border-gray-200">
               <thead className="bg-[#184E77] text-white">
                 <tr>
-                  <th className="py-4 px-4 text-left text-sm md:text-base font-semibold">No</th>
-                  <th className="py-4 px-4 text-left text-sm md:text-base font-semibold">Project ID</th>
-                  <th className="py-4 px-4 text-left text-sm md:text-base font-semibold">Project Name</th>
-                  <th className="py-4 px-4 text-right text-sm md:text-base font-semibold">SCM (₹ in Cr)</th>
-                  <th className="py-4 px-4 text-right text-sm md:text-base font-semibold">Target Completion</th>
+                  <th className="py-4 px-6 text-left font-medium">No</th>
+                  <th className="py-4 px-6 text-left font-medium">Project ID</th>
+                  <th className="py-4 px-6 text-left font-medium">Project Name</th>
+                  <th className="py-4 px-6 text-right font-medium">SCM (₹ in Cr)</th>
+                  <th className="py-4 px-6 text-right font-medium">Target Completion</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
+              <tbody className="divide-y divide-gray-200">
                 {allProjects.map((project, index) => (
                   <tr
                     key={index}
-                    className={`transition-colors duration-150 hover:bg-blue-50 ${index % 2 === 0 ? 'bg-white' : 'bg-blue-50'}`}
+                    className="bg-white hover:bg-gray-50 transition-colors"
                   >
-                    <td className="py-4 px-4 text-gray-700 font-medium">{project.no}</td>
-                    <td className="py-4 px-4 text-[#1E6091] font-mono">{project.projectId}</td>
-                    <td className="py-4 px-4 text-gray-700">{project.projectName}</td>
-                    <td className="py-4 px-4 text-right text-gray-700 font-medium">{project.scm}</td>
-                    <td className="py-4 px-4 text-right text-gray-700 font-medium">
-                      <div className="inline-flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-500 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <td className="py-4 px-6 text-gray-700 font-medium">{project.no}</td>
+                    <td className="py-4 px-6 text-[#1E6091] font-mono">{project.projectId}</td>
+                    <td className="py-4 px-6 text-gray-700">{project.projectName}</td>
+                    <td className="py-4 px-6 text-right text-gray-700 font-medium">{project.scm}</td>
+                    <td className="py-4 px-6 text-right text-gray-700 font-medium">
+                      <div className="inline-flex items-center justify-end">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#1E6091] mr-1" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
                         </svg>
                         {project.targetDate}
@@ -214,16 +217,16 @@ const OngoingProject = () => {
         </div>
 
         {/* Project Gallery Section */}
-        <div className="mt-16">
-          <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Project Visual Progress</h2>
+        <div className="mb-20">
+          <h3 className="text-2xl font-bold text-gray-800 mb-8">Project Visual Progress</h3>
           
           {/* MLCP Project Gallery */}
-          <div className=" border border-gray-200 shadow-md p-6 mb-12">
+          <div className="border border-gray-200 bg-white p-6 mb-12">
             <div className="mb-8">
               <h3 className="text-2xl font-bold text-[#184E77] mb-2">
                 MLCP at Various Locations (KER-TIR-104)
               </h3>
-              <div className="flex flex-col md:flex-row justify-between gap-4">
+              <div className="flex flex-col md:flex-row justify-between gap-4 mb-4">
                 <div>
                   <p className="text-gray-600">
                     <span className="font-semibold">Budget:</span> ₹35.00 Cr | 
@@ -239,11 +242,11 @@ const OngoingProject = () => {
               </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
               {allProjects.find(p => p.projectId === "KER-TIR-104")?.images?.map((img, index) => (
                 <div 
                   key={index} 
-                  className="overflow-hidden border border-gray-200 cursor-pointer hover:shadow-lg transition-all"
+                  className="overflow-hidden border border-gray-200 hover:shadow transition-all cursor-pointer"
                   onClick={() => openImageModal(img)}
                 >
                   <div className="aspect-w-16 aspect-h-9">
@@ -253,11 +256,11 @@ const OngoingProject = () => {
                       className="w-full h-48 object-cover"
                     />
                   </div>
-                  <div className="bg-gray-50 p-3 border-t border-gray-200">
+                  <div className="bg-gray-50 p-4 border-t border-gray-200">
                     <h4 className="font-semibold text-gray-800">
                       {allProjects.find(p => p.projectId === "KER-TIR-104")?.locations?.[index]}
                     </h4>
-                    <p className="text-sm text-gray-600">Click to enlarge</p>
+                    <p className="text-sm text-gray-600 mt-1">Click to enlarge</p>
                   </div>
                 </div>
               ))}
@@ -266,48 +269,48 @@ const OngoingProject = () => {
         </div>
 
         {/* Project Categories */}
-        <div className="mt-16">
-          <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Project Categories</h2>
+        <div className="mb-20">
+          <h3 className="text-2xl font-bold text-gray-800 mb-8">Project Categories</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-[#184E77] border border-gray-700 shadow-md p-6 text-white">
+            <div className="bg-[#184E77] p-6 text-white border border-[#1E6091]">
               <div className="text-4xl font-bold mb-2">4</div>
               <h3 className="text-xl font-semibold mb-2">Infrastructure</h3>
-              <p className="text-blue-100">Roads, junctions, warehouses</p>
+              <p className="text-gray-300">Roads, junctions, warehouses</p>
             </div>
 
-            <div className="bg-[#184E77] border border-gray-700 shadow-md p-6 text-white">
+            <div className="bg-[#184E77] p-6 text-white border border-[#1E6091]">
               <div className="text-4xl font-bold mb-2">2</div>
               <h3 className="text-xl font-semibold mb-2">Mobility</h3>
-              <p className="text-green-100">E-vehicles, parking systems</p>
+              <p className="text-gray-300">E-vehicles, parking systems</p>
             </div>
 
-            <div className="bg-[#184E77] border border-gray-700 shadow-md p-6 text-white">
+            <div className="bg-[#184E77] p-6 text-white border border-[#1E6091]">
               <div className="text-4xl font-bold mb-2">1</div>
               <h3 className="text-xl font-semibold mb-2">Urban Development</h3>
-              <p className="text-amber-100">Housing, market redevelopment</p>
+              <p className="text-gray-300">Housing, market redevelopment</p>
             </div>
 
-            <div className="bg-[#184E77] border border-gray-700 shadow-md p-6 text-white">
+            <div className="bg-[#184E77] p-6 text-white border border-[#1E6091]">
               <div className="text-4xl font-bold mb-2">2</div>
               <h3 className="text-xl font-semibold mb-2">Smart Solutions</h3>
-              <p className="text-purple-100">Waste management, GIS mapping</p>
+              <p className="text-gray-300">Waste management, GIS mapping</p>
             </div>
           </div>
         </div>
 
         {/* Project Timeline */}
-        <div className="mt-16 border border-gray-200 shadow-md p-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Project Timeline</h2>
+        <div className="mb-20 bg-white border border-gray-200 p-8">
+          <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">Project Timeline</h3>
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-200"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-300"></div>
 
             {/* Timeline items */}
-            <div className="space-y-12">
+            <div className="space-y-16">
               {/* July 2025 */}
-              <div className="flex items-center">
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-[#1E6091] z-10"></div>
+              <div className="relative flex items-center">
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 bg-[#184E77] border-2 border-white z-10"></div>
                 <div className="w-1/2 pr-12 text-right">
                   <h3 className="text-xl font-bold text-gray-800">July 2025</h3>
                   <p className="text-gray-600 mt-2">
@@ -321,8 +324,8 @@ const OngoingProject = () => {
               </div>
 
               {/* August 2025 */}
-              <div className="flex items-center">
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-[#1E6091] z-10"></div>
+              <div className="relative flex items-center">
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 bg-[#184E77] border-2 border-white z-10"></div>
                 <div className="w-1/2"></div>
                 <div className="w-1/2 pl-12">
                   <h3 className="text-xl font-bold text-gray-800">August 2025</h3>
@@ -336,8 +339,8 @@ const OngoingProject = () => {
               </div>
 
               {/* September 2025 */}
-              <div className="flex items-center">
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-[#1E6091] z-10"></div>
+              <div className="relative flex items-center">
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 bg-[#184E77] border-2 border-white z-10"></div>
                 <div className="w-1/2 pr-12 text-right">
                   <h3 className="text-xl font-bold text-gray-800">September 2025</h3>
                   <p className="text-gray-600 mt-2">
@@ -354,26 +357,23 @@ const OngoingProject = () => {
         </div>
 
         {/* Contact Section */}
-        <div className="mt-16 bg-[#184E77] border border-gray-700 shadow-md p-8 text-white">
+        <div className="bg-[#184E77] border border-[#1E6091] p-8 text-white">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">Project Inquiries</h2>
-            <p className="text-blue-100 text-lg mb-6">
+            <div className="h-0.5 w-24 bg-white mx-auto mb-6"></div>
+            <p className="text-gray-300 text-lg mb-8">
               For more information about any ongoing project, contact our project management team
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a
-                href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=jrjtXDxrNVMwRzGNKlDWSDmVzjdLvmrXsncntNmfrvCxLWddWBPDFQjkstDBxwvlKdmpBnnJ"
-                target="_blank"
-                rel="noopener noreferrer"
-                className=" text-[#184E77] font-medium py-3 px-6 hover:bg-[#1E6091] hover:text-white transition-colors"
+                href="mailto:projects@tvmcorporation.gov.in"
+                className="bg-white text-[#184E77] font-medium py-3 px-8 hover:bg-gray-100 transition-colors"
               >
                 Email Project Team
               </a>
               <a
-                href="tel:+91 - 0471 - 4010374"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#184E77] border border-white text-white font-medium py-3 px-6 hover:bg-[#1E6091] transition-colors"
+                href="tel:+9104714010374"
+                className="bg-transparent border border-white text-white font-medium py-3 px-8 hover:bg-white hover:text-[#184E77] transition-colors"
               >
                 Call +91-0471-4010374
               </a>

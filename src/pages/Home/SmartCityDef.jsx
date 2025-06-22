@@ -10,33 +10,32 @@ const SmartCityDef = () => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(to right, rgba(0, 60, 80, 0.85), rgba(0, 128, 128, 0.6)), url(${CityDefBanner})`,
+            backgroundImage: `linear-gradient(to right, rgba(24, 78, 119, 0.9), rgba(30, 96, 145, 0.8)), url(${CityDefBanner})`,
           }}
         ></div>
-        <div className="relative z-10 flex flex-col items-center justify-center h-full">
-          <h1 className="text-white text-3xl md:text-4xl font-bold text-center px-4 drop-shadow-lg">
+        <div className="relative z-10 flex flex-col items-center justify-center h-full px-4">
+          <h1 className="text-white text-3xl md:text-4xl font-bold text-center tracking-tight drop-shadow-md">
             What is a Smart City
           </h1>
         </div>
       </div>
 
       {/* Main Content Container */}
-      <div className="container mx-auto px-4 py-8 max-w-6xl">
-        {/* YouTube Video Section - Taller */}
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        {/* YouTube Video Section */}
         <div className="mb-12">
-          <div className="flex flex-col md:flex-row items-center justify-between mb-6 gap-4">
+          <div className="flex flex-col md:flex-row items-start justify-between mb-6 gap-4">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
                 Understanding Smart Cities
               </h2>
-              <h3 className="text-xl text-teal-600 font-semibold">
+              <h3 className="text-xl text-[#1E6091] font-semibold">
                 Solving Urban Problems Using Technology
               </h3>
             </div>
-            
           </div>
           
-          <div className="rounded-xl overflow-hidden shadow-lg h-[350px] md:h-[500px]">
+          <div className="shadow-sm h-[350px] md:h-[500px]">
             <iframe 
               src="https://www.youtube.com/embed/nnyRZotnPSU"
               title="Smart City Explained"
@@ -48,11 +47,11 @@ const SmartCityDef = () => {
         </div>
 
         {/* Image Section */}
-        <div className="bg-white p-6 rounded-xl shadow-lg">
+        <div className="bg-white p-6 shadow-sm">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center">
             Smart City Components
           </h2>
-          <div className="border-4 border-teal-500 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl">
+          <div className="border border-[#1E6091] overflow-hidden">
             <img 
               src={SmartCityDefImage} 
               alt="Smart City Components Diagram"
