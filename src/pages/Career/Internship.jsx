@@ -4,7 +4,8 @@ import File1 from './InternshipFolder/AICTE_Internship_Enterprise_Portal_-_Learn
 import File2 from './InternshipFolder/AICTE_Internship_Enterprise_Portal_-_Learning_by_doing_1_Crore_Internships_by_2025.pdf'
 import File3 from './InternshipFolder/Internship-AD-malayalam.jpg'
 import File4 from './InternshipFolder/Internship-SMCT.pdf'
-import PdfFile from '../../assets/images/pdfFile.png'
+import { FaFilePdf } from "react-icons/fa6";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 const internships = [
   {
@@ -102,9 +103,7 @@ const Internship = () => {
                         className="inline-flex items-center text-[#1A759F] hover:text-[#184E77]"
                       >
                         <span className="mr-1">View Link</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
+                        <FaExternalLinkAlt />
                       </a>
                     ) : (
                       <a 
@@ -113,7 +112,7 @@ const Internship = () => {
                         rel="noopener noreferrer"
                         className="inline-flex items-center text-[#1A759F] hover:text-[#184E77]"
                       >
-                        <img className="w-6 mr-2" src={PdfFile} alt="PDF icon" />
+                        <FaFilePdf className='text-xl mx-2' />
                         <span>View</span>
                       </a>
                     )}

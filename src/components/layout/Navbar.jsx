@@ -1,14 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Logo from '../../assets/images/SCTLLogo.png';
-import GovKerala from '../../assets/images/govKerala.png';
 import navigation from '../../data/navData';
+import { NavLink } from 'react-router-dom';
+import { GiHamburgerMenu } from "react-icons/gi";
+import { RxCross1 } from "react-icons/rx";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import { IoSearch } from "react-icons/io5";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const bannerRef = useRef(null);
+  const navbarRef = useRef(null);
+  const searchInputRef = useRef(null);
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
-  const navbarRef = useRef(null);
+  const [showSearch, setShowSearch] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,8 +26,7 @@ const Navbar = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
-    
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -29,21 +34,29 @@ const Navbar = () => {
     setActiveDropdown(activeDropdown === name ? null : name);
   };
 
+  const handleSearchToggle = () => {
+    setShowSearch((prev) => !prev);
+    setTimeout(() => {
+      if (!showSearch && searchInputRef.current) {
+        searchInputRef.current.focus();
+      }
+    }, 100);
+  };
+
   return (
     <div className="font-sans">
       <div ref={bannerRef} className="bg-[#184E77] py-4">
         <div className="w-full mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Navigation Bar */}
-          <div 
+          <div
             ref={navbarRef}
-            className={`w-full left-0 min-h-[60px] transition-all duration-300 z-50 ${
-              isScrolled 
-                ? 'fixed top-0 shadow-lg bg-[#184E77] backdrop-blur-sm' 
-                : 'sticky top-0'
-            }`}
+            className={`w-full left-0 min-h-[60px] transition-all duration-300 z-50 ${isScrolled
+              ? 'fixed top-0 shadow-lg bg-[#184E77] backdrop-blur-sm'
+              : 'sticky top-0'
+              }`}
           >
-            <div className="w-full mx-auto px-4 py-2 flex items-center justify-center gap-4 lg:gap-6">
-              {/* Desktop Menu */}
+            <div className="w-full mx-auto px-4 py-2 flex items-center justify-center">
+              {/* Left: Menu Items */}
               <div className="hidden lg:flex space-x-1 items-center overflow-visible">
                 {navigation.map((item) => (
                   <div
@@ -52,24 +65,32 @@ const Navbar = () => {
                     onMouseEnter={() => item.dropdown && setActiveDropdown(item.name)}
                     onMouseLeave={() => setActiveDropdown(null)}
                   >
-                    <a
-                      href={item.href || '#'}
-                      className="relative text-white hover:text-[#d9ed92] font-medium text-base flex items-center px-4 py-2 transition-colors duration-200 whitespace-nowrap"
+                    <NavLink
+                      to={item.href || '#'}
+                      className={({ isActive }) =>
+                        `relative font-medium text-base flex items-center px-4 py-2 transition-colors duration-200 whitespace-nowrap text-white hover:text-[#1E6091]
+                        after:absolute after:left-0 after:bottom-0 after:h-0.5
+                        ${isActive
+                          ? 'after:w-full after:bg-yellow-400'
+                          : 'after:w-0 after:bg-[#d9ed92] group-hover:after:w-full after:transition-all after:duration-300'
+                        }`
+                      }
                     >
                       {item.name}
-                      {/* Animated underline */}
-                      <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-[#d9ed92] transition-all duration-300 group-hover:w-full"></span>
-                    </a>
+                    </NavLink>
                     {item.dropdown && activeDropdown === item.name && (
                       <div className="absolute left-0 mt-1 bg-white shadow-xl rounded-sm py-2 w-56 z-50 border border-gray-200">
                         {item.dropdown.map((sub) => (
-                          <a
+                          <NavLink
                             key={sub.name}
-                            href={sub.href}
-                            className="block px-5 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 border-b border-gray-100 last:border-b-0"
+                            to={sub.href}
+                            className={({ isActive }) =>
+                              `block px-5 py-3 text-sm border-b border-gray-100 last:border-b-0 transition-colors duration-150 ${isActive ? 'text-[#184E77] font-medium' : 'text-gray-700'
+                              } hover:text-[#1E6091] hover:bg-gray-100`
+                            }
                           >
                             {sub.name}
-                          </a>
+                          </NavLink>
                         ))}
                       </div>
                     )}
@@ -77,34 +98,54 @@ const Navbar = () => {
                 ))}
               </div>
 
-              {/* Mobile menu button */}
-              <div className="lg:hidden flex items-center">
+              {/* Right: Search & Mobile Toggle */}
+              <div className="flex items-center gap-4">
                 <button
-                  onClick={() => setMenuOpen(!menuOpen)}
-                  className="p-2 rounded-lg bg-blue-600 hover:bg-blue-500 transition-colors duration-200"
+                  onClick={handleSearchToggle}
+                  className="text-white ml-4 text-2xl hover:text-[#d9ed92] transition-all"
                 >
-                  {menuOpen ? (
-                    <svg className="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  ) : (
-                    <svg className="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                  )}
+                  <IoSearch />
                 </button>
+
+                <div className="lg:hidden">
+                  <button
+                    onClick={() => setMenuOpen(!menuOpen)}
+                    className="p-2 bg-[#184E77] hover:bg-[#1E6091] transition-colors duration-200"
+                  >
+                    {menuOpen ? (
+                      <RxCross1 className='text-3xl text-white' />
+                    ) : (
+                      <GiHamburgerMenu className='text-3xl text-white' />
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
 
+            {/* Collapsible Search Bar */}
+            {showSearch && (
+              <div className="w-full bg-white px-4 py-2 flex justify-center items-center border-t border-gray-200">
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  placeholder="Search..."
+                  className="w-full max-w-md border border-[#1E6091] rounded-md px-4 py-2 text-base outline-none text-gray-800"
+                />
+              </div>
+            )}
+
             {/* Mobile Dropdown */}
             {menuOpen && (
-              <div className="lg:hidden px-4 pb-4 bg-blue-600">
+              <div className="lg:hidden px-4 pb-4 bg-[#184E77]">
                 {navigation.map((item) => (
                   <div key={item.name} className="py-2 border-b border-blue-500">
                     <div className="flex justify-between items-center">
-                      <a
-                        href={item.href || '#'}
-                        className="block text-white font-medium text-base py-2 pl-2 rounded-lg w-full"
+                      <NavLink
+                        to={item.href || '#'}
+                        className={({ isActive }) =>
+                          `block font-medium text-base py-2 pl-2 rounded-lg w-full transition-colors duration-150 ${isActive ? 'text-[#184E77] bg-white' : 'text-white'
+                          } hover:text-[#1E6091]`
+                        }
                         onClick={(e) => {
                           if (item.dropdown) {
                             e.preventDefault();
@@ -112,56 +153,35 @@ const Navbar = () => {
                           }
                         }}
                       >
-                        <span className="relative">
-                          {item.name}
-                          <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-[#d9ed92] transition-all duration-300 group-hover:w-full"></span>
-                        </span>
-                      </a>
+                        {item.name}
+                      </NavLink>
                       {item.dropdown && (
-                        <button 
+                        <button
                           onClick={() => toggleMobileDropdown(item.name)}
                           className="p-2 text-white"
                         >
-                          <svg 
-                            className={`w-4 h-4 transition-transform ${activeDropdown === item.name ? 'rotate-180' : ''}`}
-                            fill="none" 
-                            stroke="currentColor" 
-                            viewBox="0 0 24 24"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                          </svg>
+                          <RiArrowDropDownLine className="text-3xl" />
                         </button>
                       )}
                     </div>
                     {item.dropdown && activeDropdown === item.name && (
                       <div className="pl-4 mt-1 bg-white rounded-sm border border-gray-200">
                         {item.dropdown.map((sub) => (
-                          <a
+                          <NavLink
                             key={sub.name}
-                            href={sub.href}
-                            className="block text-sm text-gray-700 py-3 px-5 border-b border-gray-100 last:border-b-0 hover:bg-gray-100"
+                            to={sub.href}
+                            className={({ isActive }) =>
+                              `block text-sm py-3 px-5 border-b border-gray-100 last:border-b-0 transition-colors duration-150 ${isActive ? 'text-[#184E77] font-medium' : 'text-gray-700'
+                              } hover:text-[#1E6091] hover:bg-gray-100`
+                            }
                           >
                             {sub.name}
-                          </a>
+                          </NavLink>
                         ))}
                       </div>
                     )}
                   </div>
                 ))}
-
-                {/* Mobile Search Bar */}
-                <div className="mt-4 flex items-center bg-white rounded-lg overflow-hidden">
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    className="px-4 py-2 text-gray-700 text-base w-full outline-none"
-                  />
-                  <button className="bg-blue-600 px-4 py-2 hover:bg-blue-500 text-white">
-                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                  </button>
-                </div>
               </div>
             )}
           </div>

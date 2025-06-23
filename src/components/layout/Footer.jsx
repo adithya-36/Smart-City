@@ -1,12 +1,12 @@
 import React from 'react';
 import Logo from '../../assets/images/SCTLLogo.png';
+import { FaXTwitter } from "react-icons/fa6";
 import {
   FaPhoneAlt,
   FaEnvelope,
   FaMapMarkerAlt,
   FaFacebookF,
   FaLinkedinIn,
-  FaTwitter,
   FaInstagram,
   FaYoutube,
 } from 'react-icons/fa';
@@ -100,12 +100,21 @@ const Footer = () => {
           <div className="mt-6">
             <p className="mb-2 font-semibold">Follow Us</p>
             <div className="flex gap-4 text-white text-lg">
-              {[FaFacebookF, FaLinkedinIn, FaTwitter, FaInstagram, FaYoutube].map((Icon, i) => (
-                <Icon
-                  key={i}
-                  className="cursor-pointer hover:scale-110 transition-transform duration-300 hover:text-gray-300"
-                />
-              ))}
+              <a href="https://www.facebook.com/smarttrivandrum/" target="_blank" rel="noopener noreferrer">
+                <FaFacebookF className="cursor-pointer hover:scale-110 transition-transform duration-300 hover:text-gray-300" />
+              </a>
+              <a href="https://www.linkedin.com/company/smart-city-thiruvananthapuram-limited/posts/?feedView=all" target="_blank" rel="noopener noreferrer">
+                <FaLinkedinIn className="cursor-pointer hover:scale-110 transition-transform duration-300 hover:text-gray-300" />
+              </a>
+              <a href="https://x.com/smarttrivandrum/" target="_blank" rel="noopener noreferrer">
+                <FaXTwitter className="cursor-pointer hover:scale-110 transition-transform duration-300 hover:text-gray-300" />
+              </a>
+              <a href="https://www.instagram.com/smarttrivandrum/" target="_blank" rel="noopener noreferrer">
+                <FaInstagram className="cursor-pointer hover:scale-110 transition-transform duration-300 hover:text-gray-300" />
+              </a>
+              <a href="https://www.youtube.com/@smartcitythiruvananthapura7226/videos" target="_blank" rel="noopener noreferrer">
+                <FaYoutube className="cursor-pointer hover:scale-110 transition-transform duration-300 hover:text-gray-300" />
+              </a>
             </div>
           </div>
         </div>
@@ -115,10 +124,9 @@ const Footer = () => {
       <div className="border-t border-gray-600 mt-10 pt-4 flex flex-col md:flex-row justify-between text-sm text-gray-300">
         <p>Copyright © 2025 Smart City Thiruvananthapuram - All Rights Reserved</p>
         <div className="flex gap-4 mt-2 md:mt-0">
-          <a href="#" className="hover:text-white transition">Terms & Conditions</a>
-          <a href="#" className="hover:text-white transition">Privacy Policy</a>
-          <a href="#" className="hover:text-white transition">Disclaimer</a>
-          <a href="#" className="hover:text-white transition">SiteMap</a>
+          <a href="/terms" className="hover:text-white transition">Terms & Conditions</a>
+          <a href="/privacy" className="hover:text-white transition">Privacy Policy</a>
+          <a href="/disclaimer" className="hover:text-white transition">Disclaimer</a>
         </div>
       </div>
     </footer>

@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { IoNewspaper } from "react-icons/io5";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { GrNext } from "react-icons/gr";
+import { GrPrevious } from "react-icons/gr";
 import News1 from '../../assets/images/news/Palayam_News.jpeg';
 import News2 from '../../assets/images/news/project_First_Phase.avif';
 import News3 from '../../assets/images/news/cycle_track.avif';
@@ -121,20 +125,16 @@ const HomeItem4 = () => {
     <div className="w-full max-w-7xl mx-auto px-4 py-10">
       <div className="text-center mb-10">
         <h2 className="text-3xl font-bold text-gray-800 mb-3">Updates & Announcements</h2>
-        <div className="w-20 h-1 bg-blue-600 mx-auto"></div>
+        <div className="w-20 h-1 bg-[#184E77] mx-auto"></div>
       </div>
 
       <div className="relative overflow-hidden">
         <button onClick={goToPrev} className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white border border-gray-300 w-10 h-10 flex items-center justify-center shadow-md cursor-pointer hover:bg-gray-50 transition -ml-4">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
+          <GrPrevious style={{ color: '#1E6091',width:50 }}/>
         </button>
 
         <button onClick={goToNext} className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white border border-gray-300 w-10 h-10 flex items-center justify-center shadow-md cursor-pointer hover:bg-gray-50 transition -mr-4">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+          <GrNext style={{ color: '#1E6091',width:50 }}/>
         </button>
 
         <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-300 ${isTransitioning ? 'opacity-70' : 'opacity-100'}`}>
@@ -145,23 +145,20 @@ const HomeItem4 = () => {
               </div>
               <div className="p-4 flex-1">
                 <div className="flex items-center mb-3">
-                  <div className="bg-blue-600 text-white p-2 rounded mr-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                      <path d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" />
-                      <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
-                    </svg>
+                  <div className="bg-[#184E77] text-white p-2 rounded mr-2">
+                    <IoNewspaper className='w-5 h-5' />
                   </div>
                   <h3 className="text-lg font-bold text-gray-800 capitalize">{item.type}</h3>
                 </div>
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded">{item.date}</span>
+                  <span className="text-xs font-semibold text-[#184E77] bg-blue-50 px-2 py-1 rounded">{item.date}</span>
                   <span className="text-xs text-gray-500">{item.source}</span>
                 </div>
                 <h4 className="text-base font-bold text-gray-800 mb-2">{item.title}</h4>
                 <p className="text-sm text-gray-600 mb-4">{item.excerpt}</p>
               </div>
               <div className="p-4 border-t border-gray-100">
-                <a href={item.link} className="text-blue-600 text-sm font-medium hover:underline" target="_blank" rel="noopener noreferrer">
+                <a href={item.link} className="text-[#184E77] text-sm font-medium hover:underline" target="_blank" rel="noopener noreferrer">
                   Read full story
                 </a>
               </div>
@@ -172,7 +169,7 @@ const HomeItem4 = () => {
 
       <div className="flex justify-center mt-8 space-x-2">
         {Array.from({ length: Math.ceil(announcements.length / itemsPerView) }).map((_, index) => (
-          <button key={index} onClick={() => goToIndex(index)} className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-blue-600' : 'bg-gray-300'}`} aria-label={`Go to slide ${index + 1}`} />
+          <button key={index} onClick={() => goToIndex(index)} className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-[#184E77]' : 'bg-gray-300'}`} aria-label={`Go to slide ${index + 1}`} />
         ))}
       </div>
 
@@ -180,9 +177,7 @@ const HomeItem4 = () => {
         <a href="/news">
         <button className="inline-flex items-center px-6 py-3 bg-[#184E77] text-white font-medium hover:bg-[#0e3a5d] transition-colors">
           View All Updates
-          <svg className="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-          </svg>
+          <FaArrowRightLong className='ml-2 h-4 w-4' />
         </button></a>
         
       </div>

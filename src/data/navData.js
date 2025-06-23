@@ -1,5 +1,3 @@
-import { href } from "react-router-dom";
-
 const navigation = [
     {
       name: 'Home',href:'/',
@@ -13,7 +11,7 @@ const navigation = [
       ],
     },
     {
-      name: 'SCTL',
+      name: 'SCTL',href:'/sctl',
       dropdown: [
         { name: 'Creation of SPV', href: '#' },
         { name: 'Special Purpose Vehicle', href: '#' },
@@ -27,6 +25,7 @@ const navigation = [
       dropdown: [
         { name: 'ABD Projects', href: '/ABDProject' },
         { name: 'Pancity Projects', href: '/PancityProject' },
+        { name: 'Convergence Projects', href: '/ConvergenceProject' },
         { name: 'CITIIS 2.0', href: '/citiis' },
         { name: 'MPR', href: '/MPR' },
         { name: 'Ongoing Projects', href: '/OngoingProject' },
@@ -38,7 +37,7 @@ const navigation = [
       name: 'Tenders',href:'/Tenders',
     },
     {
-      name: 'Events',
+      name: 'Events',href:'/events',
       dropdown: [
         { name: 'News', href: '/news' },
         { name: 'Conclave', href: '/conclave' },
@@ -48,14 +47,14 @@ const navigation = [
       ],
     },
     {
-      name: 'Gallery',
+      name: 'Gallery',href:'/gallery',
       dropdown: [
         { name: 'Photo Gallery', href: '/photoGallery' },
         { name: 'Video Gallery', href: '/videoGallery' },
       ],
     },
     {
-      name: 'Downloads',
+      name: 'Downloads',href:'/downloads',
       dropdown: [
         { name: `Government Order's(GO's)`, href: '/GovernmentOrders' },
       ],
@@ -68,7 +67,7 @@ const navigation = [
       ],
     },
     {
-      name: 'Covid19',
+      name: 'Covid19',href:'/covid',
       dropdown: [
         { name: 'Dashboard', href: '#' },
         { name: 'Quick Response Team:Zone-2', href: '#' },
@@ -84,17 +83,5 @@ const navigation = [
         { name: 'RTI', href: '/RTI' },
       ],
     },
-    {/*{
-      name: 'BI - Dashboard',
-      dropdown: [
-        { name: 'Mosquito Density System', href: '#' },
-        { name: 'Covid', href: '#' },
-        { name: 'E-Mobility', href: '#' },
-        { name: 'LEIP', href: '#' },
-        { name: 'GIS', href: '#' },
-      ],
-    },*/}
-
-
   ];
 export default navigation;

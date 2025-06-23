@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import { FaUser } from "react-icons/fa";
-import UserIcon from '../../assets/images/user.png';
-import PhoneIcon from '../../assets/images/mobile.png';
-import SmartPhoneIcon from '../../assets/images/smartphone.png';
-
-import EmailIcon from '../../assets/images/mail.png';
+import { FaUser, FaPhone } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { IoPhonePortraitOutline } from "react-icons/io5";
 import Logo from '../../assets/images/SCTLLogo.png';
-import GovKerala from '../../assets/images/govKerala.png';// Make sure this file exists
+import GovKerala from '../../assets/images/govKerala.png';
 
 const Header = () => {
   const [language, setLanguage] = useState('english');
@@ -34,48 +31,45 @@ const Header = () => {
   return (
     <div className="bg-[#184E77] text-white">
       {/* Main Header */}
-      <div className="px-3">
-        <div className=" max-w-8xl mx-auto flex justify-between items-center">
-          {/* Logo Placeholder */}
+      <div className="px-4">
+        <div className="max-w-8xl mx-auto flex justify-between items-center py-3">
+          {/* Logo Section */}
           <div className="flex items-center">
-            <div className="h-12 w-16 bg-gray-20 flex items-center justify-center text-gray-500">
-              <img src={Logo} alt="Smart city logo" />
+            <div className="h-12 w-16 flex items-center justify-center">
+              <img src={Logo} alt="Smart city logo" className="h-full" />
             </div>
-            <div className="p-2">
-              <div className="flex items-start justify-center">
-                <img className='h-14' src={GovKerala} alt="Govt of kerala" />
-              </div>
+            <div className="ml-2">
+              <img className='h-12' src={GovKerala} alt="Govt of kerala" />
             </div>
           </div>
-          <div className="flex"></div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
             {/* Phone & Email */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-6">
               <a
                 href="tel:+91-0471-4010374"
-                className="flex items-center text-sm hover:text-[#2DC7FF] transition-colors"
+                className="flex items-center text-sm hover:text-gray-300 transition-colors"
               >
-                <img src={PhoneIcon} alt="phone" className="w-6 h-6 mt-1" />
+                <FaPhone className='w-4 h-4 mr-1' />
                 <span>+91-0471-4010374</span>
               </a>
               <a
                 href="mailto:info@smartcitytvm.in"
-                className="flex items-center gap-1 text-sm hover:text-[#2DC7FF] transition-colors"
+                className="flex items-center gap-1 text-sm hover:text-gray-300 transition-colors"
               >
-                <img src={EmailIcon} alt="email" className="w-6 h-6 mt-1" />
+                <MdEmail className='w-4 h-4' />
                 <span>info@smartcitytvm.in</span>
               </a>
             </div>
 
             {/* Vertical Divider */}
-            <div className="h-6 w-px bg-[#00ABE7]"></div>
+            <div className="h-6 w-px bg-[#1E6091]"></div>
 
             {/* Language Toggle */}
             <button
               onClick={toggleLanguage}
-              className="flex items-center px-3 py-1 rounded bg-[#00ABE7] hover:bg-[#2DC7FF] transition-colors text-sm"
+              className="flex items-center px-3 py-1 hover:bg-[#1E6091] transition-colors text-sm"
             >
               <span className="mr-2 font-medium">
                 {language === 'english' ? 'EN' : 'ML'}
@@ -86,12 +80,12 @@ const Header = () => {
             </button>
 
             {/* Vertical Divider */}
-            <div className="h-6 w-px bg-[#00ABE7]"></div>
+            <div className="h-6 w-px bg-[#1E6091]"></div>
 
             {/* Citizen Portal Link */}
             <a
               href="#"
-              className="flex items-center hover:text-[#2DC7FF] transition-colors text-sm"
+              className="flex items-center hover:text-gray-300 transition-colors text-sm"
             >
               <FaUser className="mr-2 w-4 h-4" />
               {content.citizenPortal[language]}
@@ -100,9 +94,9 @@ const Header = () => {
             {/* Smart App Link */}
             <a
               href="#"
-              className="flex items-center hover:text-[#2DC7FF] transition-colors text-sm"
+              className="flex items-center hover:text-gray-300 transition-colors text-sm"
             >
-              <img className="mr-2 w-4" src={SmartPhoneIcon} alt="phone" />
+              <IoPhonePortraitOutline className='w-5 h-5 mr-1'/>
               <span>{content.smartApp[language]}</span>
             </a>
           </div>
@@ -111,6 +105,7 @@ const Header = () => {
           <button
             className="md:hidden text-white focus:outline-none"
             onClick={toggleMenu}
+            aria-label="Toggle menu"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
@@ -121,31 +116,31 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-[#006B9E] py-4 px-4">
+        <div className="md:hidden bg-[#1E6091] py-4 px-4">
           <div className="flex flex-col gap-4">
             {/* Phone & Email */}
-            <div className="flex flex-col gap-3 items-center">
+            <div className="flex flex-col gap-3">
               <a
                 href="tel:+9104714010374"
-                className="flex items-center gap-2 text-sm"
+                className="flex items-center gap-2 text-sm hover:text-gray-300"
               >
-                <img src={PhoneIcon} alt="phone" className="w-4 h-4" />
+                <FaPhone className='w-4 h-4' />
                 <span>+91 - 0471 - 4010374</span>
               </a>
               <a
-                href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJTNqQXwmBbzWGnbDMBlwNKFpvQlNpHtCLzKmJWMjXGVFBhnGmvhZZWVgmzpvMhTMJgfSxB"
-                className="flex items-center gap-2 text-sm"
+                href="mailto:info@smartcitytvm.in"
+                className="flex items-center gap-2 text-sm hover:text-gray-300"
               >
-                <img src={EmailIcon} alt="email" className="w-4 h-4" />
+                <MdEmail className='w-5 h-5' />
                 <span>info@smartcitytvm.in</span>
               </a>
             </div>
 
-            <div className="flex flex-col items-center gap-2">
+            <div className="flex flex-col gap-2">
               {/* Language Toggle */}
               <button
                 onClick={toggleLanguage}
-                className="w-full max-w-[200px] flex items-center justify-center px-3 py-1.5 rounded bg-[#00ABE7] hover:bg-[#2DC7FF] transition-colors text-sm"
+                className="w-full flex items-center justify-center px-3 py-2 hover:bg-[#184E77] transition-colors text-sm"
               >
                 <span className="mr-2 font-medium">
                   {language === 'english' ? 'EN' : 'ML'}
@@ -158,18 +153,18 @@ const Header = () => {
               {/* Citizen Portal Link */}
               <a
                 href="#"
-                className="w-full max-w-[200px] flex items-center justify-center px-3 py-1.5 rounded bg-[#00ABE7] hover:bg-[#2DC7FF] transition-colors text-sm"
+                className="w-full flex items-center justify-center px-3 py-2 hover:bg-[#184E77] transition-colors text-sm"
               >
-                <img src={UserIcon} alt="user" className="mr-2 w-4" />
+                <FaUser className="mr-2 w-4 h-4" />
                 {content.citizenPortal[language]}
               </a>
 
               {/* Smart App Link */}
               <a
                 href="#"
-                className="w-full max-w-[200px] flex items-center justify-center px-3 py-1.5 rounded bg-[#00ABE7] hover:bg-[#2DC7FF] transition-colors text-sm"
+                className="w-full flex items-center justify-center px-3 py-2 hover:bg-[#184E77] transition-colors text-sm"
               >
-                <img className="mr-2 w-4" src={PhoneIcon} alt="phone" />
+                <IoPhonePortraitOutline className='w-5 h-5 mr-2' />
                 <span>{content.smartApp[language]}</span>
               </a>
             </div>

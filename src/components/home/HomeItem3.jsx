@@ -6,7 +6,7 @@ import Officials4 from '../../assets/images/officials4.jpg';
 import Officials5 from '../../assets/images/officials5.jpg';
 import LinkedInIcon from '../../assets/images/linkedin.png';
 import ProfileIcon from '../../assets/images/profileIcon.png';
-
+import { FaArrowRightLong } from "react-icons/fa6";
 const officials = [
   {
     name: 'Shri. Rahul Krishna Sharma IAS',
@@ -89,7 +89,7 @@ const HomeItem3 = () => {
                     <img 
                       src={LinkedInIcon} 
                       alt="LinkedIn" 
-                      className="w-5 h-5"
+                      className="w-5 h-5 mr-2"
                     />
                     <span>LinkedIn</span>
                   </a>
@@ -103,9 +103,7 @@ const HomeItem3 = () => {
         <div className="mt-16 text-center">
           <button className="inline-flex items-center px-8 py-3 border border-[#184E77] text-lg font-medium text-[#184E77] bg-white hover:bg-blue-50">
             View All Officials
-            <svg className="ml-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-            </svg>
+            <FaArrowRightLong className='ml-2 h-4 w-4' />
           </button>
         </div>
       </div>

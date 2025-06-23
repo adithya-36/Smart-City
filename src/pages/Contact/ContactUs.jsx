@@ -1,13 +1,11 @@
 import React from 'react'
 import Banner from '../../assets/banners/contactusBanner.jpg'
-import Mail from '../../assets/images/mail.png' 
-import Location from '../../assets/images/location.png' 
-import Personal from '../../assets/images/group.png' 
-import Map from '../../assets/images/destination.png'
-import MailBlack from '../../assets/images/mail_black.png' 
-import PhoneBlack from '../../assets/images/phone_black.png' 
-import Link from '../../assets/images/link.png'
-
+import { FaAddressCard } from "react-icons/fa";
+import { FaPhone } from "react-icons/fa6";
+import { MdEmail } from "react-icons/md";
+import { FaLocationDot } from "react-icons/fa6";
+import { IoIosLink } from "react-icons/io";
+import { MdGroups } from "react-icons/md";
 const ContactUs = () => {
   return (
     <div className="bg-gray-50">
@@ -32,11 +30,11 @@ const ContactUs = () => {
           {/* Left Column - Contact Info */}
           <div className="space-y-8">
             {/* Address Card */}
-            <div className="bg-white shadow-md border-t-4 border-[#1E6091] p-6">
+            <div className="bg-white shadow-md  p-6">
               <div className="flex items-start mb-4">
-                <img className='w-5 mr-3 mt-1' src={Location} alt="Location icon" />
+                <FaAddressCard className='text-xl mr-2 my-1 text-[#184E77]'/>
                 <div>
-                  <h3 className="text-xl font-bold" style={{ color: '#1E6091' }}>Address</h3>
+                  <h3 className="text-xl font-bold" style={{ color: '#184E77' }}>Address</h3>
                   <div className="mt-2 space-y-1 text-gray-700">
                     <p>4th Floor, Felicity Square Building,</p>
                     <p>Opp AG Office, Statue,</p>
@@ -45,12 +43,12 @@ const ContactUs = () => {
                   </div>
                   <div className="mt-4 space-y-1">
                     <p className="flex items-center">
-                      <img className='w-4 mr-2' src={MailBlack} alt="Email icon" />
-                      <span>Email: <a href="mailto:info@smartcitytvm.in" className="text-[#1A759F] hover:underline ml-1">info@smartcitytvm.in</a></span>
+                      <MdEmail className='text-lg mx-1 my-1 text-[#184E77]'/>
+                      <span>Email: <a href="mailto:info@smartcitytvm.in" className="text-[#1E6091] hover:underline ml-1">info@smartcitytvm.in</a></span>
                     </p>
                     <p className="flex items-center">
-                      <img className='w-4 mr-2' src={PhoneBlack} alt="Phone icon" />
-                      <span>Phone: <a href="tel:+9104714010374" className="text-[#1A759F] hover:underline ml-1">+91 - 0471 - 4010374</a></span>
+                      <FaPhone className='text-md mx-1 my-1 text-[#184E77]'/>
+                      <span>Phone: <a href="tel:+9104714010374" className="text-[#1E6091] hover:underline ml-1">+91-0471-4010374</a></span>
                     </p>
                   </div>
                 </div>
@@ -60,7 +58,7 @@ const ContactUs = () => {
             {/* Map Card */}
             <div className="bg-white shadow-md border-t-4 border-[#168AAD] p-6">
               <div className="flex items-center mb-4">
-                <img className='w-6 mr-3' src={Map} alt="Map icon" />
+                <FaLocationDot className='text-xl mr-2 my-1 text-[#184E77]'/>
                 <h3 className="text-xl font-bold" style={{ color: '#1E6091' }}>Location</h3>
               </div>
               <div className="aspect-w-16 aspect-h-9 h-64 md:h-72">
@@ -80,10 +78,10 @@ const ContactUs = () => {
                   href="https://maps.app.goo.gl/5YiwpFLcikhju2Vb8" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-[#1A759F] hover:text-[#184E77] font-medium"
+                  className="inline-flex items-center text-[#1E6091] hover:text-[#184E77] font-medium"
                 >
                   Open in Google Maps
-                  <img className='w-4 ml-2' src={Link} alt="Link icon" />
+                  <IoIosLink className='text-xl ml-2 text-[#184E77]'/>
                 </a>
               </div>
             </div>
@@ -94,7 +92,7 @@ const ContactUs = () => {
             {/* Contact Personnel Table */}
             <div className="bg-white shadow-md border-t-4 border-[#1A759F] p-6">
               <div className="flex items-center mb-4">
-                <img className='w-6 h-6 mr-3' src={Personal} alt="Personnel icon" />
+                <MdGroups className='text-3xl text-[#184E77] mr-2'/>
                 <h3 className="text-xl font-bold" style={{ color: '#1E6091' }}>Key Personnel</h3>
               </div>
               <div className="overflow-x-auto">
@@ -132,7 +130,7 @@ const ContactUs = () => {
             {/* Contact Form */}
             <div className="bg-white shadow-md border-t-4 border-[#34A0A4] p-6">
               <div className="flex items-center mb-4">
-                <img className='w-6 mr-3' src={Mail} alt="Mail icon" />
+                <MdEmail className='text-3xl mr-2 my-1 text-[#184E77]'/>
                 <h3 className="text-xl font-bold" style={{ color: '#1E6091' }}>Send Us a Message</h3>
               </div>
               <form className="space-y-5">

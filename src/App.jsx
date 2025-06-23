@@ -41,60 +41,66 @@ import Anniversary from './pages/Events/Anniversary'
 import Conclave from './pages/Events/Conclave'
 import Inauguration from './pages/Events/Inauguration'
 import News from './pages/Events/News'
+import Terms from './components/layout/Terms'
+import Privacy from './components/layout/Privacy'
+import Disclaimer from './components/layout/Disclaimer'
+import ScrollToTopButton from './components/layout/ScrollToTopButton'
+import ConvergenceProject from './pages/Project/ConvergenceProject'
 const App = () => {
   return (
-    <BrowserRouter>
-      <div className="flex flex-col min-h-screen">
-        <Header/>
-        <Navbar/>
-        <main className="flex-grow">
-          <Routes>
-            <Route path='/' element={<HomePage/>} />
-            <Route path='/CityProfile' element={<CityProfile/>} />
-            <Route path='/SmartCityDef' element={<SmartCityDef/>} />
-            <Route path='/MissionAbout' element={<MissionAbout/>} />
-            <Route path='/MissonChallenge' element={<MissonChallenge/>} />
-            <Route path='/MissonVision' element={<MissonVision/>} />
-            <Route path='/ABDProject' element={<ABDProject/>} />
-            <Route path='/SCTLProject' element={<SCTLProject/>} />
-            <Route path='/OngoingProject' element={<OngoingProject/>} />
-            <Route path='/CompletedProject' element={<CompletedProject/>} />
-            <Route path='/MPR' element={<MPR/>} />
-            <Route path='/PancityProject' element={<PancityProject/>} />
-            <Route path='/citiis' element={<CITIIS/>} />
-            <Route path='/funds' element={<ProjectFunds/>} />
-            <Route path='/pmc_consultant' element={<Consultant/>} />
-            <Route path='/financials'  element={<Financials/>} />
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <Navbar />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/CityProfile" element={<CityProfile />} />
+          <Route path="/SmartCityDef" element={<SmartCityDef />} />
+          <Route path="/MissionAbout" element={<MissionAbout />} />
+          <Route path="/MissonChallenge" element={<MissonChallenge />} />
+          <Route path="/MissonVision" element={<MissonVision />} />
+          <Route path="/ABDProject" element={<ABDProject />} />
+          <Route path="/ConvergenceProject" element={<ConvergenceProject />} />
+          <Route path="/SCTLProject" element={<SCTLProject />} />
+          <Route path="/OngoingProject" element={<OngoingProject />} />
+          <Route path="/CompletedProject" element={<CompletedProject />} />
+          <Route path="/MPR" element={<MPR />} />
+          <Route path="/PancityProject" element={<PancityProject />} />
+          <Route path="/citiis" element={<CITIIS />} />
+          <Route path="/funds" element={<ProjectFunds />} />
+          <Route path="/pmc_consultant" element={<Consultant />} />
+          <Route path="/financials" element={<Financials />} />
+          <Route path="/ProjectMilestone" element={<ProjectMilestone />} />
+          <Route path="/city-highlights" element={<CityHighlight />} />
+          <Route path="/smart-city-overview" element={<CityOverview />} />
+          <Route path="/project-area" element={<CityProject />} />
+          <Route path="/abd-area" element={<ABDArea />} />
+          <Route path="/photoGallery" element={<PhotoGallery />} />
+          <Route path="/videoGallery" element={<VideoGallery />} />
+          <Route path="/Projects" element={<ProjectPage />} />
+          <Route path="/Tenders" element={<TenderTable />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/conclave" element={<Conclave />} />
+          <Route path="/Anniversary" element={<Anniversary />} />
+          <Route path="/inauguration" element={<Inauguration />} />
+          <Route path="/ContactUs" element={<ContactUs />} />
+          <Route path="/registerComplaint" element={<RegisterComplaint />} />
+          <Route path="/poll" element={<Poll />} />
+          <Route path="/RTI" element={<RTI />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/internship" element={<Internship />} />
+          <Route path="/tulip-internship" element={<TulipInternship />} />
+          <Route path="/EnteKeralam" element={<EnteKeralam />} />
+          <Route path="/GovernmentOrders" element={<GovernmentOrders />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/disclaimer" element={<Disclaimer />} />
+        </Routes>
+      </main>
+      <Footer />
+      <ScrollToTopButton/>
+    </div>
+  );
+};
 
-            <Route path='/ProjectMilestone' element={<ProjectMilestone/>} />
-            <Route path="/city-highlights" element={<CityHighlight/>} />
-            <Route path="/smart-city-overview" element={<CityOverview/>} />
-            <Route path="/project-area" element={<CityProject/>} />
-            <Route path="/abd-area" element={<ABDArea/>} />
-            <Route path='/photoGallery' element={<PhotoGallery/>} />
-            <Route path='/videoGallery' element={<VideoGallery/>} />
-            <Route path="/Projects" element={<ProjectPage/>} />
-            <Route path="/Tenders" element={<TenderTable/>} />
-            <Route path="/news" element={<News/>} />
-            <Route path="/conclave" element={<Conclave/>} />
-            <Route path="/Anniversary" element={<Anniversary/>} />
-            <Route path="/inauguration" element={<Inauguration/>} />
-            <Route path="/ContactUs" element={<ContactUs/>} />
-            <Route path="/registerComplaint" element={<RegisterComplaint/>} />
-            <Route path="/poll" element={<Poll/>} />
-            <Route path="/RTI" element={<RTI/>} />
-            <Route path="/careers" element={<Careers/>} />
-            <Route path="/internship" element={<Internship/>} />
-            <Route path="/tulip-internship" element={<TulipInternship/>} />
-            <Route path="/EnteKeralam" element={<EnteKeralam/>} />
-            <Route path="/GovernmentOrders" element={<GovernmentOrders/>} />
-
-          </Routes>
-        </main>
-        <Footer/>
-      </div>
-    </BrowserRouter>
-  )
-}
-
-export default App
+export default App;

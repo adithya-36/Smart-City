@@ -2,7 +2,7 @@ import React from 'react'
 import Banner from '../../assets/banners/careerBanner.jpg'
 import File1 from './CareerFolder/Ranklist1.pdf'
 import File2 from './CareerFolder/Ranklist2.pdf'
-import PdfFile from '../../assets/images/pdfFile.png'
+import { FaFilePdf } from "react-icons/fa6";
 
 const careers = [
   {
@@ -73,7 +73,7 @@ const Careers = () => {
                       rel="noopener noreferrer"
                       className="inline-flex items-center text-[#1A759F] hover:text-[#184E77]"
                     >
-                      <img className="w-6 mr-2" src={PdfFile} alt="PDF icon" />
+                      <FaFilePdf className='text-xl mx-2' />
                       View
                     </a>
                   </td>
