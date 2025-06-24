@@ -1,11 +1,11 @@
 import React from 'react'
 import Banner from '../../assets/banners/rtiBanner.jpg'
-import MailBlack from '../../assets/images/mail_black.png'
-import PhoneBlack from '../../assets/images/phone_black.png'
 import RTIAct from './PDFFile/RTI2005Act.pdf'
 import RTIForm from './PDFFile/RTIApplication.pdf'
 import RTIGuideline from './PDFFile/Guidelines.pdf'
-import PDFIcon from '../../assets/images/pdfFile.png'
+import { MdOutlineEmail } from "react-icons/md";
+import { MdOutlinePhone } from "react-icons/md";
+import { FaFilePdf } from "react-icons/fa6";
 
 const RTI = () => {
   const officers = [
@@ -80,9 +80,9 @@ const RTI = () => {
                 <p className="text-gray-600 mb-3">{officer.designation}</p>
                 <a
                   href={`mailto:${officer.email}`}
-                  className="text-[#1A759F] hover:text-[#184E77] flex items-start"
+                  className="text-[#184E77] hover:text-[#1E6091] flex items-start"
                 >
-                  <img src={MailBlack} alt="Email" className="w-4 h-4 mr-2 mt-1" />
+                  <MdOutlineEmail className='text-xl mt-1 mr-2 text-[#184E77]'/>
                   {officer.email}
                 </a>
               </div>
@@ -98,13 +98,13 @@ const RTI = () => {
               <p>Pincode: 695001</p>
               <div className="flex flex-wrap gap-6 mt-4">
                 <div className="flex items-center">
-                  <img src={MailBlack} alt="Email" className="w-5 h-5 mr-2" />
+                  <MdOutlineEmail className='text-gray-500 text-lg mr-1'/>
                   <span>
                     Email: <a href="mailto:info@smartcitytvm.in" className="text-[#1A759F] hover:text-[#184E77]">info@smartcitytvm.in</a>
                   </span>
                 </div>
                 <div className="flex items-center">
-                  <img src={PhoneBlack} alt="Phone" className="w-5 h-5 mr-2" />
+                  <MdOutlinePhone className='text-gray-500 text-xl mr-1'/>
                   <span>
                     Phone: <a href="tel:+9104714010374" className="text-[#1A759F] hover:text-[#184E77]">+91 - 0471 - 4010374</a>
                   </span>
@@ -180,7 +180,7 @@ const RTI = () => {
               rel="noopener noreferrer"
               className="bg-white border border-gray-300 text-[#1E6091] font-medium py-2 px-4 shadow-sm hover:bg-gray-50 transition flex items-center"
             >
-              <img className='w-5 mr-2' src={PDFIcon} alt="PDF icon" />
+              <FaFilePdf className='text-lg mr-1'/>
               RTI Application Form
             </a>
             <a
@@ -189,7 +189,7 @@ const RTI = () => {
               rel="noopener noreferrer"
               className="bg-white border border-gray-300 text-[#1E6091] font-medium py-2 px-4 shadow-sm hover:bg-gray-50 transition flex items-center"
             >
-              <img className='w-5 mr-2' src={PDFIcon} alt="PDF icon" />
+              <FaFilePdf className='text-lg mr-1'/>
               RTI Act, 2005 (Full Text)
             </a>
             <a
@@ -198,7 +198,7 @@ const RTI = () => {
               rel="noopener noreferrer"
               className="bg-white border border-gray-300 text-[#1E6091] font-medium py-2 px-4 shadow-sm hover:bg-gray-50 transition flex items-center"
             >
-              <img className='w-5 mr-2' src={PDFIcon} alt="PDF icon" />
+              <FaFilePdf className='text-lg mr-1'/>
               RTI Guidelines
             </a>
           </div>

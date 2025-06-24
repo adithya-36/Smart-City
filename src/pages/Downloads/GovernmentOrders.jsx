@@ -1,5 +1,6 @@
 import React from 'react';
 import PdfFile from '../../assets/images/pdfFile.png'
+import { FaFilePdf } from "react-icons/fa6";
 import File1 from './govtOrders/GO2.pdf'
 const GovtOrders = [
   {
@@ -31,7 +32,7 @@ const GovernmentOrders = () => {
                     <td className="p-3">{GovtOrder.date}</td>
                     <td className="p-3">
                       <a href={GovtOrder.pdfLink} target="_blank" rel="noopener noreferrer">
-                        <img className='w-8' src={PdfFile} alt="Pdf File" />
+                        <FaFilePdf className='text-2xl m-2'/>
                       </a>
                     </td>
                   </tr>

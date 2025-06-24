@@ -4,8 +4,7 @@ import Officials2 from '../../assets/images/officials2.jpg';
 import Officials3 from '../../assets/images/officials3.jpg';
 import Officials4 from '../../assets/images/officials4.jpg';
 import Officials5 from '../../assets/images/officials5.jpg';
-import LinkedInIcon from '../../assets/images/linkedin.png';
-import ProfileIcon from '../../assets/images/profileIcon.png';
+import { FaLinkedin } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
 const officials = [
   {
@@ -86,11 +85,7 @@ const HomeItem3 = () => {
                     className="flex items-center justify-center flex-1 bg-[#184E77] hover:bg-[#1E6091] text-white py-2 transition-colors"
                     target="_blank" rel="noopener noreferrer"
                   >
-                    <img 
-                      src={LinkedInIcon} 
-                      alt="LinkedIn" 
-                      className="w-5 h-5 mr-2"
-                    />
+                    <FaLinkedin className='mr-2'/>
                     <span>LinkedIn</span>
                   </a>
                 </div>

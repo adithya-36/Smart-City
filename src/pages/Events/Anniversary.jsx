@@ -8,7 +8,7 @@ import Image6 from '../../assets/images/anniversary/poster5.jpg';
 import Image7 from '../../assets/images/anniversary/poster6.jpg';
 import Image8 from '../../assets/images/anniversary/poster7.jpg';
 import Image9 from '../../assets/images/anniversary/poster8.jpg';
-
+import { IoIosClose } from "react-icons/io";
 const Anniversary = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -60,7 +60,7 @@ const Anniversary = () => {
         <h1 className="text-4xl md:text-6xl font-bold text-[#184E77] mb-4 transform -rotate-2">
           Celebrating <span className="text-[#184E77]">8 Years</span> of Excellence
         </h1>
-        <div className="w-32 h-2 bg-gradient-to-r from-[#184E77] to-[#184E77] mx-auto rounded-full mb-6"></div>
+        <div className="w-32 h-2 bg-gradient-to-r from-[#184E77] to-[#184E77] mx-auto  mb-6"></div>
         <p className="text-lg md:text-xl text-[#184E77] max-w-3xl mx-auto">
           Journey through our milestone moments, cherished memories, and the people who made it all possible.
         </p>
@@ -108,9 +108,9 @@ const Anniversary = () => {
           This gallery captures just a glimpse of our incredible journey.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <div className="bg-white/20 backdrop-blur-sm rounded-full px-6 py-2 font-bold">X Projects</div>
-          <div className="bg-white/20 backdrop-blur-sm rounded-full px-6 py-2 font-bold">X Team Members</div>
-          <div className="bg-white/20 backdrop-blur-sm rounded-full px-6 py-2 font-bold">X Awards</div>
+          <div className="bg-white/20 backdrop-blur-sm px-6 py-2 font-bold">X Projects</div>
+          <div className="bg-white/20 backdrop-blur-sm px-6 py-2 font-bold">X Team Members</div>
+          <div className="bg-white/20 backdrop-blur-sm px-6 py-2 font-bold">X Awards</div>
         </div>
       </div>
 
@@ -128,12 +128,10 @@ const Anniversary = () => {
               className="absolute -top-12 right-0 text-white hover:text-[#1E6091] transition-colors"
               onClick={closeLightbox}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <IoIosClose className='text-5xl'/>
             </button>
             
-            <div className="bg-white rounded-2xl overflow-hidden shadow-2xl">
+            <div className="bg-white  overflow-hidden shadow-2xl">
               <img 
                 src={selectedImage.src} 
                 alt={selectedImage.alt} 

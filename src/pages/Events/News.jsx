@@ -2,7 +2,7 @@ import React from 'react'
 import News1 from '../../assets/images/news/Palayam_News.jpeg';
 import News2 from '../../assets/images/news/project_First_Phase.avif';
 import News3 from '../../assets/images/news/cycle_track.avif';
-
+import { FaArrowRightLong } from "react-icons/fa6";
 const News = () => {
   const news = [
     {
@@ -106,9 +106,7 @@ const News = () => {
                   className="inline-flex items-center text-[#1E6091] font-medium hover:text-[#184E77] transition-colors"
                 >
                   Read more
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
+                  <FaArrowRightLong className='ml-2 text-lg'/>
                 </a>
               </div>
             </div>

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import Banner from '../../assets/banners/photoBanner.jpg';
-
+import { HiOutlineSearch } from 'react-icons/hi';
+import { HiOutlineX } from 'react-icons/hi';
+import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
 // Import all images
 import thumb1 from '../../assets/images/execution photo/execution.jpg';
 import img1a from '../../assets/images/execution photo/img1.jpeg';
@@ -202,9 +205,8 @@ const PhotoGallery = () => {
                     className="w-full h-40 object-cover group-hover:opacity-75 transition-opacity"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center transition-all">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
+                    <HiOutlineSearch className="h-10 w-10 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+
                   </div>
                 </div>
               ))}
@@ -226,9 +228,8 @@ const PhotoGallery = () => {
               closeModal();
             }}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <HiOutlineX className="h-8 w-8" />
+
           </button>
           
           <div className="relative max-h-[90vh] max-w-[90vw]">
@@ -251,9 +252,7 @@ const PhotoGallery = () => {
               navigateImage('prev');
             }}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
+            <IoIosArrowBack />
           </button>
           
           <button 
@@ -263,9 +262,7 @@ const PhotoGallery = () => {
               navigateImage('next');
             }}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
+            <IoIosArrowForward />
           </button>
         </div>
       )}
