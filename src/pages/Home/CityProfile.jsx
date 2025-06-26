@@ -6,6 +6,10 @@ import ProjectDiagram from '../../assets/images/projectDiagram.png';
 import LocationMarker from '../../assets/images/location.png';
 import Border from '../../assets/images/border.png';
 
+import { FaCity } from "react-icons/fa";
+import { FaMapMarkedAlt } from "react-icons/fa";
+import { FaBorderTopLeft } from "react-icons/fa6";
+import { FaChartArea } from "react-icons/fa";
 const CityProfile = () => {
   return (
     <div className="font-sans bg-gray-50">
@@ -103,22 +107,22 @@ const CityProfile = () => {
             {[
               { 
                 label: 'City Highlights', 
-                icon: <img src={SmartCity} alt="Smart city icon" className="w-12 h-12" />, 
+                icon: <FaCity className='text-4xl text-[#184E77]' />, 
                 link: '/city-highlights' 
               },
               { 
                 label: 'Smart City Overview', 
-                icon: <img src={LocationMarker} alt="Location marker" className="w-12 h-12" />, 
+                icon: <FaMapMarkedAlt className='text-4xl text-[#184E77]' />, 
                 link: '/smart-city-overview' 
               },
               { 
                 label: 'Project Area', 
-                icon: <img src={ProjectDiagram} alt="Project diagram" className="w-12 h-12" />, 
+                icon: <FaChartArea className='text-4xl text-[#184E77]' />, 
                 link: '/project-area' 
               },
               { 
                 label: 'ABD Area', 
-                icon: <img src={Border} alt="Border icon" className="w-12 h-12" />, 
+                icon: <FaBorderTopLeft className='text-4xl text-[#184E77]' />, 
                 link: '/abd-area' 
               },
             ].map((item, index) => (
@@ -127,7 +131,7 @@ const CityProfile = () => {
                 href={item.link}
                 className="flex flex-col items-center justify-center w-36 h-36 md:w-40 md:h-40 bg-white border border-gray-200 hover:border-[#1E6091] transition-colors group"
               >
-                <div className="bg-gray-100 p-3 mb-4 group-hover:bg-[#1E6091] group-hover:text-white transition-colors">
+                <div className="bg-gray-100 p-3 mb-4  group-hover:text-white transition-colors">
                   {item.icon}
                 </div>
                 <span className="text-center font-medium text-[#1E6091] group-hover:text-[#184E77] px-2">

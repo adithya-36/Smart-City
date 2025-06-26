@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Banner from '../../assets/banners/completeProjectBanner.png'; 
-import Image1 from '../../assets/images/completedProject1.jpg';
-import Image2 from '../../assets/images/completedProjects2.jpg';
-import Image3 from '../../assets/images/completedProjects3.jpg';
-import Image4 from '../../assets/images/completedProjects4.jpg';
+import Image1 from '../../assets/images/Completed Projects/completedProject1.jpg';
+import Image2 from '../../assets/images/Completed Projects/completedProjects2.jpg';
+import Image3 from '../../assets/images/Completed Projects/completedProjects3.jpg';
+import Image4 from '../../assets/images/Completed Projects/completedProjects4.jpg';
 
 const CompletedProject = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);

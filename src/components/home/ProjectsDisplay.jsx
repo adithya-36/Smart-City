@@ -1,8 +1,4 @@
 import React, { useState } from 'react';
-import ArrowUp from '../../assets/images/arrowUp.png';
-import ArrowDown from '../../assets/images/downArrow.png';
-import RightArrow from '../../assets/images/rightArrow.png'
-import RightArrowTail from '../../assets/images/rightArrowTail.png'
 const ProjectsDisplay = () => {
   const [activeProject, setActiveProject] = useState(null);
   
@@ -83,11 +79,7 @@ const ProjectsDisplay = () => {
                   </div>
                   
                   <div className="ml-auto flex-shrink-0">
-                    <img 
-                      src={activeProject === type.id ? ArrowUp : ArrowDown} 
-                      alt="toggle" 
-                      className="h-5 w-5 md:h-6 md:w-6"
-                    />
+                    
                   </div>
                 </div>
               </button>
@@ -138,7 +130,7 @@ const ProjectsDisplay = () => {
                         
                         <button className="mt-3 text-blue-600 hover:text-blue-800 text-xs md:text-sm font-medium flex items-center">
                           View details
-                          <img className='w-5 h-4 ml-1' src={RightArrow} alt="Right arrow" />
+                          
                         </button>
                       </div>
                     ))}
@@ -147,7 +139,7 @@ const ProjectsDisplay = () => {
                   <div className="p-4 md:p-6 bg-blue-50 border-t border-blue-100">
                     <button className="text-blue-700 font-medium hover:text-blue-900 flex items-center justify-center md:mx-auto text-sm md:text-base">
                       View all {type.title}
-                      <img className='w-6 h-6 ml-2' src={RightArrowTail} alt="Right Arrow with Tail" />
+                      
                     </button>
                   </div>
                 </div>

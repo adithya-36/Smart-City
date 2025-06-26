@@ -23,9 +23,9 @@ const navigation = [
     {
       name: 'Projects',href:'/Projects',
       dropdown: [
-        { name: 'ABD Projects', href: '/ABDProject' },
+        {/*{ name: 'ABD Projects', href: '/ABDProject' },
         { name: 'Pancity Projects', href: '/PancityProject' },
-        { name: 'Convergence Projects', href: '/ConvergenceProject' },
+        { name: 'Convergence Projects', href: '/ConvergenceProject' },*/},
         { name: 'CITIIS 2.0', href: '/citiis' },
         { name: 'MPR', href: '/MPR' },
         { name: 'Ongoing Projects', href: '/OngoingProject' },

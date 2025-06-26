@@ -1,7 +1,6 @@
 import React from 'react'
 import Banner from '../../assets/banners/videoBanner.jpg'
-import YoutubeIcon from '../../assets/images/youtube_white.png'
-
+import { FaYoutube } from "react-icons/fa6";
 const VideoGallery = () => {
   const videos = [
     { id: '79vc9cceP0M', title: 'Inauguration of Public Renovated Toilets ' },
@@ -142,7 +141,7 @@ const VideoGallery = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center bg-[#FF0000] hover:bg-[#CC0000] text-white font-semibold py-3 px-6 transition duration-300"
           >
-            <img className='w-6 h-6 mr-2' src={YoutubeIcon} alt="YouTube" />
+            <FaYoutube className='mr-2 text-2xl'/>
             Subscribe on YouTube
           </a>
         </div>

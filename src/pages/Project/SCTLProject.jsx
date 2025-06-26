@@ -7,8 +7,7 @@ import Image5 from '../../assets/images/SCTL Projects/img5.jpg';
 import Image6 from '../../assets/images/SCTL Projects/KSRTCImg6.jpg';
 import Image7 from '../../assets/images/SCTL Projects/KRFB2img7.png';
 import Image8 from '../../assets/images/SCTL Projects/KRFB1Img8.png';
-import Image9 from '../../assets/images/SCTL Projects/ANERTImg9.png';
-import PDF from '../Project/PDFFolder/SCTL.pdf';
+import Image9 from '../../assets/images/SCTL Projects/ANERTImg9.jpg';
 
 const SCTLProject = () => {
   const projects = [
