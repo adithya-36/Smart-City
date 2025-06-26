@@ -1,27 +1,24 @@
-import React from 'react'
-import Banner from '../../assets/banners/careerBanner.jpg'
-import File1 from './CareerFolder/Ranklist1.pdf'
-import File2 from './CareerFolder/Ranklist2.pdf'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Banner from '../../assets/banners/careerBanner.jpg';
 import { FaFilePdf } from "react-icons/fa6";
 
-const careers = [
-  {
-    no: '1',
-    title: 'Result Published- for the post of MTS/Office Assistant in SCTL',
-    status: 'Published',
-    date: '06/06/2025',
-    pdfLink: File1,
-  },
-  {
-    no: '2',
-    title: 'Result Published- for the post of IT Expert',
-    status: 'Published',
-    date: '26/05/2025',
-    pdfLink: File2,
-  },
-];
-
 const Careers = () => {
+  const [careers, setCareers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/careers/') 
+      .then(res => {
+        setCareers(res.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Error fetching careers:", err);
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <div className="bg-gray-50">
       {/* Banner */}
@@ -39,60 +36,52 @@ const Careers = () => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="overflow-x-auto shadow-sm">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-[#1E6091] text-white">
-                <th className="p-4 font-semibold border-b border-[#184E77]">No</th>
-                <th className="p-4 font-semibold border-b border-[#184E77]">Title</th>
-                <th className="p-4 font-semibold border-b border-[#184E77]">Status</th>
-                <th className="p-4 font-semibold border-b border-[#184E77]">Date</th>
-                <th className="p-4 font-semibold border-b border-[#184E77]">Documents</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white">
-              {careers.map((career, index) => (
-                <tr 
-                  key={index} 
-                  className="border-b border-gray-200 hover:bg-gray-50 transition-colors"
-                >
-                  <td className="p-4 text-gray-700">{career.no}</td>
-                  <td className="p-4 text-gray-700 font-medium">{career.title}</td>
-                  <td className="p-4 text-gray-700">
-                    <span className="inline-block px-2 py-1 bg-gray-100 text-gray-700">
-                      {career.status}
-                    </span>
-                  </td>
-                  <td className="p-4 text-gray-700">{career.date}</td>
-                  <td className="p-4">
-                    <a 
-                      href={career.pdfLink} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-[#1A759F] hover:text-[#184E77]"
-                    >
-                      <FaFilePdf className='text-xl mx-2' />
-                      View
-                    </a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Empty State */}
-        {careers.length === 0 && (
+        {loading ? (
+          <p className="text-center text-gray-500">Loading...</p>
+        ) : careers.length === 0 ? (
           <div className="bg-white p-8 text-center border-t-4 border-[#1E6091]">
             <p className="text-gray-600">No career opportunities available at this time.</p>
-            <p className="text-gray-600 mt-2">Please check back later.</p>
+          </div>
+        ) : (
+          <div className="overflow-x-auto shadow-sm">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-[#1E6091] text-white">
+                  <th className="p-4 font-semibold border-b border-[#184E77]">No</th>
+                  <th className="p-4 font-semibold border-b border-[#184E77]">Title</th>
+                  <th className="p-4 font-semibold border-b border-[#184E77]">Status</th>
+                  <th className="p-4 font-semibold border-b border-[#184E77]">Date</th>
+                  <th className="p-4 font-semibold border-b border-[#184E77]">Documents</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white">
+                {careers.map((career) => (
+                  <tr key={career.id} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                    <td className="p-4 text-gray-700">{career.no}</td>
+                    <td className="p-4 text-gray-700 font-medium">{career.title}</td>
+                    <td className="p-4 text-gray-700">{career.status}</td>
+                    <td className="p-4 text-gray-700">{career.posted_on}</td>
+                    <td className="p-4">
+                      <a
+                        href={career.pdf}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-[#1A759F] hover:text-[#184E77]"
+                      >
+                        <FaFilePdf className="text-xl mx-2" />
+                        View
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Careers
+export default Careers;
