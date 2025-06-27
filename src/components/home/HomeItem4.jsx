@@ -1,71 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { IoNewspaper } from "react-icons/io5";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
-import News1 from '../../assets/images/news/Palayam_News.jpeg';
-import News2 from '../../assets/images/news/project_First_Phase.avif';
-import News3 from '../../assets/images/news/cycle_track.avif';
-import News from '../../assets/images/newss.png'
 const HomeItem4 = () => {
-  const announcements = [
-    {
-      date: 'June 04, 2025 08:14 am',
-      title: 'Tension at Palayam Market over demolition of shops',
-      excerpt: 'After initial attempt to remove materials from inside the shops and demolish the buildings were prevented by a section of the protesting traders, the drive continued with the support of the police',
-      type: 'news',
-      image: News1,
-      link: 'https://timesofindia.indiatimes.com/city/thiruvananthapuram/smart-city-housing-project-1st-phase-nears-completion/articleshow/121916654.cms',
-      source: 'The Hindu'
-    },
-    {
-      date: 'June 18, 2025 03:04',
-      title: 'Smart City housing project 1st phase nears completion',
-      excerpt: 'The first phase of the redevelopment of Rajaji Nagar, under the Smart City Mission, is on track for completion by Sept 30 this year-well ahead of its original June 2025 deadline. Officials said construction was accelerated, with 40% of the work already complete.',
-      type: 'news',
-      image: News2,
-      link: 'https://timesofindia.indiatimes.com/city/thiruvananthapuram/smart-city-housing-project-1st-phase-nears-completion/articleshow/121916654.cms',
-      source: 'The Times of India'
-    },
-    {
-      date: '23 May 2025, 6:00 am',
-      title: "T'Puram cyclists feel city's new cycle track could have been 'smarter'",
-      excerpt: 'The Smart Road Project is finally completed. However, pedestrians and cyclists point to obstructions along the path and unscientific construction that compromise safety on the footpath and cycle track',
-      type: 'news',
-      image: News3,
-      link: 'https://www.newindianexpress.com/cities/thiruvananthapuram/2025/May/23/tpuram-cyclists-feel-citys-new-cycle-track-could-have-been-smarter',
-      source: 'The New Indian Express'
-    },
-    {
-      date: 'June 04, 2025 08:14 am',
-      title: 'Tension at Palayam Market over demolition of shops',
-      excerpt: 'After initial attempt to remove materials from inside the shops and demolish the buildings were prevented by a section of the protesting traders, the drive continued with the support of the police',
-      type: 'news',
-      image: News,
-      link: 'https://timesofindia.indiatimes.com/city/thiruvananthapuram/smart-city-housing-project-1st-phase-nears-completion/articleshow/121916654.cms',
-      source: 'The Hindu'
-    },
-    {
-      date: 'June 18, 2025 03:04',
-      title: 'Smart City housing project 1st phase nears completion',
-      excerpt: 'The first phase of the redevelopment of Rajaji Nagar, under the Smart City Mission, is on track for completion by Sept 30 this year-well ahead of its original June 2025 deadline. Officials said construction was accelerated, with 40% of the work already complete.',
-      type: 'news',
-      image: News,
-      link: 'https://timesofindia.indiatimes.com/city/thiruvananthapuram/smart-city-housing-project-1st-phase-nears-completion/articleshow/121916654.cms',
-      source: 'The Times of India'
-    },
-    {
-      date: '23 May 2025, 6:00 am',
-      title: "T'Puram cyclists feel city's new cycle track could have been 'smarter'",
-      excerpt: 'The Smart Road Project is finally completed. However, pedestrians and cyclists point to obstructions along the path and unscientific construction that compromise safety on the footpath and cycle track',
-      type: 'news',
-      image: News,
-      link: 'https://www.newindianexpress.com/cities/thiruvananthapuram/2025/May/23/tpuram-cyclists-feel-citys-new-cycle-track-could-have-been-smarter',
-      source: 'The New Indian Express'
-    },
-    // Existing announcements/news below
-  ];
-
+  const [announcements, setAnnouncements] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/latest-news/')
+      .then(response => {
+        setAnnouncements(response.data);
+      })
+      .catch(error => {
+        console.error("Error fetching latest news:", error);
+      });
+  }, []);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -130,18 +79,24 @@ const HomeItem4 = () => {
 
       <div className="relative overflow-hidden">
         <button onClick={goToPrev} className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white border border-gray-300 w-10 h-10 flex items-center justify-center shadow-md cursor-pointer hover:bg-gray-50 transition -ml-4">
-          <GrPrevious style={{ color: '#1E6091',width:50 }}/>
+          <GrPrevious style={{ color: '#1E6091', width: 50 }} />
         </button>
 
         <button onClick={goToNext} className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white border border-gray-300 w-10 h-10 flex items-center justify-center shadow-md cursor-pointer hover:bg-gray-50 transition -mr-4">
-          <GrNext style={{ color: '#1E6091',width:50 }}/>
+          <GrNext style={{ color: '#1E6091', width: 50 }} />
         </button>
 
         <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-300 ${isTransitioning ? 'opacity-70' : 'opacity-100'}`}>
           {visibleItems.map((item, index) => (
             <div key={`${item.title}-${index}`} className="bg-white border border-gray-200 h-full flex flex-col">
               <div className="h-48 overflow-hidden">
-                <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                />
+
+
               </div>
               <div className="p-4 flex-1">
                 <div className="flex items-center mb-3">
@@ -175,11 +130,11 @@ const HomeItem4 = () => {
 
       <div className="mt-8 text-center">
         <a href="/news">
-        <button className="inline-flex items-center px-6 py-3 bg-[#184E77] text-white font-medium hover:bg-[#0e3a5d] transition-colors">
-          View All Updates
-          <FaArrowRightLong className='ml-2 h-4 w-4' />
-        </button></a>
-        
+          <button className="inline-flex items-center px-6 py-3 bg-[#184E77] text-white font-medium hover:bg-[#0e3a5d] transition-colors">
+            View All Updates
+            <FaArrowRightLong className='ml-2 h-4 w-4' />
+          </button></a>
+
       </div>
     </div>
   );
