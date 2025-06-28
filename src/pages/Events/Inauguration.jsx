@@ -1,35 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { IoCloseOutline } from "react-icons/io5";
-import Image1 from '../../assets/images/inauguration/APAC conclave.jpg';
-import Image2 from '../../assets/images/inauguration/childrens-park.jpg';
-import Image3 from '../../assets/images/inauguration/e-bus.jpg';
-import Image4 from '../../assets/images/inauguration/iccc-inauguration.jpg';
-import Image5 from '../../assets/images/inauguration/iccc.jpg';
-import Image6 from '../../assets/images/inauguration/independence.jpg';
-import Image7 from '../../assets/images/inauguration/k-swift.jpg';
-import Image8 from '../../assets/images/inauguration/organic-waste.jpg';
-import Image9 from '../../assets/images/inauguration/ponnara-sreedhar-park.jpg';
-import Image10 from '../../assets/images/inauguration/putharikandam.jpg';
-import Image11 from '../../assets/images/inauguration/RKV-road-inauguration.jpg';
-import Image12 from '../../assets/images/inauguration/sreechitra-park.jpg';
 
 const Inauguration = () => {
+  const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const images = [
-    { src: Image1, alt: "APAC Conclave" },
-    { src: Image2, alt: "Children's Park" },
-    { src: Image3, alt: "E-Bus" },
-    { src: Image4, alt: "ICCC Inauguration" },
-    { src: Image5, alt: "ICCC" },
-    { src: Image6, alt: "Independence Day" },
-    { src: Image7, alt: "K-Swift" },
-    { src: Image8, alt: "Organic Waste Facility" },
-    { src: Image9, alt: "Ponnara Sreedhar Park" },
-    { src: Image10, alt: "Putharikandam" },
-    { src: Image11, alt: "RKV Road Inauguration" },
-    { src: Image12, alt: "Sreechitra Park" }
-  ];
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/inauguration-images/')
+      .then((response) => setImages(response.data))
+      .catch((error) => console.error("Failed to fetch inauguration images:", error));
+  }, []);
 
   const openImage = (image) => {
     setSelectedImage(image);
@@ -66,14 +47,14 @@ const Inauguration = () => {
 
         {/* Image Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {images.map((image, index) => (
+          {images.map((image) => (
             <div
-              key={index}
+              key={image.id}
               className="group relative overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer"
               onClick={() => openImage(image)}
             >
               <img
-                src={image.src}
+                src={image.image}
                 alt={image.alt}
                 className="w-full h-64 object-cover"
               />
@@ -102,7 +83,7 @@ const Inauguration = () => {
                 <IoCloseOutline className="text-3xl" />
               </button>
               <img
-                src={selectedImage.src}
+                src={selectedImage.image}
                 alt={selectedImage.alt}
                 className="max-h-full max-w-full object-contain"
               />

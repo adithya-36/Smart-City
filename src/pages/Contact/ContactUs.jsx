@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 import Banner from '../../assets/banners/contactusBanner.jpg'
 import { FaAddressCard } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa6";
@@ -6,7 +7,34 @@ import { MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoIosLink } from "react-icons/io";
 import { MdGroups } from "react-icons/md";
+
 const ContactUs = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  })
+
+  const [success, setSuccess] = useState(false)
+
+  const handleChange = (e) => {
+    const { id, value } = e.target
+    setFormData({ ...formData, [id]: value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      await axios.post('http://localhost:8000/api/contact/', formData)
+      setSuccess(true)
+      setFormData({ name: '', email: '', phone: '', message: '' })
+    } catch (error) {
+      console.error('Error submitting contact form:', error)
+      setSuccess(false)
+    }
+  }
+
   return (
     <div className="bg-gray-50">
       {/* Banner */}
@@ -29,10 +57,9 @@ const ContactUs = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Left Column - Contact Info */}
           <div className="space-y-8">
-            {/* Address Card */}
-            <div className="bg-white shadow-md  p-6">
+            <div className="bg-white shadow-md p-6">
               <div className="flex items-start mb-4">
-                <FaAddressCard className='text-xl mr-2 my-1 text-[#184E77]'/>
+                <FaAddressCard className='text-xl mr-2 my-1 text-[#184E77]' />
                 <div>
                   <h3 className="text-xl font-bold" style={{ color: '#184E77' }}>Address</h3>
                   <div className="mt-2 space-y-1 text-gray-700">
@@ -43,11 +70,11 @@ const ContactUs = () => {
                   </div>
                   <div className="mt-4 space-y-1">
                     <p className="flex items-center">
-                      <MdEmail className='text-lg mx-1 my-1 text-[#184E77]'/>
+                      <MdEmail className='text-lg mx-1 my-1 text-[#184E77]' />
                       <span>Email: <a href="mailto:info@smartcitytvm.in" className="text-[#1E6091] hover:underline ml-1">info@smartcitytvm.in</a></span>
                     </p>
                     <p className="flex items-center">
-                      <FaPhone className='text-md mx-1 my-1 text-[#184E77]'/>
+                      <FaPhone className='text-md mx-1 my-1 text-[#184E77]' />
                       <span>Phone: <a href="tel:+9104714010374" className="text-[#1E6091] hover:underline ml-1">+91-0471-4010374</a></span>
                     </p>
                   </div>
@@ -55,44 +82,42 @@ const ContactUs = () => {
               </div>
             </div>
 
-            {/* Map Card */}
             <div className="bg-white shadow-md border-t-4 border-[#168AAD] p-6">
               <div className="flex items-center mb-4">
-                <FaLocationDot className='text-xl mr-2 my-1 text-[#184E77]'/>
+                <FaLocationDot className='text-xl mr-2 my-1 text-[#184E77]' />
                 <h3 className="text-xl font-bold" style={{ color: '#1E6091' }}>Location</h3>
               </div>
               <div className="aspect-w-16 aspect-h-9 h-64 md:h-72">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.5429336821355!2d76.9481307756858!3d8.486602691508522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bb0a5a9b7b0f%3A0x1e5f3b5a5a5b5b5b!2sSmart%20City%20Thiruvananthapuram%20Limited!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin" 
-                  width="100%" 
-                  height="100%" 
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.5429336821355!2d76.9481307756858!3d8.486602691508522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bb0a5a9b7b0f%3A0x1e5f3b5a5a5b5b5b!2sSmart%20City%20Thiruvananthapuram%20Limited!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
                   style={{ border: 'none' }}
-                  allowFullScreen 
-                  loading="lazy" 
+                  allowFullScreen
+                  loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Smart City Thiruvananthapuram Location"
                 ></iframe>
               </div>
               <div className="mt-4 text-center">
-                <a 
-                  href="https://maps.app.goo.gl/5YiwpFLcikhju2Vb8" 
-                  target="_blank" 
+                <a
+                  href="https://maps.app.goo.gl/5YiwpFLcikhju2Vb8"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center text-[#1E6091] hover:text-[#184E77] font-medium"
                 >
                   Open in Google Maps
-                  <IoIosLink className='text-xl ml-2 text-[#184E77]'/>
+                  <IoIosLink className='text-xl ml-2 text-[#184E77]' />
                 </a>
               </div>
             </div>
           </div>
 
-          {/* Right Column - Contact Form and Table */}
+          {/* Right Column - Contact Form and Personnel */}
           <div className="space-y-8">
-            {/* Contact Personnel Table */}
             <div className="bg-white shadow-md border-t-4 border-[#1A759F] p-6">
               <div className="flex items-center mb-4">
-                <MdGroups className='text-3xl text-[#184E77] mr-2'/>
+                <MdGroups className='text-3xl text-[#184E77] mr-2' />
                 <h3 className="text-xl font-bold" style={{ color: '#1E6091' }}>Key Personnel</h3>
               </div>
               <div className="overflow-x-auto">
@@ -130,53 +155,63 @@ const ContactUs = () => {
             {/* Contact Form */}
             <div className="bg-white shadow-md border-t-4 border-[#34A0A4] p-6">
               <div className="flex items-center mb-4">
-                <MdEmail className='text-3xl mr-2 my-1 text-[#184E77]'/>
+                <MdEmail className='text-3xl mr-2 my-1 text-[#184E77]' />
                 <h3 className="text-xl font-bold" style={{ color: '#1E6091' }}>Send Us a Message</h3>
               </div>
-              <form className="space-y-5">
+              {success && (
+                <p className="text-green-600 mb-4">Thank you! Your message has been submitted.</p>
+              )}
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
                   <label htmlFor="name" className="block text-gray-700 mb-2 font-medium">Name</label>
-                  <input 
-                    type="text" 
-                    id="name" 
+                  <input
+                    type="text"
+                    id="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
                     className="w-full px-4 py-2 border border-gray-300 focus:ring-2 focus:ring-[#1A759F] focus:border-[#1A759F]"
                     placeholder="Your name"
                   />
                 </div>
-                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="email" className="block text-gray-700 mb-2 font-medium">Email</label>
-                    <input 
-                      type="email" 
-                      id="email" 
+                    <input
+                      type="email"
+                      id="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
                       className="w-full px-4 py-2 border border-gray-300 focus:ring-2 focus:ring-[#1A759F] focus:border-[#1A759F]"
                       placeholder="Your email"
                     />
                   </div>
-                  
                   <div>
                     <label htmlFor="phone" className="block text-gray-700 mb-2 font-medium">Phone Number</label>
-                    <input 
-                      type="tel" 
-                      id="phone" 
+                    <input
+                      type="tel"
+                      id="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
                       className="w-full px-4 py-2 border border-gray-300 focus:ring-2 focus:ring-[#1A759F] focus:border-[#1A759F]"
                       placeholder="Your phone number"
                     />
                   </div>
                 </div>
-                
                 <div>
                   <label htmlFor="message" className="block text-gray-700 mb-2 font-medium">Message</label>
-                  <textarea 
-                    id="message" 
-                    rows="4" 
+                  <textarea
+                    id="message"
+                    rows="4"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
                     className="w-full px-4 py-2 border border-gray-300 focus:ring-2 focus:ring-[#1A759F] focus:border-[#1A759F]"
                     placeholder="Your message here..."
                   ></textarea>
                 </div>
-                
-                <button 
+                <button
                   type="submit"
                   className="w-full py-3 px-4 bg-[#1E6091] hover:bg-[#184E77] text-white font-bold shadow-sm transition duration-300"
                 >

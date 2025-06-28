@@ -1,40 +1,23 @@
-import React, { useState } from 'react';
-import File1 from './MPRFolder/nov_2020.pdf';
-import File2 from './MPRFolder/oct_2020.pdf';
-import File3 from './MPRFolder/sept_2020.pdf';
-import File4 from './MPRFolder/aug_2020.pdf';
-import File5 from './MPRFolder/july_2020.pdf';
-import File6 from './MPRFolder/june_2020.pdf';
-import File7 from './MPRFolder/may_2020.pdf';
-import File8 from './MPRFolder/april_2020.pdf';
-import File9 from './MPRFolder/march_2020.pdf';
-import File10 from './MPRFolder/feb_2020.pdf';
-import File11 from './MPRFolder/jan_2020.pdf';
-import File12 from './MPRFolder/dec_2019.pdf';
-import File13 from './MPRFolder/nov_2019.pdf';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import PDFIcon from '../../assets/images/pdfFile.png';
 
-const reports = [
-  { month: 'November 2020', download: File1 },
-  { month: 'October 2020', download: File2 },
-  { month: 'September 2020', download: File3 },
-  { month: 'August 2020', download: File4 },
-  { month: 'July 2020', download: File5 },
-  { month: 'June 2020', download: File6 },
-  { month: 'May 2020', download: File7 },
-  { month: 'April 2020', download: File8 },
-  { month: 'March 2020', download: File9 },
-  { month: 'February 2020', download: File10 },
-  { month: 'January 2020', download: File11 },
-  { month: 'December 2019', download: File12 },
-  { month: 'November 2019', download: File13 },
-];
-
 const MPR = () => {
+  const [reports, setReports] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedYear, setSelectedYear] = useState('All');
 
-  // Filter logic
+  // Fetch data from Django backend
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/mpr/')
+      .then(res => setReports(res.data))
+      .catch(err => console.error("Failed to fetch MPR reports:", err));
+  }, []);
+
+  // Extract year from month field (e.g., "March 2020" -> "2020")
+  const uniqueYears = [...new Set(reports.map(report => report.month.split(' ')[1]))];
+
+  // Filter reports based on search and selected year
   const filteredReports = reports.filter((report) => {
     const lowerCaseSearch = searchTerm.toLowerCase();
     const reportLower = report.month.toLowerCase();
@@ -44,8 +27,6 @@ const MPR = () => {
 
     return matchesSearch && matchesYear;
   });
-
-  const uniqueYears = [...new Set(reports.map(report => report.month.split(' ')[1]))];
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6">
@@ -103,7 +84,7 @@ const MPR = () => {
                       <td className="p-4 text-gray-800 font-medium">{report.month}</td>
                       <td className="p-4">
                         <a
-                          href={report.download}
+                          href={report.file}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center justify-center text-[#1E6091] hover:text-[#184E77] transition"

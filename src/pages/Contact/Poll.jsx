@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import Banner from '../../assets/banners/pollBanner.jpg';
-import { BsEmojiGrin } from "react-icons/bs";
-import { BsEmojiNeutral } from "react-icons/bs";
-import { BsEmojiFrown } from "react-icons/bs";
+import { BsEmojiGrin, BsEmojiNeutral, BsEmojiFrown } from "react-icons/bs";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { GrStatusGood } from "react-icons/gr";
+
 const Poll = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (selectedOption) {
+    if (!selectedOption) return;
+
+    try {
+      await axios.post('http://127.0.0.1:8000/api/api/poll-feedback/', {
+        rating: selectedOption,
+      });
       setSubmitted(true);
-      // Here you would typically send the data to your backend
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+      alert("Something went wrong. Please try again.");
     }
   };
 
@@ -38,12 +45,12 @@ const Poll = () => {
       <div className="max-w-4xl mx-auto px-4 py-12">
         {submitted ? (
           <div className="text-center py-12">
-            <div className="w-24 h-24 flex items-center justify-center mx-auto mb-8 ">
-              <GrStatusGood className='text-5xl text-[#184E77]'/>
+            <div className="w-24 h-24 flex items-center justify-center mx-auto mb-8">
+              <GrStatusGood className='text-5xl text-[#184E77]' />
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Thank You for Your Feedback!</h2>
             <p className="text-gray-600 max-w-md mx-auto">
-              Your opinion helps us improve our website and services. We appreciate you taking the time to share your thoughts.
+              Your opinion helps us improve our website and services.
             </p>
             <button
               onClick={() => {
@@ -56,7 +63,7 @@ const Poll = () => {
             </button>
           </div>
         ) : (
-          <div className="bg-white shadow-md p-6 md:p-8 max-w-2xl mx-auto ">
+          <div className="bg-white shadow-md p-6 md:p-8 max-w-2xl mx-auto">
             <h2 className="text-xl md:text-2xl font-bold text-center mb-2 text-[#1E6091]">
               We value your opinion!
             </h2>
@@ -66,65 +73,33 @@ const Poll = () => {
 
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                {/* Nice Option */}
-                <label
-                  className={`flex flex-col items-center p-4 cursor-pointer transition duration-200 ${selectedOption === 'nice' ? 'bg-[#D9ED92] ' : 'bg-gray-50 '}`}
-                >
-                  <input
-                    type="radio"
-                    name="poll"
-                    value="nice"
-                    className="hidden"
-                    onChange={() => setSelectedOption('nice')}
-                  />
-                  <div className={`w-16 h-16 flex items-center justify-center mb-3 ${selectedOption === 'nice' ? 'bg-[#76C893]' : 'bg-gray-200'}`}>
-                    <BsEmojiGrin className='text-2xl'/>
-                  </div>
-                  <span className="font-medium text-gray-800">Nice</span>
-                </label>
+                {['nice', 'medium', 'bad'].map(option => {
+                  const icon = option === 'nice' ? <BsEmojiGrin className='text-2xl' />
+                    : option === 'medium' ? <BsEmojiNeutral className='text-2xl' />
+                      : <BsEmojiFrown className='text-2xl' />;
+                  const bg = {
+                    nice: 'bg-[#D9ED92]',
+                    medium: 'bg-[#B5E48C]',
+                    bad: 'bg-[#99D98C]',
+                  }[option];
 
-                {/* Medium Option */}
-                <label
-                  className={`flex flex-col items-center p-4 cursor-pointer transition duration-200 ${selectedOption === 'medium' ? 'bg-[#B5E48C]' : 'bg-gray-50 '}`}
-                >
-                  <input
-                    type="radio"
-                    name="poll"
-                    value="medium"
-                    className="hidden"
-                    onChange={() => setSelectedOption('medium')}
-                  />
-                  <div className={`w-16 h-16 flex items-center justify-center mb-3 ${selectedOption === 'medium' ? 'bg-[#52B69A]' : 'bg-gray-200'}`}>
-                    <BsEmojiNeutral className='text-2xl'/>
-                  </div>
-                  <span className="font-medium text-gray-800">Medium</span>
-                </label>
-
-                {/* Bad Option */}
-                <label
-                  className={`flex flex-col items-center p-4 cursor-pointer transition duration-200 ${selectedOption === 'bad' ? 'bg-[#99D98C] ' : 'bg-gray-50 '}`}
-                >
-                  <input
-                    type="radio"
-                    name="poll"
-                    value="bad"
-                    className="hidden"
-                    onChange={() => setSelectedOption('bad')}
-                  />
-                  <div className={`w-16 h-16 flex items-center justify-center mb-3 ${selectedOption === 'bad' ? 'bg-[#1E6091]' : 'bg-gray-200'}`}>
-                    <BsEmojiFrown className='text-2xl'/>
-                  </div>
-                  <span className="font-medium text-gray-800">Bad</span>
-                </label>
+                  return (
+                    <label key={option} className={`flex flex-col items-center p-4 cursor-pointer transition duration-200 ${selectedOption === option ? bg : 'bg-gray-50'}`}>
+                      <input type="radio" name="poll" value={option} className="hidden" onChange={() => setSelectedOption(option)} />
+                      <div className={`w-16 h-16 flex items-center justify-center mb-3 ${selectedOption === option ? 'bg-[#1E6091] text-white' : 'bg-gray-200'}`}>
+                        {icon}
+                      </div>
+                      <span className="font-medium text-gray-800 capitalize">{option}</span>
+                    </label>
+                  );
+                })}
               </div>
 
               <div className="text-center">
                 <button
                   type="submit"
                   disabled={!selectedOption}
-                  className={`py-3 px-8 font-bold shadow-sm transition duration-300 ${selectedOption
-                    ? 'bg-[#1E6091] hover:bg-[#184E77] text-white'
-                    : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                  className={`py-3 px-8 font-bold shadow-sm transition duration-300 ${selectedOption ? 'bg-[#1E6091] hover:bg-[#184E77] text-white' : 'bg-gray-200 text-gray-500 cursor-not-allowed'
                     }`}
                 >
                   Submit Feedback
@@ -145,7 +120,7 @@ const Poll = () => {
             </p>
             <div className="text-center">
               <a
-                href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJftMNgkxsbtGnTzlvTdKXqnSdpsKqbMswlgtJwNgmLtPvQPbDZbGfmMfBgDSFKcmPbSgLV"
+                href="mailto:info@smartcitytvm.in"
                 target='_blank'
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-[#1E6091] hover:text-[#184E77] font-medium"

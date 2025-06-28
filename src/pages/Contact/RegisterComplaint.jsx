@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import Banner from '../../assets/banners/complaintBanner.jpg';
 import { GrStatusGood } from "react-icons/gr";
 import { FaRegUser } from "react-icons/fa";
@@ -16,7 +17,7 @@ const RegisterComplaint = () => {
     project: '',
     complaint: ''
   });
-  
+
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
@@ -27,11 +28,25 @@ const RegisterComplaint = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
-    console.log('Complaint submitted:', formData);
-    setSubmitted(true);
+
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append('email', formData.email);
+    data.append('project', formData.project);
+    data.append('complaint', formData.complaint);
+    if (formData.attachment) {
+      data.append('attachment', formData.attachment);
+    }
+
+    try {
+      await axios.post('http://127.0.0.1:8000/api/complaints/', data);
+      setSubmitted(true);
+    } catch (error) {
+      console.error("Submission failed:", error);
+      alert("Something went wrong. Try again.");
+    }
   };
 
   return (
@@ -56,13 +71,13 @@ const RegisterComplaint = () => {
         {submitted ? (
           <div className="text-center py-12">
             <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <GrStatusGood className='text-5xl text-[#184E77]'/>
+              <GrStatusGood className='text-5xl text-[#184E77]' />
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Complaint Submitted Successfully!</h2>
             <p className="text-gray-600 max-w-md mx-auto mb-6">
               Thank you for bringing this to our attention. Your complaint has been registered and our team will address it shortly.
             </p>
-            <button 
+            <button
               onClick={() => setSubmitted(false)}
               className="mt-4 bg-[#184E77] hover:bg-[#1E6091] text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300"
             >
@@ -89,11 +104,11 @@ const RegisterComplaint = () => {
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <FaRegUser className='text-gray-400 text-md'/>
+                      <FaRegUser className='text-gray-400 text-md' />
                     </div>
-                    <input 
-                      type="text" 
-                      id="name" 
+                    <input
+                      type="text"
+                      id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
@@ -103,7 +118,7 @@ const RegisterComplaint = () => {
                     />
                   </div>
                 </div>
-                
+
                 {/* Email Field */}
                 <div>
                   <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
@@ -111,11 +126,11 @@ const RegisterComplaint = () => {
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <MdOutlineEmail className='text-gray-400 text-lg'/>
+                      <MdOutlineEmail className='text-gray-400 text-lg' />
                     </div>
-                    <input 
-                      type="email" 
-                      id="email" 
+                    <input
+                      type="email"
+                      id="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
@@ -126,7 +141,7 @@ const RegisterComplaint = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Project Field */}
               <div>
                 <label htmlFor="project" className="block text-gray-700 font-medium mb-2">
@@ -134,11 +149,11 @@ const RegisterComplaint = () => {
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <FaRegBuilding className='text-gray-400 text-lg'/>
+                    <FaRegBuilding className='text-gray-400 text-lg' />
                   </div>
-                  <input 
-                    type="text" 
-                    id="project" 
+                  <input
+                    type="text"
+                    id="project"
                     name="project"
                     value={formData.project}
                     onChange={handleChange}
@@ -148,7 +163,7 @@ const RegisterComplaint = () => {
                   />
                 </div>
               </div>
-              
+
               {/* Complaint Field */}
               <div>
                 <label htmlFor="complaint" className="block text-gray-700 font-medium mb-2">
@@ -156,10 +171,10 @@ const RegisterComplaint = () => {
                 </label>
                 <div className="relative">
                   <div className="absolute top-3 left-3">
-                    <LuMessageSquareText className='text-gray-400 text-lg'/>
+                    <LuMessageSquareText className='text-gray-400 text-lg' />
                   </div>
-                  <textarea 
-                    id="complaint" 
+                  <textarea
+                    id="complaint"
                     name="complaint"
                     value={formData.complaint}
                     onChange={handleChange}
@@ -171,7 +186,7 @@ const RegisterComplaint = () => {
                 </div>
                 <p className="text-sm text-gray-500 mt-1">Please provide as much detail as possible</p>
               </div>
-              
+
               {/* File Upload */}
               <div>
                 <label htmlFor="attachment" className="block text-gray-700 font-medium mb-2">
@@ -180,26 +195,37 @@ const RegisterComplaint = () => {
                 <div className="flex items-center justify-center w-full">
                   <label htmlFor="attachment" className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <IoCloudUploadOutline className='text-xl text-gray-600'/>
+                      <IoCloudUploadOutline className='text-xl text-gray-600' />
                       <p className="text-sm text-gray-500 mt-2">
                         <span className="font-semibold">Click to upload</span> or drag and drop
                       </p>
                       <p className="text-xs text-gray-500">PNG, JPG, PDF up to 10MB</p>
                     </div>
-                    <input id="attachment" type="file" className="hidden" />
+                    <input
+                      id="attachment"
+                      type="file"
+                      className="hidden"
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          attachment: e.target.files[0],
+                        }))
+                      }
+                    />
                   </label>
                 </div>
               </div>
-              
+
+
               <div className="flex items-center">
                 <input id="terms" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" required />
                 <label htmlFor="terms" className="ml-2 text-sm text-gray-600">
                   I confirm that the information provided is accurate to the best of my knowledge
                 </label>
               </div>
-              
+
               <div className="text-center pt-4">
-                <button 
+                <button
                   type="submit"
                   className="py-3 px-8 bg-[#184E77] hover:bg-[#1E6091]  text-white font-bold rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105"
                 >
@@ -219,23 +245,23 @@ const RegisterComplaint = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
               <div>
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 mb-2">
-                  <IoCallOutline className='text-2xl text-[#184E77]'/>
+                  <IoCallOutline className='text-2xl text-[#184E77]' />
                 </div>
                 <p className="font-medium">Call Us</p>
                 <a href="tel:+9104714010374" className="text-[#1E6091] hover:underline">+91 - 0471 - 4010374</a>
               </div>
-              
+
               <div>
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 mb-2">
-                  <MdMailOutline className='text-2xl text-[#184E77]'/>
+                  <MdMailOutline className='text-2xl text-[#184E77]' />
                 </div>
                 <p className="font-medium">Email Us</p>
                 <a href="mailto:info@smartcitytvm.in" className="text-[#1E6091] hover:underline">info@smartcitytvm.in</a>
               </div>
-              
+
               <div>
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 mb-2">
-                  <IoLocationOutline className='text-3xl text-[#184E77]'/>
+                  <IoLocationOutline className='text-3xl text-[#184E77]' />
                 </div>
                 <p className="font-medium">Visit Us</p>
                 <p className="text-sm">4th Floor, Felicity Square Building, Statue</p>
