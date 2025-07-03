@@ -46,6 +46,11 @@ import Privacy from './components/layout/Privacy'
 import Disclaimer from './components/layout/Disclaimer'
 import ScrollToTopButton from './components/layout/ScrollToTopButton'
 import ConvergenceProject from './pages/Project/ConvergenceProject'
+import Covid from './pages/Covid19/Covid'
+import Search from './components/layout/SearchResults'
+import SearchResults from './components/layout/SearchResults'
+import SpecialPurposeVehicle from './pages/SCTL/SpecialPurposeVehicle'
+
 const App = () => {
   return (
     <div className="flex flex-col min-h-screen">
@@ -95,6 +100,9 @@ const App = () => {
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
+          <Route path="/covid" element={<Covid/>} />
+          <Route path="/search" element={<SearchResults/>}/>
+          <Route path="/spv" element={<SpecialPurposeVehicle/>}/>
         </Routes>
       </main>
       <Footer />

@@ -3,7 +3,7 @@ from .models import (
     Career, Tender, News, ContactMessage, ConclaveSpeaker, 
     ConclaveRecording, AnniversaryImage, InaugurationImage, 
     GovernmentOrder, Complaint,PollFeedback,MonthlyProgressReport,Internship,
-    PhotoAlbum, Photo
+    PhotoAlbum, Photo, Video, MediaItem, EventItem, ContactInfo, BoardMember
 )
 from simple_history.admin import SimpleHistoryAdmin
 # Photo Album and Photos - custom inline admin
@@ -28,6 +28,9 @@ class ComplaintAdmin(admin.ModelAdmin):
             'fields': ('name', 'email', 'project', 'complaint', 'attachment', 'submitted_at')
         }),
     )
+@admin.register(Video)
+class VideoAdmin(admin.ModelAdmin):
+    list_display = ('title', 'youtube_url')
 
 # Registering other models
 admin.site.register(Career)
@@ -42,3 +45,10 @@ admin.site.register(ContactMessage, SimpleHistoryAdmin)
 admin.site.register(PollFeedback)
 admin.site.register(MonthlyProgressReport)
 admin.site.register(Internship)
+admin.site.register(MediaItem)
+admin.site.register(EventItem)
+admin.site.register(ContactInfo)
+
+@admin.register(BoardMember)
+class BoardMemberAdmin(admin.ModelAdmin):
+    list_display = ['name', 'position', 'field']

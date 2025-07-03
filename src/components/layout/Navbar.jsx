@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import navigation from '../../data/navData';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross1 } from "react-icons/rx";
 import { RiArrowDropDownLine } from "react-icons/ri";
@@ -15,6 +15,9 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [showSearch, setShowSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,11 +46,17 @@ const Navbar = () => {
     }, 100);
   };
 
+  const handleSearchSubmit = () => {
+    if (!searchQuery.trim()) return;
+    navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
+    setShowSearch(false);
+    setSearchQuery('');
+  };
+
   return (
     <div className="font-sans">
       <div ref={bannerRef} className="bg-[#184E77] py-4">
         <div className="w-full mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Navigation Bar */}
           <div
             ref={navbarRef}
             className={`w-full left-0 min-h-[60px] transition-all duration-300 z-50 ${isScrolled
@@ -56,7 +65,6 @@ const Navbar = () => {
               }`}
           >
             <div className="w-full mx-auto px-4 py-2 flex items-center justify-center">
-              {/* Left: Menu Items */}
               <div className="hidden lg:flex space-x-1 items-center overflow-visible">
                 {navigation.map((item) => (
                   <div
@@ -98,7 +106,6 @@ const Navbar = () => {
                 ))}
               </div>
 
-              {/* Right: Search & Mobile Toggle */}
               <div className="flex items-center gap-4">
                 <button
                   onClick={handleSearchToggle}
@@ -129,8 +136,19 @@ const Navbar = () => {
                   ref={searchInputRef}
                   type="text"
                   placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') handleSearchSubmit();
+                  }}
                   className="w-full max-w-md border border-[#1E6091] rounded-md px-4 py-2 text-base outline-none text-gray-800"
                 />
+                <button
+                  onClick={handleSearchSubmit}
+                  className="ml-2 bg-[#1E6091] text-white px-4 py-2 rounded hover:bg-[#184E77]"
+                >
+                  Search
+                </button>
               </div>
             )}
 

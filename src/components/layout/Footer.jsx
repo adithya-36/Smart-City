@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../../assets/images/SCTLLogo.png';
 import { FaXTwitter } from "react-icons/fa6";
 import {
@@ -10,15 +10,24 @@ import {
   FaInstagram,
   FaYoutube,
 } from 'react-icons/fa';
+import axios from 'axios';
 
 const Footer = () => {
+  const [mediaItems, setMediaItems] = useState([]);
+  const [eventItems, setEventItems] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/media/')
+      .then(res => setMediaItems(res.data))
+      .catch(err => console.error("Error fetching media items:", err));
+
+    axios.get('http://127.0.0.1:8000/api/events/')
+      .then(res => setEventItems(res.data))
+      .catch(err => console.error("Error fetching event items:", err));
+  }, []);
+
   return (
-    <footer
-      className="bg-[#184E77] text-white px-6 md:px-16 py-10 w-full transition-opacity duration-100"
-      style={{
-        position: 'relative',
-      }}
-    >
+    <footer className="bg-[#184E77] text-white px-6 md:px-16 py-10 w-full">
       <div className="grid md:grid-cols-4 gap-10">
         {/* Column 1 */}
         <div>
@@ -33,54 +42,51 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Column 2 */}
+        {/* Column 2: In Media */}
         <div>
           <h3 className="text-lg font-semibold mb-4 border-b border-gray-500 pb-1">In Media</h3>
-          <ul className="space-y-3 text-sm">
-            <li>
-              <p className="font-semibold hover:text-gray-300 transition">Smart City Thiruvananthapuram launches new digital governance initiative</p>
-              <span className="text-gray-300">December 15, 2024</span>
-            </li>
-            <li>
-              <p className="font-semibold hover:text-gray-300 transition">Public Wi-Fi expansion project reaches 500 hotspots across the city</p>
-              <span className="text-gray-300">December 12, 2024</span>
-            </li>
-            <li>
-              <p className="font-semibold hover:text-gray-300 transition">Smart traffic management system reduces congestion by 30%</p>
-              <span className="text-gray-300">December 10, 2024</span>
-            </li>
+          <ul className="space-y-4 text-sm">
+            {mediaItems.map((item) => (
+              <li key={item.id} className="flex gap-3">
+                {item.image && (
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-14 h-10 object-cover"
+                  />
+                )}
+                <div>
+                  <p className="font-semibold hover:text-gray-300 transition">{item.title}</p>
+                  <span className="text-gray-300">{item.date}</span>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
 
-        {/* Column 3 */}
+        {/* Column 3: Recent Events */}
         <div>
           <h3 className="text-lg font-semibold mb-4 border-b border-gray-500 pb-1">Recent Events</h3>
           <ul className="space-y-4 text-sm">
-            <li className="flex gap-3">
-              <div className="w-14 h-10 bg-gray-300" />
-              <div>
-                <p className="font-semibold hover:text-gray-300 transition">Smart City Innovation Summit 2024</p>
-                <span className="text-gray-300">January 15, 2025</span>
-              </div>
-            </li>
-            <li className="flex gap-3">
-              <div className="w-14 h-10 bg-gray-300" />
-              <div>
-                <p className="font-semibold hover:text-gray-300 transition">Digital Literacy Workshop for Citizens</p>
-                <span className="text-gray-300">January 20, 2025</span>
-              </div>
-            </li>
-            <li className="flex gap-3">
-              <div className="w-14 h-10 bg-gray-300" />
-              <div>
-                <p className="font-semibold hover:text-gray-300 transition">Green Energy Initiative Launch</p>
-                <span className="text-gray-300">January 25, 2025</span>
-              </div>
-            </li>
+            {eventItems.map((event) => (
+              <li key={event.id} className="flex gap-3">
+                {event.image && (
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    className="w-14 h-10 object-cover"
+                  />
+                )}
+                <div>
+                  <p className="font-semibold hover:text-gray-300 transition">{event.title}</p>
+                  <span className="text-gray-300">{event.date}</span>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
 
-        {/* Column 4 */}
+        {/* Column 4: Contact Info + Social Links */}
         <div>
           <h3 className="text-lg font-semibold mb-4 border-b border-gray-500 pb-1">Contact Us</h3>
           <div className="space-y-4 text-sm">
@@ -101,19 +107,19 @@ const Footer = () => {
             <p className="mb-2 font-semibold">Follow Us</p>
             <div className="flex gap-4 text-white text-lg">
               <a href="https://www.facebook.com/smarttrivandrum/" target="_blank" rel="noopener noreferrer">
-                <FaFacebookF className="cursor-pointer hover:scale-110 transition-transform duration-300 hover:text-gray-300" />
+                <FaFacebookF className="hover:scale-110 transition-transform duration-300 hover:text-gray-300" />
               </a>
               <a href="https://www.linkedin.com/company/smart-city-thiruvananthapuram-limited/posts/?feedView=all" target="_blank" rel="noopener noreferrer">
-                <FaLinkedinIn className="cursor-pointer hover:scale-110 transition-transform duration-300 hover:text-gray-300" />
+                <FaLinkedinIn className="hover:scale-110 transition-transform duration-300 hover:text-gray-300" />
               </a>
               <a href="https://x.com/smarttrivandrum/" target="_blank" rel="noopener noreferrer">
-                <FaXTwitter className="cursor-pointer hover:scale-110 transition-transform duration-300 hover:text-gray-300" />
+                <FaXTwitter className="hover:scale-110 transition-transform duration-300 hover:text-gray-300" />
               </a>
               <a href="https://www.instagram.com/smarttrivandrum/" target="_blank" rel="noopener noreferrer">
-                <FaInstagram className="cursor-pointer hover:scale-110 transition-transform duration-300 hover:text-gray-300" />
+                <FaInstagram className="hover:scale-110 transition-transform duration-300 hover:text-gray-300" />
               </a>
               <a href="https://www.youtube.com/@smartcitythiruvananthapura7226/videos" target="_blank" rel="noopener noreferrer">
-                <FaYoutube className="cursor-pointer hover:scale-110 transition-transform duration-300 hover:text-gray-300" />
+                <FaYoutube className="hover:scale-110 transition-transform duration-300 hover:text-gray-300" />
               </a>
             </div>
           </div>
@@ -124,6 +130,7 @@ const Footer = () => {
       <div className="border-t border-gray-600 mt-10 pt-4 flex flex-col md:flex-row justify-between text-sm text-gray-300">
         <p>Copyright © 2025 Smart City Thiruvananthapuram - All Rights Reserved</p>
         <div className="flex gap-4 mt-2 md:mt-0">
+          <a href="/covid" className="hover:text-white transition">Covid-19</a>
           <a href="/terms" className="hover:text-white transition">Terms & Conditions</a>
           <a href="/privacy" className="hover:text-white transition">Privacy Policy</a>
           <a href="/disclaimer" className="hover:text-white transition">Disclaimer</a>

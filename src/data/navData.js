@@ -13,8 +13,7 @@ const navigation = [
     {
       name: 'SCTL',href:'/sctl',
       dropdown: [
-        { name: 'Creation of SPV', href: '#' },
-        { name: 'Special Purpose Vehicle', href: '#' },
+        { name: 'Special Purpose Vehicle', href: '/spv' },
         { name: 'Consultant (PMC)', href: '/pmc_consultant' },
         { name: 'Project Funds', href: '/funds' },
         { name: 'Financials', href: '/financials' },
@@ -23,9 +22,9 @@ const navigation = [
     {
       name: 'Projects',href:'/Projects',
       dropdown: [
-        {/*{ name: 'ABD Projects', href: '/ABDProject' },
+        /*{ name: 'ABD Projects', href: '/ABDProject' },
         { name: 'Pancity Projects', href: '/PancityProject' },
-        { name: 'Convergence Projects', href: '/ConvergenceProject' },*/},
+        { name: 'Convergence Projects', href: '/ConvergenceProject' },*/
         { name: 'CITIIS 2.0', href: '/citiis' },
         { name: 'MPR', href: '/MPR' },
         { name: 'Ongoing Projects', href: '/OngoingProject' },
@@ -64,15 +63,6 @@ const navigation = [
       dropdown: [
         { name: 'Internships', href: '/internship' },
         { name: 'Tulip internship', href: '/tulip-internship' },
-      ],
-    },
-    {
-      name: 'Covid19',href:'/covid',
-      dropdown: [
-        { name: 'Dashboard', href: '#' },
-        { name: 'Quick Response Team:Zone-2', href: '#' },
-        { name: 'Containment Zones', href: '#' },
-        { name: 'SCTL Initiatives', href: '#' },
       ],
     },
     {

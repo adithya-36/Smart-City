@@ -1,6 +1,7 @@
 from django.db import models
 from rest_framework import serializers
 from simple_history.models import HistoricalRecords
+import re
 class Career(models.Model):
     no = models.PositiveIntegerField(unique=True, default=1)
     title = models.CharField(max_length=255)
@@ -164,3 +165,49 @@ class Photo(models.Model):
 
     def __str__(self):
         return f"{self.album.title} - {self.caption or 'Image'}"
+    
+class Video(models.Model):
+    title = models.CharField(max_length=255)
+    youtube_url = models.URLField("YouTube Video URL")
+
+    @property
+    def youtube_id(self):
+        # Extract video ID from various YouTube URL formats
+        match = re.search(r"(?:v=|youtu\.be/|embed/)([a-zA-Z0-9_-]{11})", self.youtube_url)
+        return match.group(1) if match else ""
+
+    def __str__(self):
+        return self.title
+    
+class MediaItem(models.Model):
+    title = models.CharField(max_length=255)
+    date = models.DateField()
+    image = models.ImageField(upload_to='media_images/', null=True, blank=True) 
+
+    def __str__(self):
+        return self.title
+
+class EventItem(models.Model):
+    title = models.CharField(max_length=255)
+    date = models.DateField()
+    image = models.ImageField(upload_to='event_images/', null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+class ContactInfo(models.Model):
+    phone = models.CharField(max_length=50)
+    email = models.EmailField()
+    address = models.TextField()
+
+    def __str__(self):
+        return "Contact Info"
+    
+class BoardMember(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.CharField(max_length=100)
+    field = models.CharField(max_length=200, blank=True)  # optional
+    image = models.ImageField(upload_to='board_members/')  # handles file uploads
+
+    def __str__(self):
+        return self.name

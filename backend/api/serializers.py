@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import News,Career, Tender, ConclaveSpeaker,GovernmentOrder, ContactMessage, ConclaveRecording, AnniversaryImage, InaugurationImage,Complaint,PollFeedback,MonthlyProgressReport,Internship,PhotoAlbum, Photo
+from .models import News,Career, Tender, ConclaveSpeaker,GovernmentOrder, ContactMessage, ConclaveRecording, AnniversaryImage, InaugurationImage,Complaint,PollFeedback,MonthlyProgressReport,Internship,PhotoAlbum, Photo,Video, MediaItem, EventItem, ContactInfo, BoardMember
 
 
 class CareerSerializer(serializers.ModelSerializer):
@@ -78,3 +78,34 @@ class PhotoAlbumSerializer(serializers.ModelSerializer):
     class Meta:
         model = PhotoAlbum
         fields = ['id', 'title', 'thumbnail', 'photos']
+
+class VideoSerializer(serializers.ModelSerializer):
+    youtube_id = serializers.ReadOnlyField()
+
+    class Meta:
+        model = Video
+        fields = ['id', 'title', 'youtube_url', 'youtube_id']
+
+class MediaItemSerializer(serializers.ModelSerializer):
+    image = serializers.ImageField(required=False)
+
+    class Meta:
+        model = MediaItem
+        fields = '__all__'
+
+class EventItemSerializer(serializers.ModelSerializer):
+    image = serializers.ImageField(required=False)
+
+    class Meta:
+        model = EventItem
+        fields = '__all__'
+
+class ContactInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContactInfo
+        fields = '__all__'
+
+class BoardMemberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BoardMember
+        fields = ['id', 'name', 'position', 'field', 'image']
