@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import News,Career, Tender, ConclaveSpeaker,GovernmentOrder, ContactMessage, ConclaveRecording, AnniversaryImage, InaugurationImage,Complaint,PollFeedback,MonthlyProgressReport,Internship,PhotoAlbum, Photo,Video, MediaItem, EventItem, ContactInfo, BoardMember
+from .models import News,Career, Tender, ConclaveSpeaker,GovernmentOrder, ContactMessage, ConclaveRecording, AnniversaryImage, InaugurationImage,Complaint,PollFeedback,MonthlyProgressReport,Internship,PhotoAlbum, Photo,Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff
 
 
 class CareerSerializer(serializers.ModelSerializer):
@@ -109,3 +109,13 @@ class BoardMemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = BoardMember
         fields = ['id', 'name', 'position', 'field', 'image']
+
+class CEOSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CEO
+        fields = '__all__'
+
+class StaffSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Staff
+        fields = '__all__'

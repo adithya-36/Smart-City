@@ -22,7 +22,9 @@ from .models import (
     PhotoAlbum,
     Video,
     MediaItem, EventItem, ContactInfo,
-    BoardMember
+    BoardMember,
+    CEO,
+    Staff
 )
 
 from .serializers import (
@@ -42,7 +44,9 @@ from .serializers import (
     PhotoAlbumSerializer,
     VideoSerializer,
     MediaItemSerializer, EventItemSerializer, ContactInfoSerializer,
-    BoardMemberSerializer
+    BoardMemberSerializer,
+    CEOSerializer,
+    StaffSerializer
 
 )
 class CareerViewSet(viewsets.ReadOnlyModelViewSet):
@@ -148,3 +152,11 @@ class SearchView(APIView):
 class BoardMemberViewSet(viewsets.ModelViewSet):
     queryset = BoardMember.objects.all()
     serializer_class = BoardMemberSerializer
+
+class CEOViewSet(viewsets.ModelViewSet):
+    queryset = CEO.objects.all().order_by('joining_date')
+    serializer_class = CEOSerializer
+
+class StaffViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Staff.objects.all().order_by('name')
+    serializer_class = StaffSerializer

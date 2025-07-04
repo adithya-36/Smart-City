@@ -1,9 +1,10 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from .models import (
     Career, Tender, News, ContactMessage, ConclaveSpeaker, 
     ConclaveRecording, AnniversaryImage, InaugurationImage, 
     GovernmentOrder, Complaint,PollFeedback,MonthlyProgressReport,Internship,
-    PhotoAlbum, Photo, Video, MediaItem, EventItem, ContactInfo, BoardMember
+    PhotoAlbum, Photo, Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff
 )
 from simple_history.admin import SimpleHistoryAdmin
 # Photo Album and Photos - custom inline admin
@@ -52,3 +53,26 @@ admin.site.register(ContactInfo)
 @admin.register(BoardMember)
 class BoardMemberAdmin(admin.ModelAdmin):
     list_display = ['name', 'position', 'field']
+
+@admin.register(CEO)
+class CEOAdmin(admin.ModelAdmin):
+    list_display = ('name', 'joining_date', 'relieving_date')
+
+@admin.register(Staff)
+class StaffAdmin(admin.ModelAdmin):
+    list_display = ('name', 'position', 'email', 'category', 'image_preview')
+    list_filter = ('category',)
+    search_fields = ('name', 'position', 'email')
+    readonly_fields = ('image_preview',)
+
+    fieldsets = (
+        (None, {
+            'fields': ('name', 'position', 'category', 'email', 'phone', 'image', 'image_preview', 'qualifications', 'experience')
+        }),
+    )
+
+    def image_preview(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" width="100" height="100" style="object-fit: cover;" />', obj.image.url)
+        return "No image"
+    image_preview.short_description = "Preview"
