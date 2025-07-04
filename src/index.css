@@ -9,3 +9,6 @@ body {
   @apply font-roboto;
   overflow-x: hidden;
 }
+html {
+  scroll-behavior: smooth;
+}

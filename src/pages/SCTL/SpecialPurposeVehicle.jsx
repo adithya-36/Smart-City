@@ -9,6 +9,9 @@ import SPVCreation from './spv/creation_of_spv.pdf';
 const SpecialPurposeVehicle = () => {
   return (
     <div className="bg-gray-50">
+      {/* Smooth scroll style (optional if not global) */}
+      <style>{`html { scroll-behavior: smooth; }`}</style>
+
       {/* Banner */}
       <div className="relative h-48 md:h-64 w-full overflow-hidden">
         <div
@@ -28,39 +31,39 @@ const SpecialPurposeVehicle = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex flex-wrap justify-between items-center gap-4 mb-8">
           <div className="flex flex-wrap gap-2">
-            <a 
-              href="#board-of-directors" 
-              className="px-4 py-2 text-[#1E6091] hover:bg-[#184E77] transition-colors duration-200 font-medium rounded"
+            <a
+              href="#board-of-directors"
+              className="px-4 py-2 text-[#1E6091] hover:bg-[#184E77] hover:text-white transition duration-200 font-medium rounded"
             >
               Board of Directors
             </a>
-            <a 
-              href="#ceos" 
-              className="px-4 py-2 text-[#1E6091] hover:bg-[#184E77] transition-colors duration-200 font-medium rounded"
+            <a
+              href="#ceos"
+              className="px-4 py-2 text-[#1E6091] hover:bg-[#184E77] hover:text-white transition duration-200 font-medium rounded"
             >
               CEOs
             </a>
-            <a 
-              href="#staff" 
-              className="px-4 py-2  text-[#1E6091] hover:bg-[#184E77] transition-colors duration-200 font-medium rounded"
+            <a
+              href="#staff"
+              className="px-4 py-2 text-[#1E6091] hover:bg-[#184E77] hover:text-white transition duration-200 font-medium rounded"
             >
               Staff
             </a>
           </div>
           <div className="flex flex-wrap gap-2">
-            <a 
-              href={AdvisoryForm} 
-              target="_blank" 
+            <a
+              href={AdvisoryForm}
+              target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-[#1E6091] text-white hover:bg-[#184E77] transition-colors duration-200 font-medium rounded"
+              className="px-4 py-2 bg-[#1E6091] text-white hover:bg-[#184E77] transition duration-200 font-medium rounded"
             >
               Advisory Forum PDF
             </a>
-            <a 
-              href={SPVCreation} 
-              target="_blank" 
+            <a
+              href={SPVCreation}
+              target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-[#1E6091] text-white hover:bg-[#184E77] transition-colors duration-200 font-medium rounded"
+              className="px-4 py-2 bg-[#1E6091] text-white hover:bg-[#184E77] transition duration-200 font-medium rounded"
             >
               SPV Creation PDF
             </a>
@@ -69,15 +72,26 @@ const SpecialPurposeVehicle = () => {
 
         {/* Content Sections */}
         <div className="space-y-12">
-          <div id="board-of-directors">
+          <section id="board-of-directors" aria-labelledby="board-heading">
+            <h2 id="board-heading" className="sr-only">
+              Board of Directors
+            </h2>
             <BoardOfDirectors />
-          </div>
-          <div id="ceos">
+          </section>
+
+          <section id="ceos" aria-labelledby="ceo-heading">
+            <h2 id="ceo-heading" className="sr-only">
+              CEOs
+            </h2>
             <CEOs />
-          </div>
-          <div id="staff">
+          </section>
+
+          <section id="staff" aria-labelledby="staff-heading">
+            <h2 id="staff-heading" className="sr-only">
+              Staff
+            </h2>
             <Staffs />
-          </div>
+          </section>
         </div>
       </div>
     </div>
