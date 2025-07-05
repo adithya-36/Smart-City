@@ -3,12 +3,18 @@ import axios from 'axios';
 import Banner from '../../assets/banners/photoBanner.jpg';
 import { HiOutlineSearch, HiOutlineX } from 'react-icons/hi';
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const PhotoGallery = () => {
   const [albums, setAlbums] = useState([]);
   const [activeAlbum, setActiveAlbum] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [viewMode, setViewMode] = useState('grid');
+
+  useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
 
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/albums/')
@@ -59,7 +65,7 @@ const PhotoGallery = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Banner */}
-      <div className="relative h-48 md:h-64 w-full overflow-hidden">
+      <div className="relative h-48 md:h-64 w-full overflow-hidden" data-aos="fade-in">
         <div className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `linear-gradient(to right, rgba(24, 78, 119, 0.9), rgba(30, 96, 145, 0.8)), url(${Banner})` }}></div>
         <div className="relative z-10 flex items-center justify-center h-full">
@@ -68,10 +74,10 @@ const PhotoGallery = () => {
       </div>
 
       {/* Album Grid */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="max-w-7xl mx-auto px-4 py-12" data-aos="fade-up">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {albums.map((album, index) => (
-            <div key={album.id} className="bg-white shadow-md hover:shadow-lg transition-shadow cursor-pointer" onClick={() => openAlbum(index)}>
+            <div key={album.id} className="bg-white shadow-md hover:shadow-lg transition-shadow cursor-pointer" onClick={() => openAlbum(index)} data-aos="zoom-in">
               <div className="relative">
                 <img src={album.thumbnail} alt={album.title} className="w-full h-48 object-cover" />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
@@ -86,7 +92,7 @@ const PhotoGallery = () => {
 
       {/* Album View */}
       {viewMode === 'album' && activeAlbum !== null && (
-        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 overflow-y-auto p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 overflow-y-auto p-4" data-aos="fade-in">
           <div className="max-w-6xl mx-auto">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-3xl font-bold text-white">{albums[activeAlbum].title}</h2>
@@ -94,7 +100,7 @@ const PhotoGallery = () => {
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {albums[activeAlbum].photos.map((photo, index) => (
-                <div key={index} className="relative group cursor-pointer" onClick={() => openImage(index)}>
+                <div key={index} className="relative group cursor-pointer" onClick={() => openImage(index)} data-aos="zoom-in">
                   <img src={photo.image} alt={photo.caption || `Image ${index + 1}`} className="w-full h-40 object-cover group-hover:opacity-75 transition-opacity" />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center transition-all">
                     <HiOutlineSearch className="h-10 w-10 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -108,7 +114,7 @@ const PhotoGallery = () => {
 
       {/* Single Image View */}
       {viewMode === 'single' && activeAlbum !== null && (
-        <div className="fixed inset-0 bg-black bg-opacity-95 z-60 flex items-center justify-center" onClick={closeModal}>
+        <div className="fixed inset-0 bg-black bg-opacity-95 z-60 flex items-center justify-center" onClick={closeModal} data-aos="fade-in">
           <button className="absolute top-4 right-4 text-white text-2xl z-70 hover:text-gray-300" onClick={(e) => { e.stopPropagation(); closeModal(); }}>
             <HiOutlineX className="h-8 w-8" />
           </button>
@@ -130,7 +136,7 @@ const PhotoGallery = () => {
       )}
 
       {/* Stats */}
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="max-w-4xl mx-auto px-4 py-8" data-aos="fade-up">
         <div className="bg-white shadow-md p-6">
           <h3 className="text-xl font-bold text-center mb-4 text-[#1E6091]">Gallery Statistics</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">

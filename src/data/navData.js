@@ -2,60 +2,61 @@ const navigation = [
     {
       name: 'Home',href:'/',
       dropdown: [
-        { name: 'City Profile', href: '/CityProfile' },
-        { name: `What is a 'Smart City'`, href: '/SmartCityDef' },
-        { name: `About 'Smart City Mission'`, href: '/MissionAbout' },
-        { name: 'Smart Cities Challenge', href: '/MissonChallenge' },
-        { name: 'Vision & Strategy', href: '/MissonVision' },
-        { name: 'Project Milestones', href: '/ProjectMilestone' },
+        { name: 'City Profile', href: '/city-profile' },
+        { name: `What is a 'Smart City'`, href: '/smart-city-def' },
+        { name: `About 'Smart City Mission'`, href: '/mission-about' },
+        { name: 'Smart Cities Challenge', href: '/misson-challenge' },
+        { name: 'Vision & Strategy', href: '/misson-vision' },
+        { name: 'Project Milestones', href: '/project-milestone' },
       ],
     },
     {
       name: 'SCTL',href:'/sctl',
       dropdown: [
         { name: 'Special Purpose Vehicle', href: '/spv' },
-        { name: 'Consultant (PMC)', href: '/pmc_consultant' },
+        { name: 'Consultant (PMC)', href: '/pmc-consultant' },
         { name: 'Project Funds', href: '/funds' },
         { name: 'Financials', href: '/financials' },
       ],
     },
     {
-      name: 'Projects',href:'/Projects',
+      name: 'Projects',href:'/projects',
       dropdown: [
-        /*{ name: 'ABD Projects', href: '/ABDProject' },
-        { name: 'Pancity Projects', href: '/PancityProject' },
-        { name: 'Convergence Projects', href: '/ConvergenceProject' },*/
+        /*{ name: 'ABD Projects', href: '/abd-project' },
+        { name: 'Pancity Projects', href: '/pancity-project' },
+        { name: 'Convergence Projects', href: '/convergence-project' },*/
         { name: 'CITIIS 2.0', href: '/citiis' },
-        { name: 'MPR', href: '/MPR' },
-        { name: 'Ongoing Projects', href: '/OngoingProject' },
-        { name: 'Completed Projects', href: '/CompletedProject' },
-        { name: 'SCTL Project', href: '/SCTLProject' },
+        { name: 'MPR', href: '/mpr' },
+        { name: 'Ongoing Projects', href: '/ongoing-project' },
+        { name: 'Completed Projects', href: '/completed-project' },
+        { name: 'SCTL Project', href: '/sctl-project' },
+        { name: 'Benefiaciary Details', href: '/benefiaciary-details' },
       ],
     },
     {
-      name: 'Tenders',href:'/Tenders',
+      name: 'Tenders',href:'/tenders',
     },
     {
       name: 'Events',href:'/events',
       dropdown: [
         { name: 'News', href: '/news' },
         { name: 'Conclave', href: '/conclave' },
-        { name: '8th Anniversary of Smartcity Mission', href: '/Anniversary' },
+        { name: '8th Anniversary of Smartcity Mission', href: '/anniversary' },
         { name: 'Inauguration', href: '/inauguration' },
-        { name: 'Ente Keralam', href: '/EnteKeralam' },
+        { name: 'Ente Keralam', href: '/ente-keralam' },
       ],
     },
     {
       name: 'Gallery',href:'/gallery',
       dropdown: [
-        { name: 'Photo Gallery', href: '/photoGallery' },
-        { name: 'Video Gallery', href: '/videoGallery' },
+        { name: 'Photo Gallery', href: '/photo-gallery' },
+        { name: 'Video Gallery', href: '/video-gallery' },
       ],
     },
     {
       name: 'Downloads',href:'/downloads',
       dropdown: [
-        { name: `Government Order's(GO's)`, href: '/GovernmentOrders' },
+        { name: `Government Order's(GO's)`, href: '/government-orders' },
       ],
     },
     {
@@ -66,11 +67,11 @@ const navigation = [
       ],
     },
     {
-      name: 'Contact Us',href:'/ContactUs',
+      name: 'Contact Us',href:'/contact-us',
       dropdown: [
-        { name: 'Register a Complaint', href: '/registerComplaint' },
+        { name: 'Register a Complaint', href: '/register-complaint' },
         { name: 'Poll', href: '/poll' },
-        { name: 'RTI', href: '/RTI' },
+        { name: 'RTI', href: '/rti' },
       ],
     },
   ];

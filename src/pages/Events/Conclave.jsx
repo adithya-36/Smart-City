@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Poster from '../../assets/images/conclave/poster.jpg';
 import axios from 'axios';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Conclave = () => {
   const [scrolled, setScrolled] = useState(false);
   const [speakers, setSpeakers] = useState([]);
   const [recordings, setRecordings] = useState([]);
+
+  useEffect(() => {
+    AOS.init({ once: true, duration: 800 });
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,11 +22,17 @@ const Conclave = () => {
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/conclave/speakers/')
-      .then(res => setSpeakers(res.data))
+    axios.get('http://localhost:8000/api/conclave-speakers/')
+      .then(res => {
+        const updatedSpeakers = res.data.map(speaker => ({
+          ...speaker,
+          image: speaker.image.startsWith('http') ? speaker.image : `http://localhost:8000${speaker.image}`
+        }));
+        setSpeakers(updatedSpeakers);
+      })
       .catch(err => console.error("Failed to load speakers", err));
 
-    axios.get('http://localhost:8000/api/conclave/recordings/')
+    axios.get('http://localhost:8000/api/conclave-recordings/')
       .then(res => setRecordings(res.data))
       .catch(err => console.error("Failed to load recordings", err));
   }, []);
@@ -28,14 +40,14 @@ const Conclave = () => {
   return (
     <div className="min-h-screen">
       {/* Poster */}
-      <div className="relative h-screen w-full">
+      <div className="relative h-screen w-full" data-aos="fade-in">
         <img src={Poster} alt="APAC Conclave Poster" className="w-full h-full" />
       </div>
 
       <div id="content" className="px-14 py-12 bg-gray-100">
 
         {/* About Section */}
-        <div className="mb-16">
+        <div className="mb-16" data-aos="fade-up">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">About the Conclave</h2>
             <div className="w-32 h-1 bg-[#184E77] mx-auto"></div>
@@ -48,7 +60,7 @@ const Conclave = () => {
               <p>The 'APAC Smart & Sustainable City Virtual Conclave, Thiruvananthapuram' will focus on key initiatives undertaken by Government of India aligned with the vision of Smart Cities Mission, especially the ICT initiatives, technology interventions, innovations in urban and IT sector, and best practices across the country.</p>
             </div>
 
-            <div className="bg-gray-100 p-8 flex items-center justify-center">
+            <div className="bg-gray-100 p-8 flex items-center justify-center" data-aos="zoom-in">
               <div className="max-w-md">
                 <h3 className="text-xl font-bold text-gray-800 mb-4 text-center">Event Statistics</h3>
                 <div className="grid grid-cols-2 gap-4">
@@ -58,7 +70,7 @@ const Conclave = () => {
                     ['20+', 'States'],
                     ['15+', 'Sessions']
                   ].map(([count, label], idx) => (
-                    <div key={idx} className="bg-white p-4 text-center">
+                    <div key={idx} className="bg-white p-4 text-center" data-aos="fade-up" data-aos-delay={idx * 100}>
                       <div className="text-3xl font-bold text-[#184E77] mb-2">{count}</div>
                       <div className="text-gray-700">{label}</div>
                     </div>
@@ -70,7 +82,7 @@ const Conclave = () => {
         </div>
 
         {/* Key Focus Areas */}
-        <div className="w-full p-2 bg-gray-100 mb-10">
+        <div className="w-full p-2 bg-gray-100 mb-10" data-aos="fade-up">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Key Focus Areas</h2>
             <div className="w-32 h-1 bg-[#184E77] mx-auto"></div>
@@ -90,7 +102,7 @@ const Conclave = () => {
                 "Safe, Secure & Connected Cities",
                 "Smart, Clean & Green Energy"
               ].map((item, index) => (
-                <div key={index} className="flex items-start">
+                <div key={index} className="flex items-start" data-aos="fade-right" data-aos-delay={index * 50}>
                   <div className="text-[#184E77] mr-3 mt-1">•</div>
                   <p className="text-gray-700">{item}</p>
                 </div>
@@ -100,7 +112,7 @@ const Conclave = () => {
         </div>
 
         {/* Event Recordings */}
-        <div className="mb-16">
+        <div className="mb-16" data-aos="fade-up">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Event Recordings</h2>
             <div className="w-32 h-1 bg-[#184E77] mx-auto"></div>
@@ -108,7 +120,7 @@ const Conclave = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {recordings.map((rec, index) => (
-              <div key={index}>
+              <div key={index} data-aos="fade-up" data-aos-delay={index * 100}>
                 <div className="relative pb-[56.25%] h-0 overflow-hidden">
                   <iframe
                     className="absolute top-0 left-0 w-full h-full"
@@ -127,7 +139,7 @@ const Conclave = () => {
         </div>
 
         {/* Speakers */}
-        <div className="mb-16">
+        <div className="mb-16" data-aos="fade-up">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Featured Speakers</h2>
             <div className="w-32 h-1 bg-[#184E77] mx-auto"></div>
@@ -135,7 +147,7 @@ const Conclave = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {speakers.map((speaker, index) => (
-              <div key={index} className="flex flex-col h-full">
+              <div key={index} className="flex flex-col h-full" data-aos="zoom-in" data-aos-delay={index * 100}>
                 <div className="aspect-square overflow-hidden mb-4">
                   <img
                     src={speaker.image}
@@ -153,7 +165,7 @@ const Conclave = () => {
         </div>
 
         {/* Event Highlights */}
-        <div className="py-16 bg-gray-100">
+        <div className="py-16 bg-gray-100" data-aos="fade-up">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Event Highlights</h2>
@@ -175,7 +187,7 @@ const Conclave = () => {
                   desc: "Cutting-edge virtual event platform enabling global participation and networking"
                 }
               ].map((item, index) => (
-                <div key={index} className="text-center p-6">
+                <div key={index} className="text-center p-6" data-aos="fade-up" data-aos-delay={index * 100}>
                   <h3 className="text-xl font-bold text-gray-800 mb-4">{item.title}</h3>
                   <p className="text-gray-700">{item.desc}</p>
                 </div>

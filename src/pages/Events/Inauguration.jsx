@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { IoCloseOutline } from "react-icons/io5";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Inauguration = () => {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+
+  useEffect(() => {
+    AOS.init({ once: true, duration: 800 });
+  }, []);
 
   useEffect(() => {
     axios.get('http://localhost:8000/api/inauguration-images/')
@@ -40,18 +46,20 @@ const Inauguration = () => {
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8 border-b border-gray-200 pb-4">
+        <div className="mb-8 border-b border-gray-200 pb-4" data-aos="fade-down">
           <h1 className="text-3xl font-bold text-[#184E77]">Inauguration Gallery</h1>
           <p className="mt-2 text-gray-600">Official records of our milestone events</p>
         </div>
 
         {/* Image Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {images.map((image) => (
+          {images.map((image, index) => (
             <div
               key={image.id}
               className="group relative overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer"
               onClick={() => openImage(image)}
+              data-aos="zoom-in"
+              data-aos-delay={index * 100}
             >
               <img
                 src={image.image}
@@ -71,6 +79,7 @@ const Inauguration = () => {
           <div
             className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
             onClick={closeImage}
+            data-aos="fade-in"
           >
             <div
               className="relative w-full h-full flex justify-center items-center"

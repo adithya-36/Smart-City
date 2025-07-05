@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-// Local image imports
 import Image1 from '../../assets/images/ente keralam/ente-keralam-image1.jpg';
 import Image2 from '../../assets/images/ente keralam/ente-keralam-image2.jpg';
 import Image3 from '../../assets/images/ente keralam/ente-keralam-image3.jpeg';
@@ -19,6 +20,10 @@ const EnteKeralam = () => {
     { src: Image4, alt: "Ente Keralam 4" },
     { src: Image5, alt: "Ente Keralam 5" }
   ];
+
+  useEffect(() => {
+    AOS.init({ once: true, duration: 800 });
+  }, []);
 
   useEffect(() => {
     if (!isAutoPlaying) return;
@@ -47,8 +52,7 @@ const EnteKeralam = () => {
 
   return (
     <div className="w-full bg-white">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-[#184E77] to-[#1E6091] text-white py-8">
+      <div className="bg-gradient-to-r from-[#184E77] to-[#1E6091] text-white py-8" data-aos="fade-down">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center tracking-wide">
             Ente Keralam
@@ -57,8 +61,7 @@ const EnteKeralam = () => {
         </div>
       </div>
 
-      {/* Carousel Container */}
-      <div className="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh] overflow-hidden bg-gray-100">
+      <div className="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh] overflow-hidden bg-gray-100" data-aos="fade-up">
         <div
           className="flex transition-transform duration-700 ease-in-out h-full"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -76,7 +79,6 @@ const EnteKeralam = () => {
           ))}
         </div>
 
-        {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
           className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[#184E77]/80 hover:bg-[#184E77] text-white p-3 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
@@ -93,7 +95,6 @@ const EnteKeralam = () => {
           <ChevronRight className="w-6 h-6" />
         </button>
 
-        {/* Slide Indicators */}
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-3">
           {images.map((_, index) => (
             <button
@@ -109,7 +110,6 @@ const EnteKeralam = () => {
           ))}
         </div>
 
-        {/* Auto-play Toggle */}
         <button
           onClick={() => setIsAutoPlaying(!isAutoPlaying)}
           className="absolute top-4 right-4 bg-[#184E77]/80 hover:bg-[#184E77] text-white px-4 py-2 text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50"
@@ -118,8 +118,7 @@ const EnteKeralam = () => {
         </button>
       </div>
 
-      {/* Footer Image Counter */}
-      <div className="bg-[#1E6091] text-white py-4">
+      <div className="bg-[#1E6091] text-white py-4" data-aos="fade-in">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm md:text-base font-medium">
             Image {currentSlide + 1} of {images.length}

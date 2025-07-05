@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import News,Career, Tender, ConclaveSpeaker,GovernmentOrder, ContactMessage, ConclaveRecording, AnniversaryImage, InaugurationImage,Complaint,PollFeedback,MonthlyProgressReport,Internship,PhotoAlbum, Photo,Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff
-
+from .models import News,Career, Tender, ConclaveSpeaker,GovernmentOrder, ContactMessage, ConclaveRecording, AnniversaryImage, InaugurationImage,Complaint,PollFeedback,MonthlyProgressReport,Internship,PhotoAlbum, Photo,Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff, Document, Official
+from django.utils import timezone
 
 class CareerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,9 +8,14 @@ class CareerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class TenderSerializer(serializers.ModelSerializer):
+    status = serializers.SerializerMethodField()
+
     class Meta:
         model = Tender
-        fields = '__all__'
+        fields = ['id', 'no', 'title', 'pdf', 'last_date_to_submit', 'status']
+
+    def get_status(self, obj):
+        return 'Closed' if timezone.now() > obj.last_date_to_submit else 'Open'
 class NewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
@@ -119,3 +124,13 @@ class StaffSerializer(serializers.ModelSerializer):
     class Meta:
         model = Staff
         fields = '__all__'
+
+class DocumentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Document
+        fields = ['id', 'title', 'file']
+
+class OfficialSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Official
+        fields = ['id', 'name', 'title', 'description', 'image', 'linkedin', 'priority']

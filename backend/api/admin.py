@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from django.utils.timezone import localtime
 from .models import (
     Career, Tender, News, ContactMessage, ConclaveSpeaker, 
     ConclaveRecording, AnniversaryImage, InaugurationImage, 
     GovernmentOrder, Complaint,PollFeedback,MonthlyProgressReport,Internship,
-    PhotoAlbum, Photo, Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff
+    PhotoAlbum, Photo, Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff, Document, Official
 )
 from simple_history.admin import SimpleHistoryAdmin
 # Photo Album and Photos - custom inline admin
@@ -35,7 +36,6 @@ class VideoAdmin(admin.ModelAdmin):
 
 # Registering other models
 admin.site.register(Career)
-admin.site.register(Tender)
 admin.site.register(GovernmentOrder)
 admin.site.register(News)
 admin.site.register(ConclaveSpeaker)
@@ -49,7 +49,8 @@ admin.site.register(Internship)
 admin.site.register(MediaItem)
 admin.site.register(EventItem)
 admin.site.register(ContactInfo)
-
+admin.site.register(Document)
+admin.site.register(Official)
 @admin.register(BoardMember)
 class BoardMemberAdmin(admin.ModelAdmin):
     list_display = ['name', 'position', 'field']
@@ -76,3 +77,12 @@ class StaffAdmin(admin.ModelAdmin):
             return format_html('<img src="{}" width="100" height="100" style="object-fit: cover;" />', obj.image.url)
         return "No image"
     image_preview.short_description = "Preview"
+
+@admin.register(Tender)
+class TenderAdmin(admin.ModelAdmin):
+    list_display = ('no', 'title', 'status', 'pdf', 'formatted_deadline')
+
+    def formatted_deadline(self, obj):
+        return localtime(obj.last_date_to_submit).strftime('%b %d, %Y %I:%M %p')
+
+    formatted_deadline.short_description = 'Submission Deadline'

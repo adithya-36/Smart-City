@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Header from './components/layout/Header'
 import Navbar from './components/layout/Navbar'
+import ScrollToTop from './components/layout/ScrollToTop'
 import Footer from './components/layout/Footer'
 import HomePage from './pages/Home/HomePage'
 import CityProfile from './pages/Home/CityProfile'
@@ -48,61 +49,70 @@ import ScrollToTopButton from './components/layout/ScrollToTopButton'
 import ConvergenceProject from './pages/Project/ConvergenceProject'
 import Covid from './pages/Covid19/Covid'
 import Search from './components/layout/SearchResults'
-import SearchResults from './components/layout/SearchResults'
 import SpecialPurposeVehicle from './pages/SCTL/SpecialPurposeVehicle'
-
+import Documents from './pages/Downloads/Documents'
+import BenefiaciaryDetails from './pages/Project/BeneficiaryDetails'
+import SmartCity from './pages/SCTL/SmartCity'
+import Event from './pages/Events/Event'
+import GalleryPage from './pages/Gallery/GalleryPage'
 const App = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <Navbar />
+      <ScrollToTop/>
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/CityProfile" element={<CityProfile />} />
-          <Route path="/SmartCityDef" element={<SmartCityDef />} />
-          <Route path="/MissionAbout" element={<MissionAbout />} />
-          <Route path="/MissonChallenge" element={<MissonChallenge />} />
-          <Route path="/MissonVision" element={<MissonVision />} />
-          <Route path="/ABDProject" element={<ABDProject />} />
-          <Route path="/ConvergenceProject" element={<ConvergenceProject />} />
-          <Route path="/SCTLProject" element={<SCTLProject />} />
-          <Route path="/OngoingProject" element={<OngoingProject />} />
-          <Route path="/CompletedProject" element={<CompletedProject />} />
-          <Route path="/MPR" element={<MPR />} />
-          <Route path="/PancityProject" element={<PancityProject />} />
+          <Route path="/city-profile" element={<CityProfile />} />
+          <Route path="/smart-city-def" element={<SmartCityDef />} />
+          <Route path="/mission-about" element={<MissionAbout />} />
+          <Route path="/misson-challenge" element={<MissonChallenge />} />
+          <Route path="/misson-vision" element={<MissonVision />} />
+          <Route path="/abd-project" element={<ABDProject />} />
+          <Route path="/convergence-project" element={<ConvergenceProject />} />
+          <Route path="/sctl-project" element={<SCTLProject />} />
+          <Route path="/ongoing-project" element={<OngoingProject />} />
+          <Route path="/completed-project" element={<CompletedProject />} />
+          <Route path="/mpr" element={<MPR />} />
+          <Route path="/pancity-project" element={<PancityProject />} />
           <Route path="/citiis" element={<CITIIS />} />
           <Route path="/funds" element={<ProjectFunds />} />
-          <Route path="/pmc_consultant" element={<Consultant />} />
+          <Route path="/pmc-consultant" element={<Consultant />} />
           <Route path="/financials" element={<Financials />} />
-          <Route path="/ProjectMilestone" element={<ProjectMilestone />} />
+          <Route path="/project-milestone" element={<ProjectMilestone />} />
           <Route path="/city-highlights" element={<CityHighlight />} />
           <Route path="/smart-city-overview" element={<CityOverview />} />
           <Route path="/project-area" element={<CityProject />} />
           <Route path="/abd-area" element={<ABDArea />} />
-          <Route path="/photoGallery" element={<PhotoGallery />} />
-          <Route path="/videoGallery" element={<VideoGallery />} />
-          <Route path="/Projects" element={<ProjectPage />} />
-          <Route path="/Tenders" element={<TenderTable />} />
+          <Route path="/photo-gallery" element={<PhotoGallery />} />
+          <Route path="/video-gallery" element={<VideoGallery />} />
+          <Route path="/projects" element={<ProjectPage />} />
+          <Route path="/tenders" element={<TenderTable />} />
           <Route path="/news" element={<News />} />
           <Route path="/conclave" element={<Conclave />} />
-          <Route path="/Anniversary" element={<Anniversary />} />
+          <Route path="/anniversary" element={<Anniversary />} />
           <Route path="/inauguration" element={<Inauguration />} />
-          <Route path="/ContactUs" element={<ContactUs />} />
-          <Route path="/registerComplaint" element={<RegisterComplaint />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/register-complaint" element={<RegisterComplaint />} />
           <Route path="/poll" element={<Poll />} />
-          <Route path="/RTI" element={<RTI />} />
+          <Route path="/rti" element={<RTI />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/internship" element={<Internship />} />
           <Route path="/tulip-internship" element={<TulipInternship />} />
-          <Route path="/EnteKeralam" element={<EnteKeralam />} />
-          <Route path="/GovernmentOrders" element={<GovernmentOrders />} />
+          <Route path="/ente-keralam" element={<EnteKeralam />} />
+          <Route path="/government-orders" element={<GovernmentOrders />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/covid" element={<Covid/>} />
-          <Route path="/search" element={<SearchResults/>}/>
+          <Route path="/search" element={<Search/>}/>
           <Route path="/spv" element={<SpecialPurposeVehicle/>}/>
+          <Route path="/downloads" element={<Documents/>}/>
+          <Route path="/benefiaciary-details" element={<BenefiaciaryDetails/>}/>
+          <Route path="/sctl" element={<SmartCity/>}/>
+          <Route path="/events" element={<Event/>}/>
+          <Route path="/gallery" element={<GalleryPage/>}/>
         </Routes>
       </main>
       <Footer />

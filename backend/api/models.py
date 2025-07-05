@@ -1,5 +1,6 @@
 from django.db import models
 from rest_framework import serializers
+from django.utils import timezone
 from simple_history.models import HistoricalRecords
 import re
 
@@ -16,15 +17,23 @@ class Career(models.Model):
 
 
 class Tender(models.Model):
-    no = models.CharField(max_length=100, unique=True, default='TEMP_NO')
+    no = models.CharField(max_length=100, default='TEMP_NO')
     title = models.CharField(max_length=255)
-    status = models.CharField(max_length=50, choices=[(
-        'Open', 'Open'), ('Closed', 'Closed')], default='Open')
     pdf = models.FileField(upload_to='tenders/')
-    uploaded_on = models.DateField(auto_now_add=True)
+    last_date_to_submit = models.DateTimeField(
+        default=timezone.now,
+        help_text="Deadline (date & time) to submit the tender"
+    )
 
     def __str__(self):
         return self.title
+
+    @property
+    def status(self):
+        return 'Closed' if timezone.now() > self.last_date_to_submit else 'Open'
+
+    class Meta:
+        ordering = ['-last_date_to_submit']
 
 
 class TimeStampedModel(models.Model):
@@ -283,6 +292,25 @@ class Staff(models.Model):
     phone = models.CharField(max_length=20, blank=True, null=True)
     qualifications = models.TextField(blank=True, null=True)
     experience = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+    
+
+class Document(models.Model):
+    title = models.CharField(max_length=255)
+    file = models.FileField(upload_to='documents/')
+
+    def __str__(self):
+        return self.title
+
+class Official(models.Model):
+    name = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to='officials/')
+    linkedin = models.URLField(blank=True, null=True)
+    priority = models.PositiveIntegerField(default=0)  # for sorting
 
     def __str__(self):
         return self.name

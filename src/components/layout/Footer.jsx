@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Logo from '../../assets/images/SCTLLogo.png';
 import { FaXTwitter } from "react-icons/fa6";
 import {
@@ -17,6 +19,10 @@ const Footer = () => {
   const [eventItems, setEventItems] = useState([]);
 
   useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
+
+  useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/media/')
       .then(res => setMediaItems(res.data))
       .catch(err => console.error("Error fetching media items:", err));
@@ -27,10 +33,10 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="bg-[#184E77] text-white px-6 md:px-16 py-10 w-full">
+    <footer className="bg-[#184E77] text-white px-6 md:px-16 py-10 w-full" data-aos="fade-up">
       <div className="grid md:grid-cols-4 gap-10">
         {/* Column 1 */}
-        <div>
+        <div data-aos="fade-up">
           <img src={Logo} alt="Smart City Thiruvananthapuram Logo" className="w-24" />
           <p className="text-sm leading-relaxed mb-4">
             Smart City Thiruvananthapuram is an integrated knowledge-based initiative for sustainable urban development.
@@ -43,7 +49,7 @@ const Footer = () => {
         </div>
 
         {/* Column 2: In Media */}
-        <div>
+        <div data-aos="fade-up" data-aos-delay="100">
           <h3 className="text-lg font-semibold mb-4 border-b border-gray-500 pb-1">In Media</h3>
           <ul className="space-y-4 text-sm">
             {mediaItems.map((item) => (
@@ -65,7 +71,7 @@ const Footer = () => {
         </div>
 
         {/* Column 3: Recent Events */}
-        <div>
+        <div data-aos="fade-up" data-aos-delay="200">
           <h3 className="text-lg font-semibold mb-4 border-b border-gray-500 pb-1">Recent Events</h3>
           <ul className="space-y-4 text-sm">
             {eventItems.map((event) => (
@@ -87,7 +93,7 @@ const Footer = () => {
         </div>
 
         {/* Column 4: Contact Info + Social Links */}
-        <div>
+        <div data-aos="fade-up" data-aos-delay="300">
           <h3 className="text-lg font-semibold mb-4 border-b border-gray-500 pb-1">Contact Us</h3>
           <div className="space-y-4 text-sm">
             <p className="flex items-start gap-2"><FaPhoneAlt className="mt-1" /> +91 - 0471 - 4010374</p>
@@ -127,7 +133,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-600 mt-10 pt-4 flex flex-col md:flex-row justify-between text-sm text-gray-300">
+      <div className="border-t border-gray-600 mt-10 pt-4 flex flex-col md:flex-row justify-between text-sm text-gray-300" data-aos="fade-in">
         <p>Copyright © 2025 Smart City Thiruvananthapuram - All Rights Reserved</p>
         <div className="flex gap-4 mt-2 md:mt-0">
           <a href="/covid" className="hover:text-white transition">Covid-19</a>

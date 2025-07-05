@@ -1,52 +1,22 @@
-import React from 'react';
-import Officials1 from '../../assets/images/officials1.jpg';
-import Officials2 from '../../assets/images/officials2.jpg';
-import Officials3 from '../../assets/images/officials3.jpg';
-import Officials4 from '../../assets/images/officials4.jpg';
-import Officials5 from '../../assets/images/officials5.jpg';
+import React, { useEffect, useState } from 'react';
 import { FaLinkedin } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
-const officials = [
-  {
-    name: 'Shri. Rahul Krishna Sharma IAS',
-    title: 'Chief Executive Officer',
-    image: Officials1,
-    linkedin: 'https://www.linkedin.com/in/rahulkrishnasharma/',
-  },
-  {
-    name: 'Shri. Rahul Kapoor IRAS',
-    title: 'Mission Director',
-    description: 'Smart Cities Mission',
-    image: Officials2,
-    linkedin: '#',
-  },
-  {
-    name: 'Ms. Arya Rajendran',
-    title: "Hon'ble Mayor",
-    description: "Thiruvananthapuram",
-    image: Officials3,
-    linkedin: '#',
-  },
-  {
-    name: 'Shri M.B Rajesh',
-    title: "Hon'ble Minister of LSGD",
-    description: "Govt of Kerala",
-    image: Officials4,
-    linkedin: '#',
-  },
-  {
-    name: 'Dr. A. Jayathilak IAS',
-    title: 'Chief Executive Officer',
-    image: Officials5,
-    linkedin: '#',
-  },
-];
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const HomeItem3 = () => {
+  const [officials, setOfficials] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/officials/')
+      .then(res => setOfficials(res.data))
+      .catch(err => console.error("Failed to load officials", err));
+  }, []);
+
   return (
     <div className="bg-gradient-to-br from-[#f8fafc] to-[#e2e8f0] py-16 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Key Officials</h2>
           <div className="w-20 h-1 bg-[#184E77] mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -54,14 +24,14 @@ const HomeItem3 = () => {
           </p>
         </div>
 
-        {/* Horizontal scroll container for mobile, grid for desktop */}
         <div className="flex overflow-x-auto pb-8 space-x-6 sm:space-x-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 sm:gap-8 sm:overflow-visible hide-scrollbar">
           {officials.map((official, index) => (
             <div
               key={index}
               className="bg-white shadow-lg min-w-[280px] sm:min-w-0 flex flex-col flex-shrink-0"
+              data-aos="zoom-in"
+              data-aos-delay={index * 100}
             >
-              {/* Official Image */}
               <div className="h-64 overflow-hidden">
                 <img
                   src={official.image}
@@ -69,23 +39,22 @@ const HomeItem3 = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              
-              {/* Official Info */}
+
               <div className="p-6 flex-1 border-t-4 border-[#184E77] flex flex-col">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{official.name}</h3>
                 <p className="text-[#184E77] font-medium mb-1">{official.title}</p>
                 {official.description && (
                   <p className="text-gray-600 mb-6">{official.description}</p>
                 )}
-                
-                {/* Action Buttons */}
+
                 <div className="mt-auto flex space-x-4 pt-4">
-                  <a 
-                    href={official.linkedin} 
+                  <a
+                    href={official.linkedin || '#'}
                     className="flex items-center justify-center flex-1 bg-[#184E77] hover:bg-[#1E6091] text-white py-2 transition-colors"
-                    target="_blank" rel="noopener noreferrer"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <FaLinkedin className='mr-2'/>
+                    <FaLinkedin className='mr-2' />
                     <span>LinkedIn</span>
                   </a>
                 </div>
@@ -93,17 +62,17 @@ const HomeItem3 = () => {
             </div>
           ))}
         </div>
-        
-        {/* View All button */}
-        <div className="mt-16 text-center">
-          <button className="inline-flex items-center px-8 py-3 border border-[#184E77] text-lg font-medium text-[#184E77] bg-white hover:bg-blue-50">
-            View All Officials
-            <FaArrowRightLong className='ml-2 h-4 w-4' />
-          </button>
+
+        <div className="mt-16 text-center" data-aos="fade-up">
+          <Link to="/spv">
+            <button className="inline-flex items-center px-8 py-3 border border-[#184E77] text-lg font-medium text-[#184E77] bg-white hover:bg-blue-50 transition duration-300">
+              View All Officials
+              <FaArrowRightLong className='ml-2 h-4 w-4' />
+            </button>
+          </Link>
         </div>
       </div>
-      
-      {/* Custom scrollbar hide */}
+
       <style jsx>{`
         .hide-scrollbar::-webkit-scrollbar {
           display: none;

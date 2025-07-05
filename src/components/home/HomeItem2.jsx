@@ -5,8 +5,9 @@ const HomeItem2 = () => {
   return (
     <div className="bg-gray-50 py-16 px-4 md:px-16">
       <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
+        
         {/* Left: Content */}
-        <div className="md:w-1/2 text-left">
+        <div className="md:w-1/2 text-left" data-aos="fade-right">
           <h2 className="text-3xl md:text-4xl font-bold text-[#003049] mb-6">
             Vision
           </h2>
@@ -29,7 +30,7 @@ const HomeItem2 = () => {
         </div>
 
         {/* Right: Image */}
-        <div className="md:w-1/2 flex justify-center">
+        <div className="md:w-1/2 flex justify-center" data-aos="zoom-in-left">
           <div className="relative">
             <div className="absolute -inset-4 transform-skew-y-3"></div>
             <img 

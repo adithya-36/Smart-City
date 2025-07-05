@@ -7,16 +7,23 @@ const HomeItem1 = () => {
       <div className="w-full flex flex-col lg:flex-row gap-4 min-h-[600px] lg:min-h-[500px]">
         
         {/* LEFT IMAGE */}
-        <div className="w-full lg:w-1/2">
+        <div
+          className="w-full lg:w-1/2"
+          data-aos="zoom-in-right"
+        >
           <img
             src={Mlcp}
             alt="Smart City Trivandrum"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover rounded-sm shadow-lg"
           />
         </div>
 
         {/* RIGHT TEXT */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-6 px-6 py-8">
+        <div
+          className="w-full lg:w-1/2 flex flex-col justify-center space-y-6 px-6 py-8"
+          data-aos="fade-left"
+          data-aos-delay="100"
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 border-b-2 border-[#184E77] pb-2">
             Welcome to Smart City Thiruvananthapuram Ltd.
           </h2>

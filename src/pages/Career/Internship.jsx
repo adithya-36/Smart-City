@@ -13,7 +13,11 @@ const Internship = () => {
     const fetchInternships = async () => {
       try {
         const res = await axios.get('http://127.0.0.1:8000/api/internships/');
-        setInternships(res.data);
+
+        // Sort by date descending
+        const sortedData = res.data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        setInternships(sortedData);
       } catch (error) {
         console.error('Error fetching internships:', error);
       } finally {
@@ -23,6 +27,7 @@ const Internship = () => {
 
     fetchInternships();
   }, []);
+
 
   // Filter internships based on status
   const filteredInternships = internships.filter((intern) => {
@@ -86,11 +91,10 @@ const Internship = () => {
                     <td className="p-4 text-gray-700">{intern.title}</td>
                     <td className="p-4">
                       <span
-                        className={`inline-block px-3 py-1 ${
-                          intern.status === 'Open'
+                        className={`inline-block px-3 py-1 ${intern.status === 'Open'
                             ? 'bg-[#D9ED92] text-[#1E6091]'
                             : 'bg-gray-200 text-gray-700'
-                        }`}
+                          }`}
                       >
                         {intern.status}
                       </span>

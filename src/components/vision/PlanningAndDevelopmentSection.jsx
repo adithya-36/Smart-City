@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { MdOutlineKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+
 const strategies = [
   {
     title: "Improving basic services",
@@ -94,14 +97,18 @@ const strategies = [
 const PlanningAndDevelopmentSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
+  useEffect(() => {
+    AOS.init({ once: true, duration: 800 });
+  }, []);
+
   const toggleAccordion = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50" data-aos="fade-up">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center text-[#184E77]">
+        <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center text-[#184E77]" data-aos="fade-up">
           Planning and Development Strategies
         </h1>
 
@@ -110,7 +117,12 @@ const PlanningAndDevelopmentSection = () => {
             const isOpen = openIndex === index;
 
             return (
-              <div key={index} className="border border-gray-200 shadow-sm rounded-md overflow-hidden">
+              <div
+                key={index}
+                className="border border-gray-200 shadow-sm rounded-md overflow-hidden"
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+              >
                 <button
                   className={`w-full text-left px-6 py-5 flex justify-between items-center transition duration-200 ${
                     isOpen ? 'bg-[#1E6091] text-white' : 'bg-white hover:bg-gray-100 text-gray-800'
@@ -126,7 +138,7 @@ const PlanningAndDevelopmentSection = () => {
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 py-4 bg-white border-t border-gray-200 text-gray-700">
+                  <div className="px-6 py-4 bg-white border-t border-gray-200 text-gray-700" data-aos="fade-in">
                     <p className="mb-4 text-gray-600">{item.description}</p>
                     <ul className="list-disc list-inside space-y-2">
                       {item.goals.map((goal, i) => (

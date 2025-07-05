@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { IoIosClose } from "react-icons/io";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Anniversary = () => {
   const [images, setImages] = useState([]);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+
+  useEffect(() => {
+    AOS.init({ once: true, duration: 800 });
+  }, []);
 
   useEffect(() => {
     axios.get('http://localhost:8000/api/anniversary-images/')
@@ -41,9 +47,9 @@ const Anniversary = () => {
   }, [lightboxOpen]);
 
   return (
-    <div className="min-h-screen py-8 px-4">
+    <div className="min-h-screen py-8 px-4" data-aos="fade-in">
       {/* Header */}
-      <div className="max-w-6xl mx-auto text-center mb-12">
+      <div className="max-w-6xl mx-auto text-center mb-12" data-aos="zoom-in">
         <h1 className="text-4xl md:text-6xl font-bold text-[#184E77] mb-4 transform -rotate-2">
           Celebrating <span className="text-[#184E77]">8 Years</span> of Excellence
         </h1>
@@ -54,13 +60,15 @@ const Anniversary = () => {
       </div>
 
       {/* Gallery */}
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto" data-aos="fade-up">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-          {images.map((image) => (
+          {images.map((image, index) => (
             <div
               key={image.id}
               className="group relative overflow-hidden shadow-xl cursor-pointer transform transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl"
               onClick={() => openLightbox(image)}
+              data-aos="zoom-in"
+              data-aos-delay={index * 50}
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <img
@@ -83,16 +91,16 @@ const Anniversary = () => {
       </div>
 
       {/* Celebration message */}
-      <div className="max-w-4xl mx-auto mt-16 p-8 bg-gradient-to-r shadow-2xl text-center text-[#184E77]">
+      <div className="max-w-4xl mx-auto mt-16 p-8 bg-gradient-to-r shadow-2xl text-center text-[#184E77]" data-aos="fade-up">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">A Journey to Remember</h2>
         <p className="text-lg md:text-xl mb-6">
           Over the past eight years, we've grown, innovated, and created lasting memories together. 
           This gallery captures just a glimpse of our incredible journey.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <div className="bg-white/20 backdrop-blur-sm px-6 py-2 font-bold">X Projects</div>
-          <div className="bg-white/20 backdrop-blur-sm px-6 py-2 font-bold">X Team Members</div>
-          <div className="bg-white/20 backdrop-blur-sm px-6 py-2 font-bold">X Awards</div>
+          <div className="bg-white/20 backdrop-blur-sm px-6 py-2 font-bold" data-aos="fade-right">X Projects</div>
+          <div className="bg-white/20 backdrop-blur-sm px-6 py-2 font-bold" data-aos="fade-right" data-aos-delay="100">X Team Members</div>
+          <div className="bg-white/20 backdrop-blur-sm px-6 py-2 font-bold" data-aos="fade-right" data-aos-delay="200">X Awards</div>
         </div>
       </div>
 
@@ -113,7 +121,7 @@ const Anniversary = () => {
               <IoIosClose className='text-5xl' />
             </button>
 
-            <div className="bg-white overflow-hidden shadow-2xl">
+            <div className="bg-white overflow-hidden shadow-2xl" data-aos="zoom-in">
               <img
                 src={selectedImage.image}
                 alt={selectedImage.alt}

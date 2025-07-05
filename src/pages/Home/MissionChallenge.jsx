@@ -11,8 +11,12 @@ const MissionChallenge = () => {
           style={{
             backgroundImage: `linear-gradient(to right, rgba(24, 78, 119, 0.9), rgba(30, 96, 145, 0.8)), url(${MissionChallengeBanner})`,
           }}
+          data-aos="zoom-in"
         ></div>
-        <div className="relative z-10 flex flex-col items-center justify-center h-full">
+        <div
+          className="relative z-10 flex flex-col items-center justify-center h-full"
+          data-aos="fade-down"
+        >
           <h1 className="text-white text-4xl md:text-5xl font-bold text-center px-4">
             Smart Cities Challenge
           </h1>
@@ -20,12 +24,20 @@ const MissionChallenge = () => {
       </div>
 
       {/* Content Section */}
-      <div className="max-w-4xl mx-auto px-4 md:px-8 py-12 space-y-8">
+      <div
+        className="max-w-4xl mx-auto px-4 md:px-8 py-12 space-y-8"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
         <div className="space-y-6">
           <p className="text-lg leading-relaxed text-gray-700">
             In 2015, the Union Ministry of Urban Development announced the Smart Cities Challenge. The challenge aims to create exemplar areas in cities by merging innovative plans with latest technologies. By creating these replicable exemplar areas it aims at redefining the way city is imagined in India. The Challenge aims to find solutions for the major problems of the cities by merging innovative plans and latest information technologies. It aims to improve economic opportunity, quality of life and ensure public accountability. In short, it aims at making life in the cities smarter and faster.
           </p>
-          <p className="text-lg leading-relaxed text-gray-700">
+          <p
+            className="text-lg leading-relaxed text-gray-700"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
             The Smart Cities Mission proposed a two stage selection process. In 2015, in the first stage of the challenge only Kochi got selected from Kerala though the state nominated six other cities including Thiruvananthapuram. Thankfully Kochi got selected in the final list of twenty states. To win the Smart City challenge, the cities chosen for challenge have to present project proposals developed in consultation with public and various other stakeholders. The mission stresses the use of information technology and social media to reach out to various sections. Once selected, the city will receive Rs. 500 crore from the centre in a span of five years to implement the proposal while the city administration and state government has to finance an equal amount. Though Thiruvananthapuram was not selected among the first 100, fortunately it was selected again for competition in May 2016. This has once again opened a chance for Trivandrum to finally prove its mettle and become a Smart Thiruvananthapuram. Smart Thiruvananthapuram is the bold response of the Thiruvananthapuram Corporation and its people to the challenge thrown at it by the Smart Cities Challenge. By taking this challenge up, the city corporation aims to remake the life and image of the city and create a city of a better future.
           </p>
         </div>

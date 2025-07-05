@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
-import Image from '../../assets/images/CIITS 2.0/image.png'
+import React, { useState, useEffect } from 'react';
+import Image from '../../assets/images/CIITS 2.0/image.png';
 import Banner from '../../assets/banners/citiisBanner.png';
 import Image1 from '../../assets/images/CIITS 2.0/img1.jpg';
 import Image2 from '../../assets/images/CIITS 2.0/img2.jpg';
 import Image3 from '../../assets/images/CIITS 2.0/img3.jpg';
 import Image4 from '../../assets/images/CIITS 2.0/img4.jpg';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const CITIIS = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(null);
+
+  useEffect(() => {
+    AOS.init({ once: true, duration: 800 });
+  }, []);
 
   const images = [
     {
@@ -44,15 +50,14 @@ const CITIIS = () => {
   const openLightbox = (image) => {
     setCurrentImage(image);
     setLightboxOpen(true);
-    document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+    document.body.style.overflow = 'hidden';
   };
 
   const closeLightbox = () => {
     setLightboxOpen(false);
-    document.body.style.overflow = 'auto'; // Re-enable scrolling
+    document.body.style.overflow = 'auto';
   };
 
-  // Close lightbox when clicking outside the image
   const handleBackdropClick = (e) => {
     if (e.target.classList.contains('lightbox-backdrop')) {
       closeLightbox();
@@ -61,8 +66,7 @@ const CITIIS = () => {
 
   return (
     <div className="min-h-screen bg-white font-sans">
-      {/* Hero Banner */}
-      <div className="relative h-64 md:h-96 w-full overflow-hidden">
+      <div className="relative h-64 md:h-96 w-full overflow-hidden" data-aos="fade-in">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -79,11 +83,10 @@ const CITIIS = () => {
         </div>
       </div>
 
-      {/* About Section */}
-      <section className="py-12 md:py-16 bg-gray-50">
+      <section className="py-12 md:py-16 bg-gray-50" data-aos="fade-up">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-10 items-start">
-            <div>
+            <div data-aos="fade-right">
               <h2 className="text-3xl md:text-4xl font-bold text-[#184E77] mb-6 relative pb-2">
                 About CITIIS 2.0
                 <div className="absolute bottom-0 left-0 w-16 h-1 bg-[#1E6091]"></div>
@@ -92,8 +95,8 @@ const CITIIS = () => {
                 <img src={Image} alt="CITIIS 2.0 Infographic" className="w-full h-full" />
               </div>
             </div>
-            
-            <div>
+
+            <div data-aos="fade-left">
               <div className="mb-6">
                 <h3 className="text-xl font-semibold text-[#1E6091] mb-2">Program Overview</h3>
                 <p className="text-gray-700 leading-relaxed">
@@ -103,7 +106,6 @@ const CITIIS = () => {
                   agencies to foster sustainable urban development.
                 </p>
               </div>
-              
               <div className="mb-6">
                 <h3 className="text-xl font-semibold text-[#1E6091] mb-2">Strategic Focus Areas</h3>
                 <p className="text-gray-700 leading-relaxed">
@@ -115,7 +117,6 @@ const CITIIS = () => {
                   <li>Institutional strengthening and knowledge management at national level</li>
                 </ul>
               </div>
-              
               <div>
                 <h3 className="text-xl font-semibold text-[#1E6091] mb-2">International Collaboration</h3>
                 <p className="text-gray-700 leading-relaxed">
@@ -129,10 +130,9 @@ const CITIIS = () => {
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section className="py-12 md:py-16 bg-white">
+      <section className="py-12 md:py-16 bg-white" data-aos="fade-up">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12" data-aos="fade-down">
             <h2 className="text-3xl md:text-4xl font-bold text-[#184E77] mb-3">
               CITIIS Project Gallery
             </h2>
@@ -141,18 +141,20 @@ const CITIIS = () => {
               Showcasing innovative urban development projects under the CITIIS program
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {images.map((image) => (
-              <div 
-                key={image.id} 
+            {images.map((image, index) => (
+              <div
+                key={image.id}
                 className="group relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow cursor-pointer"
                 onClick={() => openLightbox(image)}
+                data-aos="zoom-in"
+                data-aos-delay={index * 100}
               >
                 <div className="aspect-square overflow-hidden">
-                  <img 
-                    src={image.src} 
-                    alt={image.alt} 
+                  <img
+                    src={image.src}
+                    alt={image.alt}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
@@ -172,14 +174,13 @@ const CITIIS = () => {
         </div>
       </section>
 
-      {/* Lightbox Modal */}
       {lightboxOpen && currentImage && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-90 lightbox-backdrop"
           onClick={handleBackdropClick}
         >
-          <div className="relative max-w-6xl max-h-full">
-            <button 
+          <div className="relative max-w-6xl max-h-full" data-aos="zoom-in">
+            <button
               className="absolute top-4 right-4 text-white hover:text-gray-300 z-10"
               onClick={closeLightbox}
               aria-label="Close lightbox"
@@ -188,15 +189,15 @@ const CITIIS = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            
+
             <div className="bg-white p-1 max-w-[90vw] max-h-[90vh]">
-              <img 
-                src={currentImage.src} 
-                alt={currentImage.alt} 
+              <img
+                src={currentImage.src}
+                alt={currentImage.alt}
                 className="max-h-[85vh] w-auto object-contain"
               />
             </div>
-            
+
             <div className="mt-4 text-center text-white">
               <h3 className="text-xl font-bold">{currentImage.title}</h3>
               <p className="text-gray-300">{currentImage.description}</p>

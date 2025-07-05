@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Banner from '../../assets/banners/videoBanner.jpg';
 import { FaYoutube } from 'react-icons/fa6';
 
@@ -13,6 +15,10 @@ const VideoGallery = () => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
+
+  useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/videos/')
       .then(response => setVideos(response.data))
       .catch(error => console.error('Error fetching videos:', error));
@@ -21,7 +27,7 @@ const VideoGallery = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Banner */}
-      <div className="relative h-64 w-full overflow-hidden">
+      <div className="relative h-64 w-full overflow-hidden" data-aos="fade-in">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -38,7 +44,7 @@ const VideoGallery = () => {
 
       {/* Gallery Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-        <div className="mb-12 text-center">
+        <div className="mb-12 text-center" data-aos="fade-up">
           <p className="text-gray-700 text-lg max-w-3xl mx-auto">
             Explore our collection of videos showcasing the progress, initiatives, and achievements of Smart City Thiruvananthapuram
           </p>
@@ -50,7 +56,12 @@ const VideoGallery = () => {
             const videoId = extractYouTubeID(video.youtube_url);
             return (
               videoId && (
-                <div key={video.id} className="bg-white shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
+                <div
+                  key={video.id}
+                  className="bg-white shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden"
+                  data-aos="zoom-in"
+                  data-aos-delay={index * 100}
+                >
                   <div className="relative aspect-w-16 aspect-h-9">
                     <iframe
                       src={`https://www.youtube.com/embed/${videoId}`}
@@ -73,7 +84,7 @@ const VideoGallery = () => {
         </div>
 
         {/* Gallery Statistics */}
-        <div className="mt-16 bg-white shadow-sm p-8">
+        <div className="mt-16 bg-white shadow-sm p-8" data-aos="fade-up">
           <h3 className="text-2xl font-semibold text-center mb-8 text-[#184E77]">Gallery Statistics</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
@@ -97,7 +108,7 @@ const VideoGallery = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="bg-[#184E77] text-white py-16">
+      <div className="bg-[#184E77] text-white py-16" data-aos="fade-in">
         <div className="max-w-4xl mx-auto text-center px-4">
           <h2 className="text-2xl md:text-3xl font-semibold mb-4">Stay Updated with Our Progress</h2>
           <p className="mb-8 max-w-2xl mx-auto text-gray-300">
