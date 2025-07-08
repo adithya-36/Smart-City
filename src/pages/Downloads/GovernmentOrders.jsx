@@ -11,33 +11,53 @@ const GovernmentOrders = () => {
       .catch(error => console.error("Error fetching government orders:", error));
   }, []);
 
+  const formatDate = (dateStr) => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('en-GB'); // dd/mm/yyyy
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-10">
-      <div className="overflow-x-auto shadow-lg rounded-lg bg-white">
-        <table className="w-full text-left table-auto border-collapse">
-          <thead className="bg-blue-900 text-white">
+      <div className="overflow-x-auto">
+        <table className="w-full text-left border border-gray-200">
+          <thead className="bg-[#184E77] text-white">
             <tr>
-              <th className="p-3">No</th>
-              <th className="p-3">Title</th>
-              <th className="p-3">Date</th>
-              <th className="p-3">Documents</th>
+              <th className="p-3 border-b border-gray-300">No</th>
+              <th className="p-3 border-b border-gray-300">Title</th>
+              <th className="p-3 border-b border-gray-300">Date</th>
+              <th className="p-3 border-b border-gray-300">Documents</th>
             </tr>
           </thead>
           <tbody className="text-gray-700">
             {orders.map((order, index) => (
-              <tr key={order.id} className="border-b hover:bg-blue-50">
+              <tr key={order.id} className="border-b border-gray-200 hover:bg-gray-100">
                 <td className="p-3">{index + 1}</td>
-                <td className="p-3">{order.title}</td>
-                <td className="p-3">{order.date}</td>
-                <td className="p-3">
-                  <a href={order.pdf} target="_blank" rel="noopener noreferrer">
-                    <FaFilePdf className="text-2xl m-2 text-red-600" />
+                <td className="p-3 break-words">{order.title}</td>
+                <td className="p-3 whitespace-nowrap">{formatDate(order.date)}</td>
+                <td className="p-3 text-center">
+                  <a 
+                    href={order.pdf} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[#1E6091] hover:text-[#184E77]"
+                  >
+                    <FaFilePdf className="text-xl inline-block" />
                   </a>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="mt-6 text-center">
+        <a 
+          href="https://go.lsgkerala.gov.in/pages/query.php?txtgo=SCTL%2CSmart+city+thiruvananthapuram&sbmtsearch=Search&select=tag&Start=23&Index=2" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-[#1E6091] hover:text-[#184E77] hover:underline"
+        >
+          View more government orders
+        </a>
       </div>
     </div>
   );

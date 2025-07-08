@@ -5,27 +5,22 @@ import { IoPhonePortraitOutline } from "react-icons/io5";
 import Logo from '../../assets/images/SCTLLogo.png';
 import GovKerala from '../../assets/images/govKerala.png';
 
+// ✅ i18n hook import
+import { useTranslation } from 'react-i18next';
+import '../../i18n';
+
 const Header = () => {
-  const [language, setLanguage] = useState('english');
+  // ✅ Removed manual language state
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t, i18n } = useTranslation(); // ✅ Use i18next
 
   const toggleLanguage = () => {
-    setLanguage(prev => prev === 'english' ? 'malayalam' : 'english');
+    const newLang = i18n.language === 'en' ? 'ml' : 'en'; // ✅ Switch between en/ml
+    i18n.changeLanguage(newLang); // ✅ Trigger i18n switch
   };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-  };
-
-  const content = {
-    citizenPortal: {
-      english: "Citizen Portal",
-      malayalam: "പൗര പോർട്ടൽ"
-    },
-    smartApp: {
-      english: "Smart TVM App",
-      malayalam: "സ്മാർട്ട് ടിവിഎം ആപ്പ്"
-    }
   };
 
   return (
@@ -72,7 +67,7 @@ const Header = () => {
               className="flex items-center px-3 py-1 hover:bg-[#1E6091] transition-colors text-sm"
             >
               <span className="mr-2 font-medium">
-                {language === 'english' ? 'EN' : 'ML'}
+                {i18n.language === 'en' ? 'EN' : 'ML'} {/* ✅ Display lang code */}
               </span>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
@@ -88,7 +83,7 @@ const Header = () => {
               className="flex items-center hover:text-gray-300 transition-colors text-sm"
             >
               <FaUser className="mr-2 w-4 h-4" />
-              {content.citizenPortal[language]}
+              {t('citizen_portal')} {/* ✅ Translated text */}
             </a>
 
             {/* Smart App Link */}
@@ -97,7 +92,7 @@ const Header = () => {
               className="flex items-center hover:text-gray-300 transition-colors text-sm"
             >
               <IoPhonePortraitOutline className='w-5 h-5 mr-1'/>
-              <span>{content.smartApp[language]}</span>
+              <span>{t('smart_app')}</span> {/* ✅ Translated text */}
             </a>
           </div>
 
@@ -143,7 +138,7 @@ const Header = () => {
                 className="w-full flex items-center justify-center px-3 py-2 hover:bg-[#184E77] transition-colors text-sm"
               >
                 <span className="mr-2 font-medium">
-                  {language === 'english' ? 'EN' : 'ML'}
+                  {i18n.language === 'en' ? 'EN' : 'ML'} {/* ✅ Translated */}
                 </span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
@@ -156,7 +151,7 @@ const Header = () => {
                 className="w-full flex items-center justify-center px-3 py-2 hover:bg-[#184E77] transition-colors text-sm"
               >
                 <FaUser className="mr-2 w-4 h-4" />
-                {content.citizenPortal[language]}
+                {t('citizen_portal')} {/* ✅ */}
               </a>
 
               {/* Smart App Link */}
@@ -165,7 +160,7 @@ const Header = () => {
                 className="w-full flex items-center justify-center px-3 py-2 hover:bg-[#184E77] transition-colors text-sm"
               >
                 <IoPhonePortraitOutline className='w-5 h-5 mr-2' />
-                <span>{content.smartApp[language]}</span>
+                <span>{t('smart_app')}</span> {/* ✅ */}
               </a>
             </div>
           </div>

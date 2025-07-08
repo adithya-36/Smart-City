@@ -5,18 +5,18 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross1 } from "react-icons/rx";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { IoSearch } from "react-icons/io5";
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const bannerRef = useRef(null);
   const navbarRef = useRef(null);
   const searchInputRef = useRef(null);
-
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,7 +27,6 @@ const Navbar = () => {
         setIsScrolled(bannerRect.bottom <= navbarHeight);
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
@@ -84,7 +83,7 @@ const Navbar = () => {
                         }`
                       }
                     >
-                      {item.name}
+                      {t(`navbar.${item.name}`)}
                     </NavLink>
                     {item.dropdown && activeDropdown === item.name && (
                       <div className="absolute left-0 mt-1 bg-white shadow-xl rounded-sm py-2 w-56 z-50 border border-gray-200">
@@ -97,7 +96,7 @@ const Navbar = () => {
                               } hover:text-[#1E6091] hover:bg-gray-100`
                             }
                           >
-                            {sub.name}
+                            {t(`navbar.${sub.name}`)}
                           </NavLink>
                         ))}
                       </div>
@@ -129,13 +128,12 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Collapsible Search Bar */}
             {showSearch && (
               <div className="w-full bg-white px-4 py-2 flex justify-center items-center border-t border-gray-200">
                 <input
                   ref={searchInputRef}
                   type="text"
-                  placeholder="Search..."
+                  placeholder={t('navbar.searchPlaceholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyDown={(e) => {
@@ -147,12 +145,11 @@ const Navbar = () => {
                   onClick={handleSearchSubmit}
                   className="ml-2 bg-[#1E6091] text-white px-4 py-2 rounded hover:bg-[#184E77]"
                 >
-                  Search
+                  {t('navbar.Search')}
                 </button>
               </div>
             )}
 
-            {/* Mobile Dropdown */}
             {menuOpen && (
               <div className="lg:hidden px-4 pb-4 bg-[#184E77]">
                 {navigation.map((item) => (
@@ -171,7 +168,7 @@ const Navbar = () => {
                           }
                         }}
                       >
-                        {item.name}
+                        {t(`navbar.${item.name}`)}
                       </NavLink>
                       {item.dropdown && (
                         <button
@@ -193,7 +190,7 @@ const Navbar = () => {
                               } hover:text-[#1E6091] hover:bg-gray-100`
                             }
                           >
-                            {sub.name}
+                            {t(`navbar.${sub.name}`)}
                           </NavLink>
                         ))}
                       </div>

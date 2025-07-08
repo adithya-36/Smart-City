@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 import Banner from '../../assets/banners/pollBanner.jpg';
 import { BsEmojiGrin, BsEmojiNeutral, BsEmojiFrown } from "react-icons/bs";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { GrStatusGood } from "react-icons/gr";
 
 const Poll = () => {
+  const { t } = useTranslation();
   const [selectedOption, setSelectedOption] = useState(null);
   const [submitted, setSubmitted] = useState(false);
 
@@ -36,7 +38,7 @@ const Poll = () => {
         ></div>
         <div className="relative z-10 flex items-center justify-center h-full">
           <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold text-center px-4">
-            How is our website?
+            {t('poll.title')}
           </h1>
         </div>
       </div>
@@ -48,9 +50,11 @@ const Poll = () => {
             <div className="w-24 h-24 flex items-center justify-center mx-auto mb-8">
               <GrStatusGood className='text-5xl text-[#184E77]' />
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Thank You for Your Feedback!</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+              {t('poll.thankYouTitle')}
+            </h2>
             <p className="text-gray-600 max-w-md mx-auto">
-              Your opinion helps us improve our website and services.
+              {t('poll.thankYouMessage')}
             </p>
             <button
               onClick={() => {
@@ -59,16 +63,16 @@ const Poll = () => {
               }}
               className="mt-8 bg-[#1E6091] hover:bg-[#184E77] text-white font-bold py-3 px-8 shadow-sm transition duration-300"
             >
-              Submit Another Response
+              {t('poll.submitAnother')}
             </button>
           </div>
         ) : (
           <div className="bg-white shadow-md p-6 md:p-8 max-w-2xl mx-auto">
             <h2 className="text-xl md:text-2xl font-bold text-center mb-2 text-[#1E6091]">
-              We value your opinion!
+              {t('poll.weValue')}
             </h2>
             <p className="text-gray-600 text-center mb-8">
-              Please rate your experience with our website
+              {t('poll.ratePrompt')}
             </p>
 
             <form onSubmit={handleSubmit}>
@@ -89,7 +93,7 @@ const Poll = () => {
                       <div className={`w-16 h-16 flex items-center justify-center mb-3 ${selectedOption === option ? 'bg-[#1E6091] text-white' : 'bg-gray-200'}`}>
                         {icon}
                       </div>
-                      <span className="font-medium text-gray-800 capitalize">{option}</span>
+                      <span className="font-medium text-gray-800 capitalize">{t(`poll.options.${option}`)}</span>
                     </label>
                   );
                 })}
@@ -102,7 +106,7 @@ const Poll = () => {
                   className={`py-3 px-8 font-bold shadow-sm transition duration-300 ${selectedOption ? 'bg-[#1E6091] hover:bg-[#184E77] text-white' : 'bg-gray-200 text-gray-500 cursor-not-allowed'
                     }`}
                 >
-                  Submit Feedback
+                  {t('poll.submitFeedback')}
                 </button>
               </div>
             </form>
@@ -111,12 +115,12 @@ const Poll = () => {
 
         {/* Additional Feedback */}
         {!submitted && (
-          <div className="mt-8 bg-gray-50 p-6 max-w-2xl mx-auto ">
+          <div className="mt-8 bg-gray-50 p-6 max-w-2xl mx-auto">
             <h3 className="text-lg font-bold mb-3 text-center text-[#1E6091]">
-              Want to share more detailed feedback?
+              {t('poll.moreFeedbackTitle')}
             </h3>
             <p className="text-gray-700 text-center mb-4">
-              We'd love to hear your suggestions for improvement
+              {t('poll.moreFeedbackMsg')}
             </p>
             <div className="text-center">
               <a
@@ -125,7 +129,7 @@ const Poll = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-[#1E6091] hover:text-[#184E77] font-medium"
               >
-                Send us an email
+                {t('poll.sendEmail')}
                 <FaArrowRightLong className='text-xl ml-2' />
               </a>
             </div>

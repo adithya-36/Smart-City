@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useTranslation } from 'react-i18next';
 
 import CityDefBanner from '../../assets/banners/cityDefBanner.jpg';
 import SmartCityDefImage from '../../assets/images/smartCityDef.jpg';
 
 const SmartCityDef = () => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     AOS.init({ once: true, duration: 800 });
   }, []);
@@ -22,7 +25,7 @@ const SmartCityDef = () => {
         ></div>
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4">
           <h1 className="text-white text-3xl md:text-4xl font-bold text-center tracking-tight drop-shadow-md">
-            What is a Smart City
+            {t('smartCityDef.title')}
           </h1>
         </div>
       </div>
@@ -34,15 +37,15 @@ const SmartCityDef = () => {
           <div className="flex flex-col md:flex-row items-start justify-between mb-6 gap-4">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
-                Understanding Smart Cities
+                {t('smartCityDef.understanding')}
               </h2>
               <h3 className="text-xl text-[#1E6091] font-semibold">
-                Solving Urban Problems Using Technology
+                {t('smartCityDef.subtitle')}
               </h3>
             </div>
           </div>
           <div className="shadow-sm h-[350px] md:h-[500px]" data-aos="zoom-in">
-            <iframe 
+            <iframe
               src="https://www.youtube.com/embed/nnyRZotnPSU"
               title="Smart City Explained"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -55,17 +58,17 @@ const SmartCityDef = () => {
         {/* Image Section */}
         <div className="bg-white p-6 shadow-sm" data-aos="fade-up">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center">
-            Smart City Components
+            {t('smartCityDef.components')}
           </h2>
           <div className="border border-[#1E6091] overflow-hidden">
-            <img 
-              src={SmartCityDefImage} 
+            <img
+              src={SmartCityDefImage}
               alt="Smart City Components Diagram"
               className="w-full h-auto object-contain"
             />
           </div>
           <p className="mt-4 text-gray-600 italic text-center">
-            Visual representation of integrated smart city systems
+            {t('smartCityDef.caption')}
           </p>
         </div>
       </div>

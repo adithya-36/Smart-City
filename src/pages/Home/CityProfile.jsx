@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useTranslation } from 'react-i18next';
 
 import CityBanner from '../../assets/banners/cityBanner.jpg';
 import TVMMap from '../../assets/images/tvm_map.jpg';
@@ -10,12 +11,10 @@ import { FaBorderTopLeft } from "react-icons/fa6";
 import { FaChartArea } from "react-icons/fa";
 
 const CityProfile = () => {
+  const { t } = useTranslation();
+
   useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-      offset: 50,
-    });
+    AOS.init({ duration: 1000, once: true, offset: 50 });
   }, []);
 
   return (
@@ -30,7 +29,7 @@ const CityProfile = () => {
         ></div>
         <div className="relative z-10 flex items-center justify-center h-full">
           <h1 className="text-white text-4xl md:text-5xl font-bold text-center px-4">
-            City Profile
+            {t('city_profile.title')}
           </h1>
         </div>
       </div>
@@ -39,40 +38,34 @@ const CityProfile = () => {
       <div className="px-4 py-8 md:px-12 md:py-12 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="border border-gray-200" data-aos="fade-right">
-            <img 
-              src={TVMMap} 
-              alt="Map of Thiruvananthapuram" 
-              className="w-full h-full p-8 object-contain"
-            />
+            <img src={TVMMap} alt="Map" className="w-full h-full p-8 object-contain" />
           </div>
           <div className="space-y-6" data-aos="fade-left">
             <h2 className="text-2xl md:text-3xl font-bold text-[#184E77]">
-              About Thiruvananthapuram
+              {t('city_profile.about_title')}
             </h2>
 
             <div className="space-y-4">
-              <div className="flex items-start">
-                <div className="p-2 mr-4"></div>
-                <p className="text-gray-700"><strong className="text-[#184E77]">Thiruvananthapuram</strong> - Capital city of Kerala</p>
-              </div>
-              <div className="flex items-start">
-                <div className="p-2 mr-4"></div>
-                <p className="text-gray-700">Referred by Mahatma Gandhi as the <em className="text-[#1E6091] italic">"Evergreen city of India"</em></p>
-              </div>
+              <p className="text-gray-700">
+                <strong className="text-[#184E77]">{t('city_profile.city_name')}</strong> - {t('city_profile.state')}
+              </p>
+              <p className="text-gray-700">
+                {t('city_profile.quote')}
+              </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[{
-                  label: 'Population',
-                  value: '9.86 lakh (2011 Census)'
+                  label: t('city_profile.population'),
+                  value: t('city_profile.population_value')
                 }, {
-                  label: 'Growth Rate',
-                  value: '3.25% (2001 - 2011)'
+                  label: t('city_profile.growth_rate'),
+                  value: t('city_profile.growth_rate_value')
                 }, {
-                  label: 'Area',
-                  value: '214.86 sq.km'
+                  label: t('city_profile.area'),
+                  value: t('city_profile.area_value')
                 }, {
-                  label: 'Population Density',
-                  value: '4,470 persons/sq.km'
+                  label: t('city_profile.density'),
+                  value: t('city_profile.density_value')
                 }].map((info, i) => (
                   <div className="bg-white p-4 border border-gray-200" data-aos="zoom-in" data-aos-delay={i * 100} key={i}>
                     <p className="font-semibold text-[#184E77]">{info.label}</p>
@@ -81,15 +74,14 @@ const CityProfile = () => {
                 ))}
               </div>
 
-              <div className="flex items-start">
-                <div className="p-2 mr-4"></div>
-                <div>
-                  <p className="font-semibold text-[#184E77]">Dominant Sectors</p>
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    {['Tourism', 'IT', 'Education'].map((sector, i) => (
-                      <span key={i} className="bg-gray-100 text-[#184E77] px-3 py-1 text-sm" data-aos="fade-up" data-aos-delay={i * 100}>{sector}</span>
-                    ))}
-                  </div>
+              <div>
+                <p className="font-semibold text-[#184E77]">{t('city_profile.dominant_sectors')}</p>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {['tourism', 'it', 'education'].map((key, i) => (
+                    <span key={i} className="bg-gray-100 text-[#184E77] px-3 py-1 text-sm" data-aos="fade-up" data-aos-delay={i * 100}>
+                      {t(`city_profile.${key}`)}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
@@ -101,34 +93,28 @@ const CityProfile = () => {
       <div className="py-10 px-4 md:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-center text-[#184E77] mb-10" data-aos="fade-up">
-            Explore More About Our City
+            {t('city_profile.explore_more')}
           </h2>
 
           <div className="flex flex-wrap justify-center gap-6 md:gap-8">
             {[{
-              label: 'City Highlights',
+              label: t('city_profile.city_highlights'),
               icon: <FaCity className='text-4xl text-[#184E77]' />,
               link: '/city-highlights'
             }, {
-              label: 'Smart City Overview',
+              label: t('city_profile.smart_city_overview'),
               icon: <FaMapMarkedAlt className='text-4xl text-[#184E77]' />,
               link: '/smart-city-overview'
             }, {
-              label: 'Project Area',
+              label: t('city_profile.project_area'),
               icon: <FaChartArea className='text-4xl text-[#184E77]' />,
               link: '/project-area'
             }, {
-              label: 'ABD Area',
+              label: t('city_profile.abd_area'),
               icon: <FaBorderTopLeft className='text-4xl text-[#184E77]' />,
               link: '/abd-area'
             }].map((item, index) => (
-              <a
-                key={index}
-                href={item.link}
-                className="flex flex-col items-center justify-center w-36 h-36 md:w-40 md:h-40 bg-white border border-gray-200 hover:border-[#1E6091] transition-colors group"
-                data-aos="zoom-in"
-                data-aos-delay={index * 100}
-              >
+              <a key={index} href={item.link} className="flex flex-col items-center justify-center w-36 h-36 md:w-40 md:h-40 bg-white border border-gray-200 hover:border-[#1E6091] transition-colors group" data-aos="zoom-in" data-aos-delay={index * 100}>
                 <div className="bg-gray-100 p-3 mb-4 group-hover:text-white transition-colors">
                   {item.icon}
                 </div>

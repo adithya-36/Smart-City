@@ -1,6 +1,9 @@
+// Updated SCTLProject component with i18n support (English & Malayalam)
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useTranslation } from 'react-i18next';
+
 import Image1 from '../../assets/images/SCTL Projects/manaveeyamImg1.png';
 import Image2 from '../../assets/images/SCTL Projects/mlcpImg2.jpg';
 import Image3 from '../../assets/images/SCTL Projects/Open-Air_AuditoriumImg3.png';
@@ -15,86 +18,57 @@ const SCTLProject = () => {
   useEffect(() => {
     AOS.init({ once: true, duration: 800 });
   }, []);
+
+  const { t } = useTranslation();
+
   const projects = [
     {
-      title: "Cultural Streets - Manaveeyam Veedhi",
+      title: t('sctlProjects.projects.0.title'),
       image: Image1,
-      content: "Manaveeyam Veedhi is a 180 m road stretch from Museum-Vellayambalam Road to the Althara junction. This street is famous for the numerous artworks on display along the road and numerous cultural performances it hosts. SCTL's proposal is to facilitate the current activities in the Veedhi by giving the street a physical makeover and convert Manaveeyam Veedhi as a Cultural Street in all sense. The new streetscape design is pedestrian dominant and universally accessible. The design components are a covered venue, sculptures, art gallery space, Exercise Park, street library, gender friendly toilets, drinking water fountains, food kiosks and cycle parking area. The estimated project cost is approximately Rs. 1.92 Cr. The construction of utility ducting and such works would be taken up under Smart Road Project. The work was awarded to M/s. SILK for an amount of Rs. 1.84 Cr. The project is completed.",
-      stats: [
-        { label: "Project Cost", value: "₹1.92 Cr" },
-        { label: "Completed", value: "2023" },
-        { label: "Contractor", value: "M/s. SILK" }
-      ]
+      content: t('sctlProjects.projects.0.content'),
+      stats: t('sctlProjects.projects.0.stats', { returnObjects: true })
     },
     {
-      title: "Construction of Multi Level Car Parking at Thampanoor",
+      title: t('sctlProjects.projects.1.title'),
       image: Image2,
-      content: "Construction of Multi-Level Car Parking at Thampanoor opposite Central Railway Station started in 2020. It was executed as a part of the Smart Cities Mission, a central scheme for urban redevelopment with a matching contribution of 50% by the state government. The total cost of the project is worth Rs. 22.9 Cr and was constructed by M/s. Heather Construction. The project was inaugurated in April 2023 as part of the 100 days programme of the State Government. The initiative will be catering to the parking demand of 400 bikes and 22 cars coming within the city. Apart from the infrastructure, other salient features include software and mobile applications being developed as part of the Smart Parking feature within the Thiruvananthapuram Municipal Corporation. The contract of the project was awarded to M/s. Heather Construction for an amount of Rs.18.89Cr and is completed.",
-      stats: [
-        { label: "Capacity", value: "400 bikes + 22 cars" },
-        { label: "Project Cost", value: "₹22.9 Cr" },
-        { label: "Contractor", value: "M/s. Heather Construction" }
-      ]
+      content: t('sctlProjects.projects.1.content'),
+      stats: t('sctlProjects.projects.1.stats', { returnObjects: true })
     },
     {
-      title: "Construction of Open-Air Auditorium and its allied works at Thiruvananthapuram Corporation",
+      title: t('sctlProjects.projects.2.title'),
       image: Image3,
-      content: "This project aims at development of an Open-Air Auditorium inside the premises of Thiruvananthapuram corporation. The proposal includes an open auditorium with a covered stage, an open area which serves dual purposes of parking cum seating area whenever there is a programme occurring at the Corporation premise. Some landscaping works are also included in the proposal for making the office into both a public and environment friendly area. The work was completed in 2023.",
-      stats: [
-        { label: "Completed", value: "2023" },
-        { label: "Features", value: "Dual-purpose space" },
-        { label: "Location", value: "Corporation Premises" }
-      ]
+      content: t('sctlProjects.projects.2.content'),
+      stats: t('sctlProjects.projects.2.stats', { returnObjects: true })
     },
     {
-      title: "Biomining of Wastes at Chalai",
+      title: t('sctlProjects.projects.3.title'),
       image: Image4,
-      content: "The Waste dump in Chalai has to be cleared. The reclamation of land is being done through the process of Biomining and the legacy waste is cleared as per CPCB norms. This work is completed in 2023.",
-      stats: [
-        { label: "Method", value: "Biomining" },
-        { label: "Completed", value: "2023" },
-        { label: "Compliance", value: "CPCB norms" }
-      ]
+      content: t('sctlProjects.projects.3.content'),
+      stats: t('sctlProjects.projects.3.stats', { returnObjects: true })
     },
     {
-      title: "Development of Traffic signal CCC building",
+      title: t('sctlProjects.projects.4.title'),
       image: Image5,
-      content: "The existing locations will be revamped and additional cameras are provisioned at the new locations within the PAN City area. Key components include: i) City Surveillance, ii) Intelligent Video Analytics & Video Wall iii) Smart Traffic Control iv) Smart Governance and Citizen Services v) Network Backbone (OFC laying). The data center building is completed",
-      stats: [
-        { label: "Components", value: "5 key systems" },
-        { label: "Status", value: "Building completed" },
-        { label: "Coverage", value: "PAN City area" }
-      ]
+      content: t('sctlProjects.projects.4.content'),
+      stats: t('sctlProjects.projects.4.stats', { returnObjects: true })
     },
     {
-      title: "Procurement of buses for KSRTC phase 1,2,3",
+      title: t('sctlProjects.projects.5.title'),
       image: Image6,
-      content: "This project aims at improving smart mobility by the procurement of EV buses for KSRTC. Procurement of 113 buses under KSRTC for strengthening Green Public Transport has become an aim for any City at this point of time, as this reduces traffic congestion in roads, pollution and encourages energy efficiency.The 113 nos of buses are being procured in 3 phases and flag off was done in August 2023.",
-      stats: [
-        { label: "Buses", value: "113 EV buses" },
-        { label: "Phases", value: "3" },
-        { label: "Launched", value: "August 2023" }
-      ]
+      content: t('sctlProjects.projects.5.content'),
+      stats: t('sctlProjects.projects.5.stats', { returnObjects: true })
     },
     {
-      title: "Construction of Smart Roads – KRFB ph 1",
+      title: t('sctlProjects.projects.6.title'),
       images: [Image7, Image8],
-      content: "The works at Manaveeyam road & Kala bhavan road are completed in August 2023.",
-      stats: [
-        { label: "Roads", value: "Manaveeyam & Kala Bhavan" },
-        { label: "Completed", value: "August 2023" },
-        { label: "Contractor", value: "KRFB" }
-      ]
+      content: t('sctlProjects.projects.6.content'),
+      stats: t('sctlProjects.projects.6.stats', { returnObjects: true })
     },
     {
-      title: "Rooftop solar by ANERT phases 1-6",
+      title: t('sctlProjects.projects.7.title'),
       image: Image9,
-      content: "The aim of this project is to support large campuses and buildings to function in sustainable energy by harnessing solar energy, thus helping them transition towards becoming economically, socially and environmentally conscious. SCTL has already implemented grid tied rooftop solar projects of 807 KWP capacity which helps to reduce 1000 tons of carbon footprint annually. Additionally reducing the demand from the KSEB grid. ANERT is implementing the project phase-wise. The project has kick started and is being implemented at various Government institutions. The project is being completed in different phases as per the capacity requirements and location and is completed in December 2023.",
-      stats: [
-        { label: "Capacity", value: "807 KWP" },
-        { label: "Carbon Reduction", value: "1000 tons/year" },
-        { label: "Completed", value: "December 2023" }
-      ]
+      content: t('sctlProjects.projects.7.content'),
+      stats: t('sctlProjects.projects.7.stats', { returnObjects: true })
     }
   ];
 
@@ -104,10 +78,10 @@ const SCTLProject = () => {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Transforming <span className="text-[#76C893]">Thiruvananthapuram</span>
+              {t('sctlProjects.hero.title1')} <span className="text-[#76C893]">{t('sctlProjects.hero.title2')}</span>
             </h1>
             <p className="text-xl text-blue-200 max-w-3xl mx-auto mb-10">
-              Innovative urban development projects creating sustainable futures
+              {t('sctlProjects.hero.subtitle')}
             </p>
           </div>
         </div>
@@ -170,10 +144,10 @@ const SCTLProject = () => {
                       <div className="flex items-center gap-4 border-t border-gray-200 pt-6">
                         <div className="flex items-center">
                           <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                          <span className="text-green-700 font-medium">Project Completed</span>
+                          <span className="text-green-700 font-medium">{t('sctlProjects.status.completed')}</span>
                         </div>
                         <div className="text-[#184E77] font-medium">
-                          SCTL Initiative
+                          {t('sctlProjects.status.initiative')}
                         </div>
                       </div>
                     </div>
@@ -189,14 +163,14 @@ const SCTLProject = () => {
       <div className="py-24 bg-gradient-to-br from-[#184E77] to-[#0d3b61] text-white" data-aos="fade-up">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Transformative Urban Impact</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('sctlProjects.impact.title')}</h2>
             <p className="text-blue-200 max-w-3xl mx-auto">
-              Our projects create sustainable value across Thiruvananthapuram
+              {t('sctlProjects.impact.subtitle')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[{ title: "Urban Renewal", desc: "Revitalized public spaces, enhanced cultural hubs, and improved urban infrastructure", icon: "🏙️" }, { title: "Sustainable Mobility", desc: "Reduced traffic congestion through smart parking solutions and electric public transport", icon: "🚌" }, { title: "Environmental Stewardship", desc: "Waste management solutions and renewable energy adoption reducing carbon footprint", icon: "🌿" }].map((item, index) => (
+            {t('sctlProjects.impact.items', { returnObjects: true }).map((item, index) => (
               <div key={index} className="bg-[#1E6091]/50 p-8 backdrop-blur-sm border border-[#34A0A4]/30 rounded-lg" data-aos="fade-up" data-aos-delay={index * 100}>
                 <div className="text-4xl mb-4">{item.icon}</div>
                 <h3 className="text-2xl font-bold mb-4">{item.title}</h3>

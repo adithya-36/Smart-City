@@ -1,7 +1,10 @@
 import React from 'react';
 import Mlcp from '../../assets/images/mlcpSmart.jpg';
+import { useTranslation } from 'react-i18next';
 
 const HomeItem1 = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="w-full bg-white overflow-hidden">
       <div className="w-full flex flex-col lg:flex-row gap-4 min-h-[600px] lg:min-h-[500px]">
@@ -13,7 +16,7 @@ const HomeItem1 = () => {
         >
           <img
             src={Mlcp}
-            alt="Smart City Trivandrum"
+            alt={t("homeItem1.imageAlt")}
             className="w-full h-full object-cover rounded-sm shadow-lg"
           />
         </div>
@@ -25,19 +28,19 @@ const HomeItem1 = () => {
           data-aos-delay="100"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 border-b-2 border-[#184E77] pb-2">
-            Welcome to Smart City Thiruvananthapuram Ltd.
+            {t("homeItem1.heading")}
           </h2>
 
           <p className="text-gray-700 leading-relaxed text-base">
-            Smart City Thiruvananthapuram Limited is a Special Purpose Vehicle (SPV) set up for implementation of the Smart City Mission of Government of India with a project overlay of ₹1538 Cr. Thiruvananthapuram was selected in the third round of Smart City Selection and secured first rank in the Smart City Challenge in 2017.
+            {t("homeItem1.para1")}
           </p>
 
           <p className="text-gray-700 leading-relaxed text-base">
-            The proposal submitted to GOI had 43 projects aimed at improving basic infrastructure of the city and harnessing the use of IT-based solutions to make the city smart.
+            {t("homeItem1.para2")}
           </p>
 
           <p className="text-gray-700 leading-relaxed text-base">
-            The projects can be grouped into two categories: Pan City Solution (IT-based solution) for the entire corporation area and Area Based Development (ABD) Projects, specifically targeted for 9 wards in the city centre as a retrofit model.
+            {t("homeItem1.para3")}
           </p>
         </div>
       </div>

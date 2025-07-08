@@ -3,8 +3,10 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const HomeItem3 = () => {
+  const { t } = useTranslation();
   const [officials, setOfficials] = useState([]);
 
   useEffect(() => {
@@ -17,10 +19,12 @@ const HomeItem3 = () => {
     <div className="bg-gradient-to-br from-[#f8fafc] to-[#e2e8f0] py-16 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16" data-aos="fade-up">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Key Officials</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            {t('homeItem3.title')}
+          </h2>
           <div className="w-20 h-1 bg-[#184E77] mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Meet the dedicated leadership team guiding Thiruvananthapuram's transformation into a Smart City
+            {t('homeItem3.description')}
           </p>
         </div>
 
@@ -55,7 +59,7 @@ const HomeItem3 = () => {
                     rel="noopener noreferrer"
                   >
                     <FaLinkedin className='mr-2' />
-                    <span>LinkedIn</span>
+                    <span>{t('homeItem3.linkedin')}</span>
                   </a>
                 </div>
               </div>
@@ -66,8 +70,7 @@ const HomeItem3 = () => {
         <div className="mt-16 text-center" data-aos="fade-up">
           <Link to="/spv">
             <button className="inline-flex items-center px-8 py-3 border border-[#184E77] text-lg font-medium text-[#184E77] bg-white hover:bg-blue-50 transition duration-300">
-              View All Officials
-              <FaArrowRightLong className='ml-2 h-4 w-4' />
+              {t('homeItem3.viewAll')} <FaArrowRightLong className='ml-2 h-4 w-4' />
             </button>
           </Link>
         </div>

@@ -3,8 +3,10 @@ import axios from 'axios';
 import { IoNewspaper } from "react-icons/io5";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { GrNext, GrPrevious } from "react-icons/gr";
+import { useTranslation } from 'react-i18next';
 
 const HomeItem4 = () => {
+  const { t } = useTranslation();
   const [announcements, setAnnouncements] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(1);
@@ -20,7 +22,7 @@ const HomeItem4 = () => {
         const sorted = response.data
           .filter(item => isValidDate(item.date))
           .sort((a, b) => new Date(b.date) - new Date(a.date))
-          .slice(0, 6); // Only latest 6
+          .slice(0, 6);
         setAnnouncements(sorted);
         setLoading(false);
       })
@@ -86,14 +88,14 @@ const HomeItem4 = () => {
   return (
     <div className="w-full max-w-7xl mx-auto px-4 py-10">
       <div className="text-center mb-10">
-        <h2 className="text-3xl font-bold text-gray-800 mb-3 animate-fade-in-up">Updates & Announcements</h2>
+        <h2 className="text-3xl font-bold text-gray-800 mb-3 animate-fade-in-up">{t('homeItem4.title')}</h2>
         <div className="w-20 h-1 bg-[#184E77] mx-auto"></div>
       </div>
 
       {loading ? (
-        <div className="text-center py-12 text-gray-500">Loading announcements...</div>
+        <div className="text-center py-12 text-gray-500">{t('homeItem4.loading')}</div>
       ) : announcements.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">No announcements available</div>
+        <div className="text-center py-12 text-gray-500">{t('homeItem4.noAnnouncements')}</div>
       ) : (
         <>
           <div
@@ -131,13 +133,13 @@ const HomeItem4 = () => {
                       <div className="bg-[#184E77] text-white p-2 rounded mr-2">
                         <IoNewspaper className='w-5 h-5' />
                       </div>
-                      <h3 className="text-lg font-bold text-gray-800 capitalize">{item.type || 'Announcement'}</h3>
+                      <h3 className="text-lg font-bold text-gray-800 capitalize">{item.type || t('homeItem4.defaultType')}</h3>
                     </div>
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-xs font-semibold text-[#184E77] bg-blue-50 px-2 py-1 rounded">
                         {isValidDate(item.date)
                           ? new Date(item.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
-                          : 'Date N/A'}
+                          : t('homeItem4.dateNA')}
                       </span>
                       <span className="text-xs text-gray-500">{item.source}</span>
                     </div>
@@ -146,7 +148,7 @@ const HomeItem4 = () => {
                   </div>
                   <div className="p-4 border-t border-gray-100">
                     <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-[#184E77] text-sm font-medium hover:underline">
-                      Read full story
+                      {t('homeItem4.readMore')}
                     </a>
                   </div>
                 </div>
@@ -161,11 +163,10 @@ const HomeItem4 = () => {
                   key={index}
                   onClick={() => goToIndex(index * itemsPerView)}
                   className={`w-3 h-3 rounded-full ${index === Math.floor(currentIndex / itemsPerView)
-                      ? 'bg-[#184E77] animate-pulse'
-                      : 'bg-gray-300'
+                    ? 'bg-[#184E77] animate-pulse'
+                    : 'bg-gray-300'
                     }`}
                 />
-
               ))}
             </div>
           )}
@@ -175,7 +176,7 @@ const HomeItem4 = () => {
       <div className="mt-8 text-center">
         <a href="/news">
           <button className="inline-flex items-center px-6 py-3 bg-[#184E77] text-white font-medium hover:bg-[#0e3a5d] transition-colors">
-            View All Updates <FaArrowRightLong className='ml-2 h-4 w-4' />
+            {t('homeItem4.viewAll')} <FaArrowRightLong className='ml-2 h-4 w-4' />
           </button>
         </a>
       </div>

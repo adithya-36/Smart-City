@@ -1,7 +1,7 @@
-// MissionVision.jsx
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useTranslation } from 'react-i18next';
 
 import VisionBannerSection from '../../components/vision/VisionBannerSection';
 import VisionSection from '../../components/vision/VisionSection';
@@ -12,32 +12,28 @@ import LandUsePatternSection from '../../components/vision/LandUsePatternSection
 import PlanningAndDevelopmentSection from '../../components/vision/PlanningAndDevelopmentSection';
 
 const MissionVision = () => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     AOS.init({ once: true, duration: 800 });
   }, []);
 
   return (
-    <div>
-      <VisionBannerSection />
+    <div className="font-sans bg-gray-50">
+      <VisionBannerSection t={t} />
+
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div data-aos="fade-up">
-          <VisionSection />
+          <h2 className="text-3xl font-bold text-center mb-6">
+            {t('missionVision.heading')}
+          </h2>
+          <VisionSection t={t} />
         </div>
-        <div data-aos="fade-up">
-          <Connectivity />
-        </div>
-        <div data-aos="fade-up">
-          <Evolution />
-        </div>
-        <div data-aos="fade-up">
-          <DemographySection />
-        </div>
-        <div data-aos="fade-up">
-          <LandUsePatternSection />
-        </div>
-        <div data-aos="fade-up">
-          <PlanningAndDevelopmentSection />
-        </div>
+        <div data-aos="fade-up"><Connectivity t={t} /></div>
+        <div data-aos="fade-up"><Evolution t={t} /></div>
+        <div data-aos="fade-up"><DemographySection t={t} /></div>
+        <div data-aos="fade-up"><LandUsePatternSection t={t} /></div>
+        <div data-aos="fade-up"><PlanningAndDevelopmentSection t={t} /></div>
       </div>
     </div>
   );
