@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PdfFile from '../../assets/images/pdfFile.png';
+import { Link } from 'react-router-dom';
+
 
 const TenderTable = () => {
   const [tenders, setTenders] = useState([]);
@@ -11,7 +13,7 @@ const TenderTable = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/tenders/')
+    axios.get('http://127.0.0.1:8000/api/tenders/')
       .then(res => {
         setTenders(res.data);
         setLoading(false);
@@ -121,12 +123,17 @@ const TenderTable = () => {
                       >
                         <td className="p-4 font-medium text-gray-800">{tender.no}</td>
                         <td className="p-4 text-gray-700">
-                          {tender.title}
+                          <Link
+                            to={`/tenders/${tender.id}`}
+                            className="text-[#1E6091] hover:underline"
+                          >
+                            {tender.title}
+                          </Link>
                         </td>
                         <td className="p-4">
                           <span className={`inline-block px-3 py-1 text-sm font-medium ${isExpired || tender.status === 'Closed'
-                              ? 'bg-gray-200 text-gray-800'
-                              : 'bg-green-100 text-green-800'
+                            ? 'bg-gray-200 text-gray-800'
+                            : 'bg-green-100 text-green-800'
                             }`}>
                             {isExpired ? 'Closed' : tender.status}
                           </span>

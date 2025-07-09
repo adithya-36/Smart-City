@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Documents = () => {
   const [documents, setDocuments] = useState([]);
@@ -12,20 +13,18 @@ const Documents = () => {
 
   return (
     <div className="bg-white p-6">
-      <h1 className="text-3xl font-bold text-[#184E77] mb-8 border-b border-gray-200 pb-4">Document</h1>
+      <h1 className="text-3xl font-bold text-[#184E77] mb-8 border-b border-gray-200 pb-4">Documents</h1>
       
       <div className="mb-12">
         <ul className="space-y-3">
           {documents.map(doc => (
             <li key={doc.id}>
-              <a
-                href={doc.file}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to={`/downloads/${doc.id}`}
                 className="text-[#1E6091] hover:text-[#184E77] hover:underline transition-colors block py-2 border-b border-gray-100"
               >
                 {doc.title}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

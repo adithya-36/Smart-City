@@ -153,25 +153,103 @@ class ContactInfoViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class SearchView(APIView):
-    def get(self, request):
-        query = request.GET.get('query', '')
+    def get(self, request, *args, **kwargs):
+        query = request.GET.get('query', '').strip().lower()
+        results = {}
 
-        if not query:
-            return Response({"error": "No query provided."})
+        # Keywords to match for tender and document
+        tender_keywords = ['tender', 'tenders']
+        document_keywords = ['document', 'documents', 'pdf', 'download', 'downloads', 'report']
 
-        news = News.objects.filter(
-            Q(title__icontains=query) | Q(excerpt__icontains=query))
-        tenders = Tender.objects.filter(
-            Q(title__icontains=query) | Q(status__icontains=query))
-        media = MediaItem.objects.filter(Q(title__icontains=query))
-        events = EventItem.objects.filter(Q(title__icontains=query))
+        # 🔍 Return all careers if query is career-related
+        if query in ['career', 'careers']:
+            results['careers'] = CareerSerializer(Career.objects.all(), many=True).data
+        else:
+            results['careers'] = CareerSerializer(Career.objects.filter(
+                Q(title__icontains=query) | Q(status__icontains=query)
+            ), many=True).data
 
-        return Response({
-            "news": NewsSerializer(news, many=True).data,
-            "tenders": TenderSerializer(tenders, many=True).data,
-            "media": MediaItemSerializer(media, many=True).data,
-            "events": EventItemSerializer(events, many=True).data,
+        # 🔍 Return all tenders if query is 'tender' or 'tenders'
+        if query in tender_keywords:
+            results['tenders'] = TenderSerializer(Tender.objects.all(), many=True).data
+        else:
+            results['tenders'] = TenderSerializer(Tender.objects.filter(
+                Q(title__icontains=query) | Q(no__icontains=query)
+            ), many=True).data
+
+        # 🔍 Return all documents for generic keywords, or filtered
+        results['documents'] = DocumentSerializer(
+            Document.objects.all() if query in document_keywords else
+            Document.objects.filter(Q(title__icontains=query)),
+            many=True
+        ).data
+
+        # Other searchable content
+        results.update({
+            'news': NewsSerializer(News.objects.filter(
+                Q(title__icontains=query) | Q(excerpt__icontains=query)
+            ), many=True).data,
+
+            'media': MediaItemSerializer(MediaItem.objects.filter(
+                Q(title__icontains=query)
+            ), many=True).data,
+
+            'events': EventItemSerializer(EventItem.objects.filter(
+                Q(title__icontains=query)
+            ), many=True).data,
+
+            'orders': GovernmentOrderSerializer(GovernmentOrder.objects.filter(
+                Q(title__icontains=query)
+            ), many=True).data,
+
+            'conclave_speakers': ConclaveSpeakerSerializer(ConclaveSpeaker.objects.filter(
+                Q(name__icontains=query) | Q(designation__icontains=query)
+            ), many=True).data,
+
+            'recordings': ConclaveRecordingSerializer(ConclaveRecording.objects.filter(
+                Q(title__icontains=query)
+            ), many=True).data,
+
+            'anniversary_images': AnniversaryImageSerializer(AnniversaryImage.objects.filter(
+                Q(alt__icontains=query)
+            ), many=True).data,
+
+            'inauguration_images': InaugurationSerializer(InaugurationImage.objects.filter(
+                Q(alt__icontains=query)
+            ), many=True).data,
+
+            'mpr': MonthlyProgressReportSerializer(MonthlyProgressReport.objects.filter(
+                Q(month__icontains=query)
+            ), many=True).data,
+
+            'internships': InternshipSerializer(Internship.objects.filter(
+                Q(title__icontains=query) | Q(post__icontains=query)
+            ), many=True).data,
+
+            'albums': PhotoAlbumSerializer(PhotoAlbum.objects.filter(
+                Q(title__icontains=query)
+            ), many=True).data,
+
+            'videos': VideoSerializer(Video.objects.filter(
+                Q(title__icontains=query)
+            ), many=True).data,
+
+            'staff': StaffSerializer(Staff.objects.filter(
+                Q(name__icontains=query) | Q(position__icontains=query)
+            ), many=True).data,
+
+            'board_members': BoardMemberSerializer(BoardMember.objects.filter(
+                Q(name__icontains=query) | Q(position__icontains=query)
+            ), many=True).data,
+
+            'officials': OfficialSerializer(Official.objects.filter(
+                Q(name__icontains=query) | Q(title__icontains=query)
+            ), many=True).data,
         })
+
+        return Response(results)
+
+
 
 
 class BoardMemberViewSet(viewsets.ModelViewSet):
@@ -192,6 +270,9 @@ class StaffViewSet(viewsets.ReadOnlyModelViewSet):
 class DocumentViewSet(viewsets.ModelViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
+
+    def get_serializer_context(self):
+        return {'request': self.request}
 
 
 class OfficialViewSet(viewsets.ModelViewSet):

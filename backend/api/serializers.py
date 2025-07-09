@@ -126,10 +126,18 @@ class StaffSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class DocumentSerializer(serializers.ModelSerializer):
+    file = serializers.SerializerMethodField()
+
     class Meta:
         model = Document
         fields = ['id', 'title', 'file']
 
+    def get_file(self, obj):
+        request = self.context.get('request')
+        if request:
+            return request.build_absolute_uri(obj.file.url)
+        return obj.file.url
+    
 class OfficialSerializer(serializers.ModelSerializer):
     class Meta:
         model = Official

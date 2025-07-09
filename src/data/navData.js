@@ -62,7 +62,7 @@ const navigation = [
     {
       name: 'Careers',href:'/careers',
       dropdown: [
-        { name: 'Internships', href: '/internship' },
+        { name: 'Internships', href: '/internships' },
         { name: 'Tulip internship', href: '/tulip-internship' },
       ],
     },

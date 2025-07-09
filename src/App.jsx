@@ -55,12 +55,20 @@ import BenefiaciaryDetails from './pages/Project/BeneficiaryDetails'
 import SmartCity from './pages/SCTL/SmartCity'
 import Event from './pages/Events/Event'
 import GalleryPage from './pages/Gallery/GalleryPage'
+import NotFound from './components/layout/NotFound'
+import NewsDetail from './pages/Events/NewsDetail'
+import TenderDetail from './pages/Tenders/TenderDetail'
+import CareerDetail from './pages/Career/CareerDetail'
+import VideoDetail from './pages/Gallery/VideoDetail'
+import GovernmentOrderDetail from './pages/Downloads/GovernmentOrderDetail'
+import DocumentsDetail from './pages/Downloads/DocumentDetail'
+import InternshipDetail from './pages/Career/InternshipDetail'
 const App = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <Navbar />
-      <ScrollToTop/>
+      <ScrollToTop />
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -98,25 +106,33 @@ const App = () => {
           <Route path="/poll" element={<Poll />} />
           <Route path="/rti" element={<RTI />} />
           <Route path="/careers" element={<Careers />} />
-          <Route path="/internship" element={<Internship />} />
+          <Route path="/internships" element={<Internship />} />
           <Route path="/tulip-internship" element={<TulipInternship />} />
           <Route path="/ente-keralam" element={<EnteKeralam />} />
           <Route path="/government-orders" element={<GovernmentOrders />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
-          <Route path="/covid" element={<Covid/>} />
-          <Route path="/search" element={<Search/>}/>
-          <Route path="/spv" element={<SpecialPurposeVehicle/>}/>
-          <Route path="/downloads" element={<Documents/>}/>
-          <Route path="/benefiaciary-details" element={<BenefiaciaryDetails/>}/>
-          <Route path="/sctl" element={<SmartCity/>}/>
-          <Route path="/events" element={<Event/>}/>
-          <Route path="/gallery" element={<GalleryPage/>}/>
+          <Route path="/covid" element={<Covid />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/spv" element={<SpecialPurposeVehicle />} />
+          <Route path="/downloads" element={<Documents />} />
+          <Route path="/benefiaciary-details" element={<BenefiaciaryDetails />} />
+          <Route path="/sctl" element={<SmartCity />} />
+          <Route path="/events" element={<Event />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/news/:id" element={<NewsDetail />} />
+          <Route path="/tenders/:id" element={<TenderDetail />} />
+          <Route path="/careers/:id" element={<CareerDetail />} />
+          <Route path="/videos/:id" element={<VideoDetail />} />
+          <Route path="/government-orders/:id" element={<GovernmentOrderDetail />} />
+          <Route path="/downloads/:id" element={<DocumentsDetail />} />
+          <Route path="/internships/:id" element={<InternshipDetail />} />
         </Routes>
       </main>
       <Footer />
-      <ScrollToTopButton/>
+      <ScrollToTopButton />
     </div>
   );
 };

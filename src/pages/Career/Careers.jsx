@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Banner from '../../assets/banners/careerBanner.jpg';
 import { FaFilePdf } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 
 const Careers = () => {
   const [careers, setCareers] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/careers/') 
+    axios.get('http://127.0.0.1:8000/api/careers/')
       .then(res => {
         setCareers(res.data);
         setLoading(false);
@@ -59,7 +60,14 @@ const Careers = () => {
                 {careers.map((career) => (
                   <tr key={career.id} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
                     <td className="p-4 text-gray-700">{career.no}</td>
-                    <td className="p-4 text-gray-700 font-medium">{career.title}</td>
+                    <td className="p-4 text-gray-700 font-medium">
+                      <Link
+                        to={`/careers/${career.id}`}
+                        className="text-[#1A759F] hover:text-[#184E77] hover:underline"
+                      >
+                        {career.title}
+                      </Link>
+                    </td>
                     <td className="p-4 text-gray-700">{career.status}</td>
                     <td className="p-4 text-gray-700">{career.posted_on}</td>
                     <td className="p-4">
