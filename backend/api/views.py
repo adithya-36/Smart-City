@@ -157,19 +157,24 @@ class SearchView(APIView):
         query = request.GET.get('query', '').strip().lower()
         results = {}
 
-        # Keywords to match for tender and document
+        # Keyword groups
         tender_keywords = ['tender', 'tenders']
         document_keywords = ['document', 'documents', 'pdf', 'download', 'downloads', 'report']
+        career_keywords = ['career', 'careers']
+        mpr_keywords = ['monthly report', 'mpr', 'progress']
+        annual_report_keywords = ['annual report', 'financial report']
+        tulip_keywords = ['tulip', 'tulip internship']
+        beneficiary_keywords = ['beneficiary', 'beneficiary details']
 
-        # 🔍 Return all careers if query is career-related
-        if query in ['career', 'careers']:
+        # Careers
+        if query in career_keywords:
             results['careers'] = CareerSerializer(Career.objects.all(), many=True).data
         else:
             results['careers'] = CareerSerializer(Career.objects.filter(
                 Q(title__icontains=query) | Q(status__icontains=query)
             ), many=True).data
 
-        # 🔍 Return all tenders if query is 'tender' or 'tenders'
+        # Tenders
         if query in tender_keywords:
             results['tenders'] = TenderSerializer(Tender.objects.all(), many=True).data
         else:
@@ -177,14 +182,40 @@ class SearchView(APIView):
                 Q(title__icontains=query) | Q(no__icontains=query)
             ), many=True).data
 
-        # 🔍 Return all documents for generic keywords, or filtered
+        # Documents
         results['documents'] = DocumentSerializer(
             Document.objects.all() if query in document_keywords else
             Document.objects.filter(Q(title__icontains=query)),
             many=True
         ).data
 
-        # Other searchable content
+        # Monthly Progress Reports (MPR)
+        if query in mpr_keywords:
+            results['mpr'] = MonthlyProgressReportSerializer(MonthlyProgressReport.objects.all(), many=True).data
+        else:
+            results['mpr'] = MonthlyProgressReportSerializer(MonthlyProgressReport.objects.filter(
+                Q(month__icontains=query)
+            ), many=True).data
+
+        # Annual Reports → trigger Financials page
+        if query in annual_report_keywords:
+            results['financials'] = []  # Trigger link to Financials page
+        else:
+            results['financials'] = []
+
+        # Tulip Internship → redirect to page
+        if query in tulip_keywords:
+            results['tulip'] = []
+        else:
+            results['tulip'] = []
+
+        # Beneficiary Details → redirect to page
+        if query in beneficiary_keywords:
+            results['beneficiary'] = []
+        else:
+            results['beneficiary'] = []
+
+        # Additional content (unchanged)
         results.update({
             'news': NewsSerializer(News.objects.filter(
                 Q(title__icontains=query) | Q(excerpt__icontains=query)
@@ -218,10 +249,6 @@ class SearchView(APIView):
                 Q(alt__icontains=query)
             ), many=True).data,
 
-            'mpr': MonthlyProgressReportSerializer(MonthlyProgressReport.objects.filter(
-                Q(month__icontains=query)
-            ), many=True).data,
-
             'internships': InternshipSerializer(Internship.objects.filter(
                 Q(title__icontains=query) | Q(post__icontains=query)
             ), many=True).data,
@@ -248,7 +275,6 @@ class SearchView(APIView):
         })
 
         return Response(results)
-
 
 
 
