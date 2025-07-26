@@ -45,26 +45,26 @@ const SearchResults = () => {
 
   // Build the URL based on key and item ID
   const getItemUrl = (key, item) => {
-    const baseRoute = keyToRouteMap[key] || key;
-    return item.id ? `/${baseRoute}/${item.id}` : `/${baseRoute}`;
-  };
-
+  const baseRoute = keyToRouteMap[key] || key;
+  return item.id ? `/${baseRoute}/${item.id}` : `/${baseRoute}`;
+};
   // Extract display title
   const getTitle = (item) => {
-  return (
-    item.title ||
-    item.name ||
-    item.caption ||
-    item.month || // for mpr
-    item.post ||  // for internship
-    item.position || // for officials
-    'Untitled'
-  );
-};
+    return (
+      item.title ||
+      item.name ||
+      item.caption ||
+      item.month || // for mpr
+      item.post ||  // for internship
+      item.position || // for officials
+      'Untitled'
+    );
+  };
+  const highlight = (text, term) =>
+  text.replace(new RegExp(`(${term})`, 'gi'), '<mark>$1</mark>');
 
-
   return (
-    <div className="p-6 max-w-5xl mx-auto">
+    <div className="p-6 max-w-5xl mx-auto" data-cy="search-results">
       <h2 className="text-2xl font-bold mb-6 text-[#184E77]">
         Search Results for: <span className="text-black">{query}</span>
       </h2>

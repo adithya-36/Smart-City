@@ -6,7 +6,7 @@ const VisionSection = () => {
   const { t } = useTranslation();  // ✅ added
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-12 px-4 sm:px-6 lg:px-8 bg-gray-50" data-cy="vision-section">
       {/* Vision card */}
       <div className="bg-white p-6 md:p-8 border-l-4 border-[#1E6091] shadow-sm">
         <h1 className="text-2xl md:text-3xl font-bold mb-4 text-[#184E77]">

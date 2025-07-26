@@ -16,7 +16,7 @@ const DocumentsDetail = () => {
   if (!document) return <p className="p-6 text-gray-600">Loading...</p>;
 
   return (
-    <div className="bg-white p-6 max-w-4xl mx-auto">
+    <div className="bg-white p-6 max-w-4xl mx-auto" data-cy="document-detail-page">
       <h1 className="text-3xl font-bold text-[#184E77] mb-6 border-b border-gray-200 pb-4">
         {document.title}
       </h1>

@@ -1,57 +1,27 @@
-from rest_framework import viewsets, generics, filters
+from rest_framework import viewsets, generics, filters, mixins, status
 from rest_framework.views import APIView
+from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Q
-from rest_framework.response import Response
-from rest_framework import mixins
-from rest_framework import status
+
 from .models import (
-    Career,
-    Tender,
-    News,
-    ConclaveSpeaker,
-    ConclaveRecording,
-    AnniversaryImage,
-    InaugurationImage,
-    GovernmentOrder,
-    ContactMessage,
-    Complaint,
-    PollFeedback,
-    MonthlyProgressReport,
-    Internship,
-    PhotoAlbum,
-    Video,
-    MediaItem, EventItem, ContactInfo,
-    BoardMember,
-    CEO,
-    Staff,
-    Document,
-    Official
+    Career, Tender, News, ConclaveSpeaker, ConclaveRecording,
+    AnniversaryImage, InaugurationImage, GovernmentOrder, ContactMessage,
+    Complaint, PollFeedback, MonthlyProgressReport, Internship, PhotoAlbum,
+    Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff,
+    Document, Official
 )
 
 from .serializers import (
-    CareerSerializer,
-    TenderSerializer,
-    NewsSerializer,
-    ConclaveSpeakerSerializer,
-    ConclaveRecordingSerializer,
-    AnniversaryImageSerializer,
-    InaugurationSerializer,
-    GovernmentOrderSerializer,
-    ContactMessageSerializer,
-    ComplaintSerializer,
-    PollFeedbackSerializer,
-    MonthlyProgressReportSerializer,
-    InternshipSerializer,
-    PhotoAlbumSerializer,
-    VideoSerializer,
-    MediaItemSerializer, EventItemSerializer, ContactInfoSerializer,
-    BoardMemberSerializer,
-    CEOSerializer,
-    StaffSerializer,
-    DocumentSerializer,
-    OfficialSerializer
-
+    CareerSerializer, TenderSerializer, NewsSerializer,
+    ConclaveSpeakerSerializer, ConclaveRecordingSerializer,
+    AnniversaryImageSerializer, InaugurationSerializer,
+    GovernmentOrderSerializer, ContactMessageSerializer,
+    ComplaintSerializer, PollFeedbackSerializer,
+    MonthlyProgressReportSerializer, InternshipSerializer,
+    PhotoAlbumSerializer, VideoSerializer, MediaItemSerializer,
+    EventItemSerializer, ContactInfoSerializer, BoardMemberSerializer,
+    CEOSerializer, StaffSerializer, DocumentSerializer, OfficialSerializer
 )
 
 
@@ -62,7 +32,6 @@ class CareerViewSet(viewsets.ReadOnlyModelViewSet):
 
 class TenderViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Tender.objects.all().order_by('-last_date_to_submit')
-
     serializer_class = TenderSerializer
 
 
@@ -101,8 +70,7 @@ class LatestNewsViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = NewsSerializer
 
 
-class ContactMessageViewSet(mixins.CreateModelMixin,
-                            viewsets.GenericViewSet):
+class ContactMessageViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     queryset = ContactMessage.objects.all()
     serializer_class = ContactMessageSerializer
 
@@ -157,7 +125,6 @@ class SearchView(APIView):
         query = request.GET.get('query', '').strip().lower()
         results = {}
 
-        # Keyword groups
         tender_keywords = ['tender', 'tenders']
         document_keywords = ['document', 'documents', 'pdf', 'download', 'downloads', 'report']
         career_keywords = ['career', 'careers']
@@ -189,38 +156,30 @@ class SearchView(APIView):
             many=True
         ).data
 
-        # Monthly Progress Reports (MPR)
+        # MPR
         if query in mpr_keywords:
-            results['mpr'] = MonthlyProgressReportSerializer(MonthlyProgressReport.objects.all(), many=True).data
+            results['mpr'] = MonthlyProgressReportSerializer(
+                MonthlyProgressReport.objects.all(), many=True).data
         else:
-            results['mpr'] = MonthlyProgressReportSerializer(MonthlyProgressReport.objects.filter(
-                Q(month__icontains=query)
-            ), many=True).data
+            results['mpr'] = MonthlyProgressReportSerializer(
+                MonthlyProgressReport.objects.filter(Q(month__icontains=query)),
+                many=True
+            ).data
 
-        # Annual Reports → trigger Financials page
-        if query in annual_report_keywords:
-            results['financials'] = []  # Trigger link to Financials page
-        else:
-            results['financials'] = []
+        # Financials, Tulip, Beneficiary — link triggers
+        results['financials'] = [] if query in annual_report_keywords else []
+        results['tulip'] = [] if query in tulip_keywords else []
+        results['beneficiary'] = [] if query in beneficiary_keywords else []
 
-        # Tulip Internship → redirect to page
-        if query in tulip_keywords:
-            results['tulip'] = []
-        else:
-            results['tulip'] = []
+        # News
+        results['news'] = NewsSerializer(
+            News.objects.all() if query == 'news' else
+            News.objects.filter(Q(title__icontains=query) | Q(excerpt__icontains=query)),
+            many=True
+        ).data
 
-        # Beneficiary Details → redirect to page
-        if query in beneficiary_keywords:
-            results['beneficiary'] = []
-        else:
-            results['beneficiary'] = []
-
-        # Additional content (unchanged)
+        # Other content
         results.update({
-            'news': NewsSerializer(News.objects.filter(
-                Q(title__icontains=query) | Q(excerpt__icontains=query)
-            ), many=True).data,
-
             'media': MediaItemSerializer(MediaItem.objects.filter(
                 Q(title__icontains=query)
             ), many=True).data,
@@ -275,7 +234,6 @@ class SearchView(APIView):
         })
 
         return Response(results)
-
 
 
 class BoardMemberViewSet(viewsets.ModelViewSet):

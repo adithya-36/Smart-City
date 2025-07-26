@@ -92,18 +92,15 @@ class VideoSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'youtube_url', 'youtube_id']
 
 class MediaItemSerializer(serializers.ModelSerializer):
-    image = serializers.ImageField(required=False)
-
     class Meta:
         model = MediaItem
         fields = '__all__'
 
 class EventItemSerializer(serializers.ModelSerializer):
-    image = serializers.ImageField(required=False)
-
     class Meta:
         model = EventItem
         fields = '__all__'
+
 
 class ContactInfoSerializer(serializers.ModelSerializer):
     class Meta:

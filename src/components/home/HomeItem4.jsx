@@ -116,7 +116,7 @@ const HomeItem4 = () => {
 
             <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-300 ${isTransitioning ? 'opacity-70' : 'opacity-100'}`}>
               {visibleItems.map(item => (
-                <div key={item.id} className="bg-white border border-gray-200 h-full flex flex-col transition-opacity duration-700 ease-in-out transform animate-slide-up">
+                <div data-cy="news-card" key={item.id} className="bg-white border border-gray-200 h-full flex flex-col transition-opacity duration-700 ease-in-out transform animate-slide-up">
                   <div className="h-48 overflow-hidden">
                     <img
                       src={item.image.startsWith('http') ? item.image : `http://localhost:8000${item.image}`}

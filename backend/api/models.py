@@ -224,6 +224,7 @@ class MediaItem(models.Model):
     title = models.CharField(max_length=255)
     date = models.DateField()
     image = models.ImageField(upload_to='media_images/', null=True, blank=True)
+    description = models.TextField(blank=True) 
 
     def __str__(self):
         return self.title
@@ -233,6 +234,7 @@ class EventItem(models.Model):
     title = models.CharField(max_length=255)
     date = models.DateField()
     image = models.ImageField(upload_to='event_images/', null=True, blank=True)
+    description = models.TextField(blank=True)
 
     def __str__(self):
         return self.title

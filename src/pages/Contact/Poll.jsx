@@ -27,7 +27,7 @@ const Poll = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50" data-cy="poll-page">
       {/* Banner */}
       <div className="relative h-48 md:h-64 w-full overflow-hidden">
         <div
@@ -46,7 +46,7 @@ const Poll = () => {
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 py-12">
         {submitted ? (
-          <div className="text-center py-12">
+          <div className="text-center py-12" data-cy="poll-success">
             <div className="w-24 h-24 flex items-center justify-center mx-auto mb-8">
               <GrStatusGood className='text-5xl text-[#184E77]' />
             </div>
@@ -57,6 +57,7 @@ const Poll = () => {
               {t('poll.thankYouMessage')}
             </p>
             <button
+              data-cy="submit-another"
               onClick={() => {
                 setSubmitted(false);
                 setSelectedOption(null);

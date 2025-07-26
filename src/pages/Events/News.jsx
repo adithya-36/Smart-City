@@ -15,8 +15,9 @@ const News = () => {
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/news/')
+    axios.get('/api/news/')
       .then(response => {
+        console.log('NEWS DATA:', response.data);
         const sorted = response.data
           .filter(item => isValidDate(item.date))
           .sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -30,7 +31,7 @@ const News = () => {
   }, []);
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gray-50 min-h-screen" data-cy="news-page">
       <div className="bg-[#184E77] py-16" data-aos="fade-down">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold text-white mb-4">News & Updates</h1>
@@ -52,6 +53,7 @@ const News = () => {
               <div
                 key={index}
                 className="bg-white shadow-sm hover:shadow-md transition-shadow duration-300 transform hover:scale-[1.02]"
+                data-cy="news-card"
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
@@ -81,7 +83,8 @@ const News = () => {
                       {item.type || 'NEWS'}
                     </span>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3 hover:text-[#1E6091] transition-colors">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-3 hover:text-[#1E6091] transition-colors"
+                  data-cy="news-title">
                     <a href={item.link} target="_blank" rel="noopener noreferrer">{item.title}</a>
                   </h3>
                   <p className="text-gray-600 mb-4">{item.excerpt}</p>

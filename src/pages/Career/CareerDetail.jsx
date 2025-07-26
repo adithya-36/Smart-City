@@ -29,7 +29,7 @@ const CareerDetail = () => {
   }
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="p-6 max-w-4xl mx-auto" data-cy="career-detail-page">
       <h1 className="text-3xl font-bold mb-4 text-[#184E77]">{career.title}</h1>
 
       <div className="mb-4 text-gray-700 space-y-2">

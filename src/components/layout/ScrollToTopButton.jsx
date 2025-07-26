@@ -26,12 +26,12 @@ const ScrollToTopButton = () => {
   };
 
   return (
-    <div className={`fixed bottom-8 right-8 z-50 transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+    <div className={`fixed bottom-8 right-8 z-50 transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} data-cy="scroll-to-top-button">
 
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="bg-[#1E6091] text-white p-3 shadow-lg hover:bg-[#184E77] transition-all duration-200 focus:outline-none animate-bounce"
+          className="bg-[#1E6091] text-white p-3 mb-8 shadow-lg hover:bg-[#184E77] transition-all duration-200 focus:outline-none animate-bounce"
           aria-label="Scroll to top"
         >
           <IoMdArrowRoundUp className='text-3xl ' />

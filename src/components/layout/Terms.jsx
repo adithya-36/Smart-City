@@ -2,7 +2,7 @@ import React from 'react';
 
 const Terms = () => {
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8" data-cy="terms-page">
       <div className="max-w-4xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-8">

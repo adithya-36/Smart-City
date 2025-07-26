@@ -43,7 +43,7 @@ const Inauguration = () => {
   }, [selectedImage]);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8" data-cy="inauguration-page">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8 border-b border-gray-200 pb-4" data-aos="fade-down">
@@ -56,6 +56,7 @@ const Inauguration = () => {
           {images.map((image, index) => (
             <div
               key={image.id}
+              data-cy={`inauguration-card-${index}`}
               className="group relative overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer"
               onClick={() => openImage(image)}
               data-aos="zoom-in"

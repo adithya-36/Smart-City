@@ -15,7 +15,7 @@ const InternshipDetail = () => {
   if (!internship) return <p className="p-6 text-center">Loading...</p>;
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl mx-auto p-6" data-cy="internship-detail-page">
       <h1 className="text-3xl font-bold text-[#184E77] mb-4">{internship.title}</h1>
 
       {internship.post && (

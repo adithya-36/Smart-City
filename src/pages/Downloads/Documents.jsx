@@ -12,7 +12,7 @@ const Documents = () => {
   }, []);
 
   return (
-    <div className="bg-white p-6">
+    <div className="bg-white p-6" data-cy="documents-page">
       <h1 className="text-3xl font-bold text-[#184E77] mb-8 border-b border-gray-200 pb-4">Documents</h1>
       
       <div className="mb-12">

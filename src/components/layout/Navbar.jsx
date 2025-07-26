@@ -50,10 +50,11 @@ const Navbar = () => {
     navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
     setShowSearch(false);
     setSearchQuery('');
+    setMenuOpen(false);
   };
 
   return (
-    <div className="font-sans">
+    <div className="font-sans" data-cy="navbar">
       <div ref={bannerRef} className="bg-[#184E77] py-4">
         <div className="w-full mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
           <div
@@ -63,8 +64,9 @@ const Navbar = () => {
               : 'sticky top-0'
               }`}
           >
-            <div className="w-full mx-auto px-4 py-2 flex items-center justify-center">
-              <div className="hidden lg:flex space-x-1 items-center overflow-visible">
+            <div className="w-full mx-auto px-4 py-2 flex items-center justify-between">
+              {/* Desktop Menu */}
+              <div className="hidden lg:flex flex-1 justify-center space-x-1 items-center overflow-visible">
                 {navigation.map((item) => (
                   <div
                     key={item.name}
@@ -105,14 +107,14 @@ const Navbar = () => {
                 ))}
               </div>
 
-              <div className="flex items-center gap-4">
+              {/* Right icons - search and hamburger */}
+              <div className="flex items-center gap-4 ml-auto">
                 <button
                   onClick={handleSearchToggle}
-                  className="text-white ml-4 text-2xl hover:text-[#d9ed92] transition-all"
+                  className="text-white text-2xl hover:text-[#d9ed92] transition-all"
                 >
                   <IoSearch />
                 </button>
-
                 <div className="lg:hidden">
                   <button
                     onClick={() => setMenuOpen(!menuOpen)}
@@ -128,6 +130,7 @@ const Navbar = () => {
               </div>
             </div>
 
+            {/* Search Input Box */}
             {showSearch && (
               <div className="w-full bg-white px-4 py-2 flex justify-center items-center border-t border-gray-200">
                 <input
@@ -150,6 +153,7 @@ const Navbar = () => {
               </div>
             )}
 
+            {/* Mobile Dropdown Menu */}
             {menuOpen && (
               <div className="lg:hidden px-4 pb-4 bg-[#184E77]">
                 {navigation.map((item) => (
@@ -165,6 +169,8 @@ const Navbar = () => {
                           if (item.dropdown) {
                             e.preventDefault();
                             toggleMobileDropdown(item.name);
+                          } else {
+                            setMenuOpen(false); // ✅ close on link click
                           }
                         }}
                       >
@@ -189,6 +195,7 @@ const Navbar = () => {
                               `block text-sm py-3 px-5 border-b border-gray-100 last:border-b-0 transition-colors duration-150 ${isActive ? 'text-[#184E77] font-medium' : 'text-gray-700'
                               } hover:text-[#1E6091] hover:bg-gray-100`
                             }
+                            onClick={() => setMenuOpen(false)} // ✅ close on subitem click
                           >
                             {t(`navbar.${sub.name}`)}
                           </NavLink>

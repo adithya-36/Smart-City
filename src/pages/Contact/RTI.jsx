@@ -17,7 +17,7 @@ const RTI = () => {
   ];
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50" data-cy="rti-page">
       <div className="relative h-48 md:h-64 w-full overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `linear-gradient(to right, rgba(24, 78, 119, 0.9), rgba(30, 96, 145, 0.8)), url(${Banner})` }} />

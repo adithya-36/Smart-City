@@ -13,10 +13,11 @@ import {
   FaYoutube,
 } from 'react-icons/fa';
 import axios from 'axios';
-import { useTranslation } from 'react-i18next'; // ✅ Added i18n hook
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom'; // ✅ Use React Router navigation
 
 const Footer = () => {
-  const { t } = useTranslation(); // ✅ Initialize i18n hook
+  const { t } = useTranslation();
   const [mediaItems, setMediaItems] = useState([]);
   const [eventItems, setEventItems] = useState([]);
 
@@ -35,13 +36,13 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="bg-[#184E77] text-white px-6 md:px-16 py-10 w-full" data-aos="fade-up">
+    <footer className="bg-[#184E77] text-white px-6 md:px-16 py-10 w-full" data-aos="fade-up" data-cy="footer">
       <div className="grid md:grid-cols-4 gap-10">
         {/* Column 1 */}
         <div data-aos="fade-up">
           <img src={Logo} alt="Smart City Thiruvananthapuram Logo" className="w-24" />
           <p className="text-sm leading-relaxed mb-4">
-            {t('footer.description')} {/* ✅ i18n key */}
+            {t('footer.description')}
           </p>
           <div className="text-sm space-y-1">
             <p className="flex items-center gap-2"><span>📅</span> {t('footer.date')}</p>
@@ -52,7 +53,7 @@ const Footer = () => {
 
         {/* Column 2: In Media */}
         <div data-aos="fade-up" data-aos-delay="100">
-          <h3 className="text-lg font-semibold mb-4 border-b border-gray-500 pb-1">{t('footer.in_media')}</h3> {/* ✅ i18n key */}
+          <h3 className="text-lg font-semibold mb-4 border-b border-gray-500 pb-1">{t('footer.in_media')}</h3>
           <ul className="space-y-4 text-sm">
             {mediaItems.map((item) => (
               <li key={item.id} className="flex gap-3">
@@ -64,7 +65,12 @@ const Footer = () => {
                   />
                 )}
                 <div>
-                  <p className="font-semibold hover:text-gray-300 transition">{item.title}</p>
+                  <Link
+                    to={`/footer-news/${item.id}`}
+                    className="font-semibold hover:text-gray-300 transition block"
+                  >
+                    {item.title}
+                  </Link>
                   <span className="text-gray-300">{item.date}</span>
                 </div>
               </li>
@@ -74,7 +80,7 @@ const Footer = () => {
 
         {/* Column 3: Recent Events */}
         <div data-aos="fade-up" data-aos-delay="200">
-          <h3 className="text-lg font-semibold mb-4 border-b border-gray-500 pb-1">{t('footer.recent_events')}</h3> {/* ✅ i18n key */}
+          <h3 className="text-lg font-semibold mb-4 border-b border-gray-500 pb-1">{t('footer.recent_events')}</h3>
           <ul className="space-y-4 text-sm">
             {eventItems.map((event) => (
               <li key={event.id} className="flex gap-3">
@@ -86,7 +92,12 @@ const Footer = () => {
                   />
                 )}
                 <div>
-                  <p className="font-semibold hover:text-gray-300 transition">{event.title}</p>
+                  <Link
+                    to={`/footer-event/${event.id}`}
+                    className="font-semibold hover:text-gray-300 transition block"
+                  >
+                    {event.title}
+                  </Link>
                   <span className="text-gray-300">{event.date}</span>
                 </div>
               </li>
@@ -96,7 +107,7 @@ const Footer = () => {
 
         {/* Column 4: Contact Info + Social Links */}
         <div data-aos="fade-up" data-aos-delay="300">
-          <h3 className="text-lg font-semibold mb-4 border-b border-gray-500 pb-1">{t('footer.contact_us')}</h3> {/* ✅ i18n key */}
+          <h3 className="text-lg font-semibold mb-4 border-b border-gray-500 pb-1">{t('footer.contact_us')}</h3>
           <div className="space-y-4 text-sm">
             <p className="flex items-start gap-2"><FaPhoneAlt className="mt-1" /> +91 - 0471 - 4010374</p>
             <p className="flex items-start gap-2"><FaEnvelope className="mt-1" /> info@smartcitytvm.in</p>
@@ -106,13 +117,13 @@ const Footer = () => {
                 4th Floor, Felicity Square Building<br />
                 Opp AG Office, Statue<br />
                 Thiruvananthapuram<br />
-                <strong>{t('footer.pincode')}: 695001</strong> {/* ✅ i18n key */}
+                <strong>{t('footer.pincode')}: 695001</strong>
               </span>
             </p>
           </div>
 
           <div className="mt-6">
-            <p className="mb-2 font-semibold">{t('footer.follow_us')}</p> {/* ✅ i18n key */}
+            <p className="mb-2 font-semibold">{t('footer.follow_us')}</p>
             <div className="flex gap-4 text-white text-lg">
               <a href="https://www.facebook.com/smarttrivandrum/" target="_blank" rel="noopener noreferrer">
                 <FaFacebookF className="hover:scale-110 transition-transform duration-300 hover:text-gray-300" />

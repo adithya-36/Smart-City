@@ -7,7 +7,7 @@ const Connectivity = () => {
   const { t } = useTranslation(); // ✅ Initialize translation
 
   return (
-    <div className="mb-16 max-w-6xl mx-auto px-4 md:px-8">
+    <div className="mb-16 max-w-6xl mx-auto px-4 md:px-8" >
       <h1 className="text-2xl md:text-3xl font-bold mb-8 text-center text-[#184E77]">
         {t('connectivity.title')}
       </h1>

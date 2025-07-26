@@ -63,6 +63,8 @@ import VideoDetail from './pages/Gallery/VideoDetail'
 import GovernmentOrderDetail from './pages/Downloads/GovernmentOrderDetail'
 import DocumentsDetail from './pages/Downloads/DocumentDetail'
 import InternshipDetail from './pages/Career/InternshipDetail'
+import FooterNewsDetail from './components/footer/FooterNewsDetail'
+import FooterEventDetail from './components/footer/FooterEventDetail'
 const App = () => {
   return (
     <div className="flex flex-col min-h-screen">
@@ -129,6 +131,8 @@ const App = () => {
           <Route path="/government-orders/:id" element={<GovernmentOrderDetail />} />
           <Route path="/downloads/:id" element={<DocumentsDetail />} />
           <Route path="/internships/:id" element={<InternshipDetail />} />
+          <Route path="/footer-news/:id" element={<FooterNewsDetail />} />
+          <Route path="/footer-event/:id" element={<FooterEventDetail />} />
         </Routes>
       </main>
       <Footer />

@@ -17,7 +17,7 @@ const ContactUs = () => {
   const handleSubmit = async e => {
     e.preventDefault()
     try {
-      await axios.post('http://localhost:8000/api/contact-messages/', formData)
+      await axios.post('http://127.0.0.1:8000/api/contact-messages/', formData)
       setSuccess(true)
       setFormData({ name: '', email: '', phone: '', message: '' })
     } catch (err) {
@@ -27,7 +27,7 @@ const ContactUs = () => {
   }
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50" data-cy="contact-us-page">
       {/* Banner */}
       <div className="relative h-48 md:h-64 w-full overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center" style={{
@@ -119,7 +119,7 @@ const ContactUs = () => {
                 <MdEmail className='text-3xl mr-2 text-[#184E77]' />
                 <h3 className="text-xl font-bold text-[#1E6091]">{t('contact.form.title')}</h3>
               </div>
-              {success && <p className="text-green-600 mb-4">{t('contact.form.success')}</p>}
+              {success && <p data-cy="contact-success" className="text-green-600 mb-4">{t('contact.form.success')}</p>}
               <form onSubmit={handleSubmit} className="space-y-5">
                 {['name','email','phone','message'].map((field,i) => (
                   <div key={i}>

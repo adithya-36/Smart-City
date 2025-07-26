@@ -16,7 +16,7 @@ const HomePage = () => {
   });
 }, []);
   return (
-    <div>
+    <div data-cy="homepage">
       {/* Cover Image with enhanced animations */}
       <div className="w-screen h-[60vh] relative overflow-hidden">
         <img

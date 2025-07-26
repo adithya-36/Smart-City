@@ -44,7 +44,7 @@ const RegisterComplaint = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100" data-cy="register-complaint-page">
       <div className="relative h-48 md:h-64 w-full overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center" style={{
           backgroundImage: `linear-gradient(to right, rgba(0, 60, 80, 0.85), rgba(0, 128, 128, 0.6)), url(${Banner})`

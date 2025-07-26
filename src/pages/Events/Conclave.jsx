@@ -35,7 +35,7 @@ const Conclave = () => {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" data-cy="conclave-page">
       <div className="relative h-screen w-full" data-aos="fade-in">
         <img src={Poster} alt={t('conclave.posterAlt')} className="w-full h-full object-cover" />
       </div>
@@ -98,7 +98,7 @@ const Conclave = () => {
             <div className="w-32 h-1 bg-[#184E77] mx-auto"></div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8" data-cy="recordings-section">
             {recordings.map((rec, idx) => (
               <div key={idx} data-aos="fade-up" data-aos-delay={idx * 100}>
                 <div className="relative pb-[56.25%] h-0 overflow-hidden">
@@ -116,6 +116,7 @@ const Conclave = () => {
               </div>
             ))}
           </div>
+
         </div>
 
         {/* Speakers */}

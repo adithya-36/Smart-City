@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "title": "Nature Gallery",
+    "thumbnail": "/downloads/test/nature-thumb.jpeg",
+    "photos": [
+      {
+        "image": "/downloads/test/nature1.jpeg",
+        "caption": "Mountain"
+      },
+      {
+        "image": "/downloads/test/nature1.jpeg",
+        "caption": "River"
+      }
+    ]
+  }
+]

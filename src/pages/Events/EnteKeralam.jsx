@@ -51,7 +51,7 @@ const EnteKeralam = () => {
   };
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-white" data-cy="ente-keralam-page">
       <div className="bg-gradient-to-r from-[#184E77] to-[#1E6091] text-white py-8" data-aos="fade-down">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center tracking-wide">
@@ -73,7 +73,9 @@ const EnteKeralam = () => {
                 alt={image.alt}
                 className="w-full h-full object-cover"
                 loading={index === 0 ? "eager" : "lazy"}
+                data-cy="ente-keralam-image"
               />
+
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
             </div>
           ))}
@@ -100,11 +102,10 @@ const EnteKeralam = () => {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 ${
-                index === currentSlide
+              className={`w-3 h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 ${index === currentSlide
                   ? 'bg-white scale-125'
                   : 'bg-white/50 hover:bg-white/75'
-              }`}
+                }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}

@@ -35,7 +35,7 @@ const Internship = () => {
   });
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50" data-cy="internship-page">
       {/* Banner */}
       <div className="relative h-48 md:h-64 w-full overflow-hidden">
         <div

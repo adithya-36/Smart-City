@@ -47,7 +47,12 @@ const Anniversary = () => {
   }, [lightboxOpen]);
 
   return (
-    <div className="min-h-screen py-8 px-4" data-aos="fade-in">
+    <div className="min-h-screen py-8 px-4" data-cy="anniversary-page" data-aos="fade-in">
+      {/* Title from mock */}
+      <h1 className="text-3xl font-bold text-center text-[#184E77] mb-8">
+        {images[0]?.title || 'Anniversary Gallery'}
+      </h1>
+
       {/* Header */}
       <div className="max-w-6xl mx-auto text-center mb-12" data-aos="zoom-in">
         <h1 className="text-4xl md:text-6xl font-bold text-[#184E77] mb-4 transform -rotate-2">
@@ -75,6 +80,7 @@ const Anniversary = () => {
                   src={image.image}
                   alt={image.alt}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  data-cy={`anniversary-image-${index}`}
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -89,6 +95,8 @@ const Anniversary = () => {
           ))}
         </div>
       </div>
+
+    
 
       {/* Celebration message */}
       <div className="max-w-4xl mx-auto mt-16 p-8 bg-gradient-to-r shadow-2xl text-center text-[#184E77]" data-aos="fade-up">

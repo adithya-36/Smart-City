@@ -31,6 +31,7 @@ const HomeItem3 = () => {
         <div className="flex overflow-x-auto pb-8 space-x-6 sm:space-x-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 sm:gap-8 sm:overflow-visible hide-scrollbar">
           {officials.map((official, index) => (
             <div
+              data-cy="official-card"
               key={index}
               className="bg-white shadow-lg min-w-[280px] sm:min-w-0 flex flex-col flex-shrink-0"
               data-aos="zoom-in"
@@ -69,7 +70,7 @@ const HomeItem3 = () => {
 
         <div className="mt-16 text-center" data-aos="fade-up">
           <Link to="/spv">
-            <button className="inline-flex items-center px-8 py-3 border border-[#184E77] text-lg font-medium text-[#184E77] bg-white hover:bg-blue-50 transition duration-300">
+            <button data-cy="view-all-officials" className="inline-flex items-center px-8 py-3 border border-[#184E77] text-lg font-medium text-[#184E77] bg-white hover:bg-blue-50 transition duration-300">
               {t('homeItem3.viewAll')} <FaArrowRightLong className='ml-2 h-4 w-4' />
             </button>
           </Link>

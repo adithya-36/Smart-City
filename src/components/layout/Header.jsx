@@ -24,7 +24,7 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-[#184E77] text-white">
+    <div className="bg-[#184E77] text-white" data-cy="header">
       {/* Main Header */}
       <div className="px-4">
         <div className="max-w-8xl mx-auto flex justify-between items-center py-3">

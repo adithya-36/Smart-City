@@ -26,7 +26,7 @@ const NewsDetail = () => {
   if (!news) return <div className="p-6 text-gray-600">No news found.</div>;
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl mx-auto p-6" data-cy="news-detail-page">
       <h1 className="text-3xl font-bold text-[#184E77] mb-4">{news.title}</h1>
       <p className="text-gray-500 mb-2">{new Date(news.date).toLocaleDateString()}</p>
       <img src={news.image} alt={news.title} className="w-full h-auto mb-4 rounded shadow" />
