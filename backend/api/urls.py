@@ -5,7 +5,7 @@ from .views import (
     ConclaveSpeakerViewSet, ConclaveRecordingViewSet, AnniversaryImageViewSet,
     InaugurationImageViewSet, LatestNewsViewSet, ContactMessageViewSet,
     ComplaintViewSet, PollFeedbackCreateView, MonthlyProgressReportViewSet,
-    InternshipViewSet, PhotoAlbumViewSet, VideoViewSet,MediaItemViewSet, EventItemViewSet, ContactInfoViewSet, SearchView, BoardMemberViewSet, CEOViewSet, StaffViewSet, DocumentViewSet, OfficialViewSet
+    InternshipViewSet, PhotoAlbumViewSet, VideoViewSet,MediaItemViewSet, EventItemViewSet, ContactInfoViewSet, SearchView, BoardMemberViewSet, CEOViewSet, StaffViewSet, DocumentViewSet, OfficialViewSet, OngoingProjectViewSet, CompletedProjectViewSet
 
 )
 
@@ -33,6 +33,8 @@ router.register(r'ceos', CEOViewSet)
 router.register(r'staff', StaffViewSet)
 router.register(r'documents', DocumentViewSet)
 router.register(r'officials', OfficialViewSet)
+router.register(r'ongoing-projects', OngoingProjectViewSet, basename='ongoing-projects')
+router.register(r'completed-projects', CompletedProjectViewSet, basename='completed-projects')
 urlpatterns = [
     path('', include(router.urls)),
     path('api/poll-feedback/', PollFeedbackCreateView.as_view(), name='poll-feedback'),

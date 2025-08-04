@@ -6,16 +6,13 @@ import RTIForm from './PDFFile/RTIApplication.pdf';
 import RTIGuideline from './PDFFile/Guidelines.pdf';
 import { MdOutlineEmail, MdOutlinePhone } from 'react-icons/md';
 import { FaFilePdf } from 'react-icons/fa6';
-
 const RTI = () => {
   const { t } = useTranslation();
-
   const officers = [
     { title: t('rti.officers.appellate'), name: 'Rahul Krishna Sharma IAS', designation: 'CEO, SCTL', email: 'ceo@smartcitytvm.in' },
     { title: t('rti.officers.pio'), name: 'Krishna Kumar S', designation: 'General Manager (Operations)', email: 'gm@smartcitytvm.in' },
     { title: t('rti.officers.apio'), name: 'Anitha R', designation: 'Manager (Administration)', email: 'admin@smartcitytvm.in' }
   ];
-
   return (
     <div className="bg-gray-50" data-cy="rti-page">
       <div className="relative h-48 md:h-64 w-full overflow-hidden">
@@ -25,12 +22,10 @@ const RTI = () => {
           <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold text-center px-4">{t('rti.banner')}</h1>
         </div>
       </div>
-
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="shadow-md p-6 md:p-8 mb-8">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[#1E6091]">{t('rti.officerTitle')}</h2>
           <p className="text-gray-700 mb-8">{t('rti.officerDescription')}</p>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {officers.map((o, i) => (
               <div key={i} className="border p-5 shadow-sm" style={{ borderColor: ['#1E6091', '#184E77', '#1A759F'][i] }}>
@@ -43,7 +38,6 @@ const RTI = () => {
               </div>
             ))}
           </div>
-
           <div className="bg-gray-50 p-6">
             <h3 className="text-xl font-bold mb-4 text-[#1E6091]">{t('rti.address')}</h3>
             <div className="space-y-2 text-gray-700">
@@ -61,18 +55,15 @@ const RTI = () => {
             </div>
           </div>
         </div>
-
         <div className="bg-white shadow-md p-6 md:p-8">
           <h2 className="text-2xl font-bold mb-6 text-[#1E6091]">{t('rti.aboutRTI')}</h2>
           <p className="text-gray-700 mb-6">{t('rti.aboutText')}</p>
-
           <div className="bg-gray-50 p-4 mb-6">
             <h3 className="font-bold mb-3 text-[#1E6091]">{t('rti.keyProvisions')}</h3>
             <ul className="list-disc list-inside space-y-2 pl-2">
               {t('rti.provisionsList', { returnObjects: true }).map((line, i) => <li key={i}>{line}</li>)}
             </ul>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="p-4">
               <h3 className="font-bold mb-4 text-[#1E6091]">{t('rti.howToFile')}</h3>
@@ -93,7 +84,6 @@ const RTI = () => {
             </div>
           </div>
         </div>
-
         <div className="mt-12 text-center">
           <h3 className="text-xl font-bold mb-6 text-[#1E6091]">{t('rti.downloadsTitle')}</h3>
           <div className="flex flex-wrap justify-center gap-4">
@@ -112,5 +102,4 @@ const RTI = () => {
     </div>
   );
 };
-
 export default RTI;

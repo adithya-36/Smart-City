@@ -182,19 +182,6 @@ const ABDArea = () => {
                 ))}
               </div>
             </div>
-
-            {/* Contact */}
-            <div className="bg-[#1E6091] border border-[#184E77] p-6 text-white" data-aos="fade-up">
-              <h3 className="font-bold mb-4">Project Contact</h3>
-              <p className="text-sm mb-2">ABD Project Office</p>
-              <p className="text-sm mb-1">Smart City Thiruvananthapuram Ltd.</p>
-              <p className="text-sm mb-1">Phone: +91 471 272 8888</p>
-              <p className="text-sm mb-6">Email: abd@smartcitytvm.org</p>
-              <button className="w-full bg-white text-[#184E77] py-2 font-bold hover:bg-gray-100 transition">
-                Contact Team
-              </button>
-            </div>
-
             {/* Back Button */}
             <div className="mt-6" data-aos="fade-in">
               <a

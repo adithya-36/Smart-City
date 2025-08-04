@@ -3,11 +3,9 @@ import axios from 'axios';
 import Banner from '../../assets/banners/careerBanner.jpg';
 import { FaFilePdf } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
-
 const Careers = () => {
   const [careers, setCareers] = useState([]);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/careers/')
       .then(res => {
@@ -19,7 +17,6 @@ const Careers = () => {
         setLoading(false);
       });
   }, []);
-
   return (
     <div className="bg-gray-50" data-cy="careers-page">
       {/* Banner */}
@@ -36,7 +33,6 @@ const Careers = () => {
           </h1>
         </div>
       </div>
-
       <div className="max-w-7xl mx-auto px-4 py-12">
         {loading ? (
           <p className="text-center text-gray-500">Loading...</p>
@@ -91,5 +87,4 @@ const Careers = () => {
     </div>
   );
 };
-
 export default Careers;

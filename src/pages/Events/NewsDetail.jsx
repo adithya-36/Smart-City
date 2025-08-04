@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-
 const NewsDetail = () => {
   const { id } = useParams(); // get the news ID from URL
   const [news, setNews] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/api/news/${id}/`)
       .then(res => {
@@ -20,11 +18,9 @@ const NewsDetail = () => {
       })
       .finally(() => setLoading(false));
   }, [id]);
-
   if (loading) return <div className="text-blue-600 p-6">Loading...</div>;
   if (error) return <div className="text-red-600 p-6">{error}</div>;
   if (!news) return <div className="p-6 text-gray-600">No news found.</div>;
-
   return (
     <div className="max-w-4xl mx-auto p-6" data-cy="news-detail-page">
       <h1 className="text-3xl font-bold text-[#184E77] mb-4">{news.title}</h1>
@@ -37,5 +33,4 @@ const NewsDetail = () => {
     </div>
   );
 };
-
 export default NewsDetail;

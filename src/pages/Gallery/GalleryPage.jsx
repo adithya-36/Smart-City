@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 const GalleryPage = () => {
   return (
     <div className="bg-white min-h-screen p-6">
       <h1 className="text-3xl font-bold text-[#184E77] mb-8 border-b border-gray-200 pb-4">Gallery</h1>
-      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         <Link 
           to="/photo-gallery" 

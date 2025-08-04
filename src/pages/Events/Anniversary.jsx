@@ -3,12 +3,10 @@ import axios from 'axios';
 import { IoIosClose } from "react-icons/io";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
 const Anniversary = () => {
   const [images, setImages] = useState([]);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-
   useEffect(() => {
     AOS.init({ once: true, duration: 800 });
   }, []);
@@ -18,41 +16,34 @@ const Anniversary = () => {
       .then(response => setImages(response.data))
       .catch(error => console.error("Error fetching anniversary images:", error));
   }, []);
-
   const openLightbox = (image) => {
     setSelectedImage(image);
     setLightboxOpen(true);
   };
-
   const closeLightbox = () => {
     setLightboxOpen(false);
   };
-
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') closeLightbox();
     };
-
     if (lightboxOpen) {
       document.body.style.overflow = 'hidden';
       document.addEventListener('keydown', handleKeyDown);
     } else {
       document.body.style.overflow = 'auto';
     }
-
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'auto';
     };
   }, [lightboxOpen]);
-
   return (
     <div className="min-h-screen py-8 px-4" data-cy="anniversary-page" data-aos="fade-in">
       {/* Title from mock */}
       <h1 className="text-3xl font-bold text-center text-[#184E77] mb-8">
         {images[0]?.title || 'Anniversary Gallery'}
       </h1>
-
       {/* Header */}
       <div className="max-w-6xl mx-auto text-center mb-12" data-aos="zoom-in">
         <h1 className="text-4xl md:text-6xl font-bold text-[#184E77] mb-4 transform -rotate-2">
@@ -63,7 +54,6 @@ const Anniversary = () => {
           Journey through our milestone moments, cherished memories, and the people who made it all possible.
         </p>
       </div>
-
       {/* Gallery */}
       <div className="max-w-7xl mx-auto" data-aos="fade-up">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
@@ -95,9 +85,6 @@ const Anniversary = () => {
           ))}
         </div>
       </div>
-
-    
-
       {/* Celebration message */}
       <div className="max-w-4xl mx-auto mt-16 p-8 bg-gradient-to-r shadow-2xl text-center text-[#184E77]" data-aos="fade-up">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">A Journey to Remember</h2>
@@ -111,7 +98,6 @@ const Anniversary = () => {
           <div className="bg-white/20 backdrop-blur-sm px-6 py-2 font-bold" data-aos="fade-right" data-aos-delay="200">X Awards</div>
         </div>
       </div>
-
       {/* Lightbox */}
       {lightboxOpen && selectedImage && (
         <div
@@ -128,7 +114,6 @@ const Anniversary = () => {
             >
               <IoIosClose className='text-5xl' />
             </button>
-
             <div className="bg-white overflow-hidden shadow-2xl" data-aos="zoom-in">
               <img
                 src={selectedImage.image}
@@ -145,5 +130,4 @@ const Anniversary = () => {
     </div>
   );
 };
-
 export default Anniversary;

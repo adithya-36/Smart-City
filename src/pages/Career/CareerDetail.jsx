@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { FaFilePdf } from "react-icons/fa6";
-
 const CareerDetail = () => {
   const { id } = useParams();
   const [career, setCareer] = useState(null);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/api/careers/${id}/`)
       .then(res => {
@@ -19,15 +17,12 @@ const CareerDetail = () => {
         setError("Career not found or an error occurred.");
       });
   }, [id]);
-
   if (error) {
     return <p className="text-red-600 p-6">{error}</p>;
   }
-
   if (!career) {
     return <p className="text-gray-600 p-6">Loading...</p>;
   }
-
   return (
     <div className="p-6 max-w-4xl mx-auto" data-cy="career-detail-page">
       <h1 className="text-3xl font-bold mb-4 text-[#184E77]">{career.title}</h1>
@@ -37,7 +32,6 @@ const CareerDetail = () => {
         <p><strong>Posted On:</strong> {career.posted_on}</p>
         <p><strong>Career No:</strong> {career.no}</p>
       </div>
-
       {career.pdf && (
         <a
           href={career.pdf}
@@ -52,5 +46,4 @@ const CareerDetail = () => {
     </div>
   );
 };
-
 export default CareerDetail;

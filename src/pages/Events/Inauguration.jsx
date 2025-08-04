@@ -74,7 +74,6 @@ const Inauguration = () => {
             </div>
           ))}
         </div>
-
         {/* Fullscreen Modal */}
         {selectedImage && (
           <div
@@ -107,5 +106,4 @@ const Inauguration = () => {
     </div>
   );
 };
-
 export default Inauguration;

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import News,Career, Tender, ConclaveSpeaker,GovernmentOrder, ContactMessage, ConclaveRecording, AnniversaryImage, InaugurationImage,Complaint,PollFeedback,MonthlyProgressReport,Internship,PhotoAlbum, Photo,Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff, Document, Official
+from .models import News,Career, Tender, ConclaveSpeaker,GovernmentOrder, ContactMessage, ConclaveRecording, AnniversaryImage, InaugurationImage,Complaint,PollFeedback,MonthlyProgressReport,Internship,PhotoAlbum, Photo,Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff, Document, Official,  OngoingProject, ProjectImage, CompletedProject, CompletedProjectImage
 from django.utils import timezone
 
 class CareerSerializer(serializers.ModelSerializer):
@@ -64,7 +64,7 @@ class PollFeedbackSerializer(serializers.ModelSerializer):
 class MonthlyProgressReportSerializer(serializers.ModelSerializer):
     class Meta:
         model = MonthlyProgressReport
-        fields = ['id', 'month', 'file', 'uploaded_at']
+        fields = ['id', 'month', 'year', 'file', 'uploaded_at']
 
 
 class InternshipSerializer(serializers.ModelSerializer):
@@ -139,3 +139,28 @@ class OfficialSerializer(serializers.ModelSerializer):
     class Meta:
         model = Official
         fields = ['id', 'name', 'title', 'description', 'image', 'linkedin', 'priority']
+
+# serializers.py
+class ProjectImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProjectImage
+        fields = ['id', 'image', 'caption']
+
+class OngoingProjectSerializer(serializers.ModelSerializer):
+    images = ProjectImageSerializer(many=True, read_only=True)  # Include images here
+
+    class Meta:
+        model = OngoingProject
+        fields = ['id', 'project_id', 'project_name', 'scm', 'target_completion', 'images']
+
+class CompletedProjectImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CompletedProjectImage
+        fields = ['id', 'image', 'caption']
+
+class CompletedProjectSerializer(serializers.ModelSerializer):
+    images = CompletedProjectImageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = CompletedProject
+        fields = ['id', 'project_name', 'amount', 'images']

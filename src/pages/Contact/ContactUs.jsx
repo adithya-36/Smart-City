@@ -7,12 +7,10 @@ import { MdEmail, MdGroups } from "react-icons/md"
 import { FaLocationDot } from "react-icons/fa6"
 import { IoIosLink } from "react-icons/io"
 import { useTranslation } from 'react-i18next'
-
 const ContactUs = () => {
   const { t } = useTranslation()
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
   const [success, setSuccess] = useState(false)
-
   const handleChange = e => setFormData({ ...formData, [e.target.id]: e.target.value })
   const handleSubmit = async e => {
     e.preventDefault()
@@ -25,7 +23,6 @@ const ContactUs = () => {
       setSuccess(false)
     }
   }
-
   return (
     <div className="bg-gray-50" data-cy="contact-us-page">
       {/* Banner */}
@@ -39,10 +36,8 @@ const ContactUs = () => {
           </h1>
         </div>
       </div>
-
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-
           {/* Left - Info & Map */}
           <div className="space-y-8">
             {/* Contact Info */}
@@ -67,7 +62,6 @@ const ContactUs = () => {
                 </div>
               </div>
             </div>
-
             {/* Map */}
             <div className="bg-white shadow-md border-t-4 border-[#168AAD] p-6">
               <div className="flex items-center mb-4">
@@ -85,7 +79,6 @@ const ContactUs = () => {
               </div>
             </div>
           </div>
-
           {/* Right – Personnel & Form */}
           <div className="space-y-8">
             {/* Personnel */}
@@ -112,7 +105,6 @@ const ContactUs = () => {
                 </table>
               </div>
             </div>
-
             {/* Form */}
             <div className="bg-white shadow-md border-t-4 border-[#34A0A4] p-6">
               <div className="flex items-center mb-4">

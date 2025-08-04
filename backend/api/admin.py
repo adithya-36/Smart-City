@@ -5,7 +5,7 @@ from .models import (
     Career, Tender, News, ContactMessage, ConclaveSpeaker, 
     ConclaveRecording, AnniversaryImage, InaugurationImage, 
     GovernmentOrder, Complaint,PollFeedback,MonthlyProgressReport,Internship,
-    PhotoAlbum, Photo, Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff, Document, Official
+    PhotoAlbum, Photo, Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff, Document, Official,OngoingProject, ProjectCategory, ProjectImage, CompletedProject, CompletedProjectImage
 )
 from simple_history.admin import SimpleHistoryAdmin
 # Photo Album and Photos - custom inline admin
@@ -18,6 +18,17 @@ class PhotoAlbumAdmin(admin.ModelAdmin):
     list_display = ('title',)
     inlines = [PhotoInline]
 
+class ProjectImageInline(admin.TabularInline):
+    model = ProjectImage
+    extra = 1
+
+@admin.register(OngoingProject)
+class OngoingProjectAdmin(admin.ModelAdmin):
+    list_display = ('project_id', 'project_name', 'scm', 'target_completion')
+    search_fields = ('project_id', 'project_name')
+    inlines = [ProjectImageInline]
+
+admin.site.register(ProjectCategory)
 # Custom admin for Complaint model
 @admin.register(Complaint)
 class ComplaintAdmin(admin.ModelAdmin):
@@ -33,6 +44,14 @@ class ComplaintAdmin(admin.ModelAdmin):
 @admin.register(Video)
 class VideoAdmin(admin.ModelAdmin):
     list_display = ('title', 'youtube_url')
+
+class CompletedProjectImageInline(admin.TabularInline):
+    model = CompletedProjectImage
+    extra = 1
+    can_delete = True
+class CompletedProjectAdmin(admin.ModelAdmin):
+    list_display = ['project_name', 'amount']
+    inlines = [CompletedProjectImageInline]
 
 # Registering other models
 admin.site.register(Career)
@@ -51,6 +70,7 @@ admin.site.register(EventItem)
 admin.site.register(ContactInfo)
 admin.site.register(Document)
 admin.site.register(Official)
+admin.site.register(CompletedProject, CompletedProjectAdmin)
 @admin.register(BoardMember)
 class BoardMemberAdmin(admin.ModelAdmin):
     list_display = ['name', 'position', 'field']

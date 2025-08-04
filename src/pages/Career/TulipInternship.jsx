@@ -1,19 +1,16 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
 import Banner from '../../assets/banners/tulipintershipBanner.jpg';
 import Poster from '../../assets/images/tulipPoster.jpg';
 import InternAnjusha from '../../assets/images/internAnjusha.jpg';
 import InternAnju from '../../assets/images/internAnju.jpg';
 import InternAbhijith from '../../assets/images/internAbhijith.jpg';
 import InternGayu from '../../assets/images/internGayu.jpg';
-
 const TulipInternship = () => {
   useEffect(() => {
     AOS.init({ once: true, duration: 800 });
   }, []);
-
   const interns = [
     {
       name: "Anju",
@@ -44,7 +41,6 @@ const TulipInternship = () => {
       field: "Computer Science",
     },
   ];
-
   return (
     <div className="bg-gray-50" data-cy="tulip-internship-page">
       {/* Banner */}
@@ -61,7 +57,6 @@ const TulipInternship = () => {
           </h1>
         </div>
       </div>
-
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Event Section */}
@@ -69,7 +64,6 @@ const TulipInternship = () => {
           <h1 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#1E6091]">
             Internship Event Launch Ceremony
           </h1>
-
           {/* Video Section */}
           <div className="w-full max-w-4xl mx-auto mb-10" data-aos="zoom-in">
             <div className="relative" style={{ paddingTop: '56.25%' }}>
@@ -82,7 +76,6 @@ const TulipInternship = () => {
               ></iframe>
             </div>
           </div>
-
           {/* Poster Section */}
           <div className="bg-white shadow-md p-6 max-w-2xl mx-auto border-t-4 border-[#1A759F]" data-aos="fade-up">
             <h2 className="text-xl font-bold mb-4 text-center text-[#1E6091]">Event Poster</h2>
@@ -93,13 +86,11 @@ const TulipInternship = () => {
             />
           </div>
         </div>
-
         {/* Intern Testimonials */}
         <div className="mb-16" data-aos="fade-up">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-12 text-[#1E6091]">
             Meet Our Talented Interns
           </h2>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {interns.map((intern, index) => (
               <div
@@ -121,13 +112,10 @@ const TulipInternship = () => {
                       </div>
                     </div>
                   </div>
-
                   <h3 className="text-xl font-bold text-center mt-4 mb-2 text-[#1E6091]">
                     {intern.name}
                   </h3>
-
                   <p className="text-gray-700 text-center italic">"{intern.quote}"</p>
-
                   <div className="mt-5 text-center">
                     <div className="inline-block px-4 py-1 text-sm font-medium bg-gray-100 text-[#1E6091]">
                       {intern.field}
@@ -138,13 +126,11 @@ const TulipInternship = () => {
             ))}
           </div>
         </div>
-
         {/* Program Details */}
         <div className="bg-white shadow-md p-8 mb-16" data-aos="fade-up">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-[#1E6091]">
             About the Tulip Internship Program
           </h2>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h3 className="text-xl font-semibold mb-3 text-[#1A759F]">Program Highlights</h3>
@@ -155,7 +141,6 @@ const TulipInternship = () => {
                 <li>Networking opportunities with government officials</li>
                 <li>Stipend and certification upon completion</li>
               </ul>
-
               <h3 className="text-xl font-semibold mt-6 mb-3 text-[#1A759F]">Eligibility</h3>
               <ul className="list-disc list-inside space-y-2 text-gray-700">
                 <li>Currently enrolled in engineering or urban planning programs</li>
@@ -164,7 +149,6 @@ const TulipInternship = () => {
                 <li>Duration: 2-6 months</li>
               </ul>
             </div>
-
             <div>
               <h3 className="text-xl font-semibold mb-3 text-[#1A759F]">Application Process</h3>
               <div className="space-y-4">
@@ -181,7 +165,6 @@ const TulipInternship = () => {
                     <p className="text-gray-700">{item.text}</p>
                   </div>
                 ))}
-
                 <div className="mt-8 text-center">
                   <a
                     href="https://internship.aicte-india.org/"
@@ -197,7 +180,6 @@ const TulipInternship = () => {
             </div>
           </div>
         </div>
-
         {/* Testimonial Highlights */}
         <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#1E6091]">
@@ -214,5 +196,4 @@ const TulipInternship = () => {
     </div>
   );
 };
-
 export default TulipInternship;

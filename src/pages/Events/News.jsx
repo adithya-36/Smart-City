@@ -3,17 +3,13 @@ import axios from 'axios';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaArrowRightLong } from "react-icons/fa6";
-
 const News = () => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const isValidDate = (dateString) => !isNaN(new Date(dateString).getTime());
-
   useEffect(() => {
     AOS.init({ once: true, duration: 800 });
   }, []);
-
   useEffect(() => {
     axios.get('/api/news/')
       .then(response => {
@@ -29,7 +25,6 @@ const News = () => {
         setLoading(false);
       });
   }, []);
-
   return (
     <div className="bg-gray-50 min-h-screen" data-cy="news-page">
       <div className="bg-[#184E77] py-16" data-aos="fade-down">
@@ -41,7 +36,6 @@ const News = () => {
           </p>
         </div>
       </div>
-
       <div className="max-w-7xl mx-auto px-4 py-12" data-aos="fade-up">
         {loading ? (
           <p className="text-center text-gray-500 animate-pulse">Loading news...</p>
@@ -105,5 +99,4 @@ const News = () => {
     </div>
   );
 };
-
 export default News;

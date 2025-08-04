@@ -14,19 +14,35 @@ const MPR = () => {
       .catch(err => console.error("Failed to fetch MPR reports:", err));
   }, []);
 
-  // Extract year from month field (e.g., "March 2020" -> "2020")
-  const uniqueYears = [...new Set(reports.map(report => report.month.split(' ')[1]))];
+  // Helper to convert month names to numbers
+  const monthToNumber = (monthName) => {
+    const months = {
+      january: 1, february: 2, march: 3, april: 4, may: 5, june: 6,
+      july: 7, august: 8, september: 9, october: 10, november: 11, december: 12,
+    };
+    return months[monthName.toLowerCase()] || 0;
+  };
 
   // Filter reports based on search and selected year
   const filteredReports = reports.filter((report) => {
     const lowerCaseSearch = searchTerm.toLowerCase();
     const reportLower = report.month.toLowerCase();
-
-    const matchesSearch = reportLower.includes(lowerCaseSearch);
-    const matchesYear = selectedYear === 'All' || report.month.includes(selectedYear);
-
+    const matchesSearch =
+      reportLower.includes(lowerCaseSearch) || String(report.year).includes(lowerCaseSearch);
+    const matchesYear = selectedYear === 'All' || String(report.year) === selectedYear;
     return matchesSearch && matchesYear;
   });
+
+  // Sort by year DESC, then month DESC
+  const sortedReports = [...filteredReports].sort((a, b) => {
+    if (b.year !== a.year) return b.year - a.year;
+    return monthToNumber(b.month) - monthToNumber(a.month);
+  });
+
+  // Get unique years for the filter dropdown
+  const uniqueYears = [...new Set(reports.map(report => report.year))]
+    .filter(Boolean)
+    .sort((a, b) => b - a);
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6">
@@ -51,7 +67,6 @@ const MPR = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-
           <select
             className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#1E6091]"
             value={selectedYear}
@@ -71,17 +86,19 @@ const MPR = () => {
               <thead>
                 <tr className="bg-[#1E6091] text-white">
                   <th className="p-4 font-semibold border-b border-[#184E77]">Month</th>
+                  <th className="p-4 font-semibold border-b border-[#184E77]">Year</th>
                   <th className="p-4 font-semibold border-b border-[#184E77]">Download Report</th>
                 </tr>
               </thead>
               <tbody>
-                {filteredReports.length > 0 ? (
-                  filteredReports.map((report, index) => (
+                {sortedReports.length > 0 ? (
+                  sortedReports.map((report, index) => (
                     <tr
                       key={index}
                       className={`border-b border-gray-200 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
                     >
                       <td className="p-4 text-gray-800 font-medium">{report.month}</td>
+                      <td className="p-4 text-gray-800">{report.year}</td>
                       <td className="p-4">
                         <a
                           href={report.file}
@@ -97,7 +114,7 @@ const MPR = () => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="2" className="p-8 text-center text-gray-500">
+                    <td colSpan="3" className="p-8 text-center text-gray-500">
                       <div className="flex flex-col items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />

@@ -4,18 +4,15 @@ import { FaFilePdf } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 const GovernmentOrders = () => {
   const [orders, setOrders] = useState([]);
-
   useEffect(() => {
     axios.get("http://localhost:8000/api/government-orders/")
       .then(response => setOrders(response.data))
       .catch(error => console.error("Error fetching government orders:", error));
   }, []);
-
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-GB'); // dd/mm/yyyy
   };
-
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-10" data-cy="government-orders-page">
       <div className="overflow-x-auto">
@@ -65,5 +62,4 @@ const GovernmentOrders = () => {
     </div>
   );
 };
-
 export default GovernmentOrders;

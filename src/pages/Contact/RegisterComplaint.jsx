@@ -7,7 +7,6 @@ import { FaRegUser, FaRegBuilding } from "react-icons/fa";
 import { MdOutlineEmail, MdMailOutline } from "react-icons/md";
 import { LuMessageSquareText } from "react-icons/lu";
 import { IoCloudUploadOutline, IoCallOutline, IoLocationOutline } from "react-icons/io5";
-
 const RegisterComplaint = () => {
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
@@ -17,12 +16,10 @@ const RegisterComplaint = () => {
     complaint: ''
   });
   const [submitted, setSubmitted] = useState(false);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -33,7 +30,6 @@ const RegisterComplaint = () => {
     if (formData.attachment) {
       data.append('attachment', formData.attachment);
     }
-
     try {
       await axios.post('http://127.0.0.1:8000/api/complaints/', data);
       setSubmitted(true);
@@ -42,7 +38,6 @@ const RegisterComplaint = () => {
       alert("Something went wrong. Try again.");
     }
   };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100" data-cy="register-complaint-page">
       <div className="relative h-48 md:h-64 w-full overflow-hidden">
@@ -55,7 +50,6 @@ const RegisterComplaint = () => {
           </h1>
         </div>
       </div>
-
       <div className="max-w-4xl mx-auto px-4 py-8">
         {submitted ? (
           <div className="text-center py-12">
@@ -74,7 +68,6 @@ const RegisterComplaint = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">{t('complaint.formTitle')}</h2>
               <p className="text-gray-600">{t('complaint.formSubtitle')}</p>
             </div>
-
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -97,7 +90,6 @@ const RegisterComplaint = () => {
                     />
                   </div>
                 </div>
-
                 <div>
                   <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
                     {t('complaint.fields.email')} <span className="text-red-500">*</span>
@@ -119,7 +111,6 @@ const RegisterComplaint = () => {
                   </div>
                 </div>
               </div>
-
               <div>
                 <label htmlFor="project" className="block text-gray-700 font-medium mb-2">
                   {t('complaint.fields.project')} <span className="text-red-500">*</span>
@@ -138,7 +129,6 @@ const RegisterComplaint = () => {
                   />
                 </div>
               </div>
-
               <div>
                 <label htmlFor="complaint" className="block text-gray-700 font-medium mb-2">
                   {t('complaint.fields.complaint')} <span className="text-red-500">*</span>
@@ -157,7 +147,6 @@ const RegisterComplaint = () => {
                   ></textarea>
                 </div>
               </div>
-
               <div>
                 <label htmlFor="attachment" className="block text-gray-700 font-medium mb-2">
                   {t('complaint.fields.attachment')}
@@ -178,14 +167,12 @@ const RegisterComplaint = () => {
                   />
                 </label>
               </div>
-
               <div className="flex items-center">
                 <input id="terms" type="checkbox" className="w-4 h-4 text-blue-600 border-gray-300" required />
                 <label htmlFor="terms" className="ml-2 text-sm text-gray-600">
                   {t('complaint.fields.checkbox')}
                 </label>
               </div>
-
               <div className="text-center pt-4">
                 <button
                   type="submit"
@@ -197,7 +184,6 @@ const RegisterComplaint = () => {
             </form>
           </div>
         )}
-
         {!submitted && (
           <div className="mt-8 bg-gradient-to-r from-teal-50 to-blue-50 rounded-xl p-6 border border-teal-200">
             <h3 className="text-xl font-bold mb-3 text-center" style={{ color: '#1A759F' }}>
@@ -226,5 +212,4 @@ const RegisterComplaint = () => {
     </div>
   );
 };
-
 export default RegisterComplaint;

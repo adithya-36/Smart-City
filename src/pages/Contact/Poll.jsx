@@ -5,16 +5,13 @@ import Banner from '../../assets/banners/pollBanner.jpg';
 import { BsEmojiGrin, BsEmojiNeutral, BsEmojiFrown } from "react-icons/bs";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { GrStatusGood } from "react-icons/gr";
-
 const Poll = () => {
   const { t } = useTranslation();
   const [selectedOption, setSelectedOption] = useState(null);
   const [submitted, setSubmitted] = useState(false);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!selectedOption) return;
-
     try {
       await axios.post('http://127.0.0.1:8000/api/api/poll-feedback/', {
         rating: selectedOption,
@@ -25,7 +22,6 @@ const Poll = () => {
       alert("Something went wrong. Please try again.");
     }
   };
-
   return (
     <div className="min-h-screen bg-gray-50" data-cy="poll-page">
       {/* Banner */}
@@ -42,7 +38,6 @@ const Poll = () => {
           </h1>
         </div>
       </div>
-
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 py-12">
         {submitted ? (
@@ -75,7 +70,6 @@ const Poll = () => {
             <p className="text-gray-600 text-center mb-8">
               {t('poll.ratePrompt')}
             </p>
-
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                 {['nice', 'medium', 'bad'].map(option => {
@@ -87,7 +81,6 @@ const Poll = () => {
                     medium: 'bg-[#B5E48C]',
                     bad: 'bg-[#99D98C]',
                   }[option];
-
                   return (
                     <label key={option} className={`flex flex-col items-center p-4 cursor-pointer transition duration-200 ${selectedOption === option ? bg : 'bg-gray-50'}`}>
                       <input type="radio" name="poll" value={option} className="hidden" onChange={() => setSelectedOption(option)} />
@@ -99,7 +92,6 @@ const Poll = () => {
                   );
                 })}
               </div>
-
               <div className="text-center">
                 <button
                   type="submit"
@@ -113,7 +105,6 @@ const Poll = () => {
             </form>
           </div>
         )}
-
         {/* Additional Feedback */}
         {!submitted && (
           <div className="mt-8 bg-gray-50 p-6 max-w-2xl mx-auto">
@@ -140,5 +131,4 @@ const Poll = () => {
     </div>
   );
 };
-
 export default Poll;

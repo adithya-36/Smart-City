@@ -3,20 +3,16 @@ import axios from 'axios';
 import Banner from '../../assets/banners/internshipBanner.jpg';
 import { FaFilePdf } from 'react-icons/fa6';
 import { FaExternalLinkAlt } from 'react-icons/fa';
-
 const Internship = () => {
   const [internships, setInternships] = useState([]);
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState('All'); // New
-
   useEffect(() => {
     const fetchInternships = async () => {
       try {
         const res = await axios.get('http://127.0.0.1:8000/api/internships/');
-
         // Sort by date descending
         const sortedData = res.data.sort((a, b) => new Date(b.date) - new Date(a.date));
-
         setInternships(sortedData);
       } catch (error) {
         console.error('Error fetching internships:', error);
@@ -24,16 +20,12 @@ const Internship = () => {
         setLoading(false);
       }
     };
-
     fetchInternships();
   }, []);
-
-
   // Filter internships based on status
   const filteredInternships = internships.filter((intern) => {
     return statusFilter === 'All' || intern.status === statusFilter;
   });
-
   return (
     <div className="bg-gray-50" data-cy="internship-page">
       {/* Banner */}
@@ -50,7 +42,6 @@ const Internship = () => {
           </h1>
         </div>
       </div>
-
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Filter Dropdown */}
@@ -65,7 +56,6 @@ const Internship = () => {
             <option value="Closed">Closed</option>
           </select>
         </div>
-
         {/* Table */}
         {loading ? (
           <div className="text-center text-gray-500 py-8">Loading internships...</div>
@@ -140,5 +130,4 @@ const Internship = () => {
     </div>
   );
 };
-
 export default Internship;

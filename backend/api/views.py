@@ -2,6 +2,7 @@ from rest_framework import viewsets, generics, filters, mixins, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.pagination import PageNumberPagination
 from django.db.models import Q
 
 from .models import (
@@ -9,7 +10,7 @@ from .models import (
     AnniversaryImage, InaugurationImage, GovernmentOrder, ContactMessage,
     Complaint, PollFeedback, MonthlyProgressReport, Internship, PhotoAlbum,
     Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff,
-    Document, Official
+    Document, Official, OngoingProject, CompletedProject
 )
 
 from .serializers import (
@@ -21,7 +22,8 @@ from .serializers import (
     MonthlyProgressReportSerializer, InternshipSerializer,
     PhotoAlbumSerializer, VideoSerializer, MediaItemSerializer,
     EventItemSerializer, ContactInfoSerializer, BoardMemberSerializer,
-    CEOSerializer, StaffSerializer, DocumentSerializer, OfficialSerializer
+    CEOSerializer, StaffSerializer, DocumentSerializer, OfficialSerializer, OngoingProjectSerializer, CompletedProjectSerializer
+
 )
 
 
@@ -262,3 +264,19 @@ class DocumentViewSet(viewsets.ModelViewSet):
 class OfficialViewSet(viewsets.ModelViewSet):
     queryset = Official.objects.all().order_by('priority')
     serializer_class = OfficialSerializer
+
+class ProjectPagination(PageNumberPagination):
+    page_size = 5
+    page_size_query_param = 'page_size'
+    max_page_size = 100
+
+class OngoingProjectViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = OngoingProject.objects.all().order_by('target_completion')
+    serializer_class = OngoingProjectSerializer
+    pagination_class = ProjectPagination
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['project_id']
+
+class CompletedProjectViewSet(viewsets.ModelViewSet):
+    queryset = CompletedProject.objects.all().order_by('-created_at')
+    serializer_class = CompletedProjectSerializer

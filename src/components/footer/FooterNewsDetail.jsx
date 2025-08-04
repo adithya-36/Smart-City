@@ -2,19 +2,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-
 const FooterNewsDetail = () => {
   const { id } = useParams();
   const [mediaItem, setMediaItem] = useState(null);
-
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/api/media/${id}/`)
       .then(res => setMediaItem(res.data))
       .catch(err => console.error("Error loading media item:", err));
   }, [id]);
-
   if (!mediaItem) return <div className="p-6">Loading...</div>;
-
   return (
     <div className="p-6 md:p-12 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold mb-4">{mediaItem.title}</h1>
@@ -30,5 +26,4 @@ const FooterNewsDetail = () => {
     </div>
   );
 };
-
 export default FooterNewsDetail;
