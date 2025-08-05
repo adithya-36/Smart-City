@@ -5,7 +5,7 @@ from .models import (
     Career, Tender, News, ContactMessage, ConclaveSpeaker, 
     ConclaveRecording, AnniversaryImage, InaugurationImage, 
     GovernmentOrder, Complaint,PollFeedback,MonthlyProgressReport,Internship,
-    PhotoAlbum, Photo, Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff, Document, Official,OngoingProject, ProjectCategory, ProjectImage, CompletedProject, CompletedProjectImage
+    PhotoAlbum, Photo, Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff, Document, Official,OngoingProject, ProjectCategory, ProjectImage, CompletedProject, CompletedProjectImage,NavigationItem, PageContent
 )
 from simple_history.admin import SimpleHistoryAdmin
 # Photo Album and Photos - custom inline admin
@@ -71,6 +71,8 @@ admin.site.register(ContactInfo)
 admin.site.register(Document)
 admin.site.register(Official)
 admin.site.register(CompletedProject, CompletedProjectAdmin)
+admin.site.register(NavigationItem)
+admin.site.register(PageContent)
 @admin.register(BoardMember)
 class BoardMemberAdmin(admin.ModelAdmin):
     list_display = ['name', 'position', 'field']

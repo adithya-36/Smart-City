@@ -122,7 +122,6 @@ class GovernmentOrder(models.Model):
     def __str__(self):
         return self.title
 
-
 class ContactMessage(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -268,7 +267,9 @@ class CEO(models.Model):
     relieving_date = models.DateField(blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        joining = self.joining_date.strftime('%d-%m-%Y')
+        relieving = self.relieving_date.strftime('%d-%m-%Y') if self.relieving_date else "Present"
+        return f"{self.name} ({joining} to {relieving})"
 
 
 class Staff(models.Model):
@@ -357,3 +358,24 @@ class CompletedProjectImage(models.Model):
 
     def __str__(self):
         return f"Image for {self.project.project_name}"
+    
+class NavigationItem(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    href = models.CharField(max_length=255, blank=True)
+    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='dropdown')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+
+class PageContent(models.Model):
+    navigation_item = models.OneToOneField(NavigationItem, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='page_images/', blank=True, null=True)
+    pdf = models.FileField(upload_to='page_pdfs/', blank=True, null=True)
+    message = models.TextField(blank=True)
+
+    def __str__(self):
+        return f'Content for {self.navigation_item.name}'

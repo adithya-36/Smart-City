@@ -28,6 +28,7 @@ const GovernmentOrders = () => {
           <tbody className="text-gray-700">
             {orders.map((order, index) => (
               <tr key={order.id} className="border-b border-gray-200 hover:bg-gray-100">
+                <td className="p-3 whitespace-nowrap">{index + 1}</td> {/* Serial Number */}
                 <td className="p-3 break-words">
                   <Link to={`/government-orders/${order.id}`} className="text-blue-600 hover:underline">
                     {order.title}
@@ -47,6 +48,7 @@ const GovernmentOrders = () => {
               </tr>
             ))}
           </tbody>
+
         </table>
       </div>
       <div className="mt-6 text-center">

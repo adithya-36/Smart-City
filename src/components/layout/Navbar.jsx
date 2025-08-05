@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import navigation from '../../data/navData';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross1 } from "react-icons/rx";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { IoSearch } from "react-icons/io5";
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
 
 const Navbar = () => {
+  const [navigation, setNavigation] = useState([]); // ✅ Move here
   const [isScrolled, setIsScrolled] = useState(false);
   const bannerRef = useRef(null);
   const navbarRef = useRef(null);
@@ -27,8 +28,15 @@ const Navbar = () => {
         setIsScrolled(bannerRect.bottom <= navbarHeight);
       }
     };
+
+    // ✅ Fetch navigation items from API
+    axios.get('http://127.0.0.1:8000/api/navigation/')
+      .then(res => setNavigation(res.data))
+      .catch(err => console.error('Failed to fetch navigation:', err));
+
     window.addEventListener('scroll', handleScroll);
     handleScroll();
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -52,6 +60,10 @@ const Navbar = () => {
     setSearchQuery('');
     setMenuOpen(false);
   };
+
+  // ...rest of your JSX remains the same
+
+  
 
   return (
     <div className="font-sans" data-cy="navbar">
@@ -87,7 +99,7 @@ const Navbar = () => {
                     >
                       {t(`navbar.${item.name}`)}
                     </NavLink>
-                    {item.dropdown && activeDropdown === item.name && (
+                    {Array.isArray(item.dropdown) && activeDropdown === item.name && (
                       <div className="absolute left-0 mt-1 bg-white shadow-xl rounded-sm py-2 w-56 z-50 border border-gray-200">
                         {item.dropdown.map((sub) => (
                           <NavLink

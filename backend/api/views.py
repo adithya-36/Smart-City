@@ -4,13 +4,14 @@ from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.pagination import PageNumberPagination
 from django.db.models import Q
+from rest_framework.generics import RetrieveAPIView
 
 from .models import (
     Career, Tender, News, ConclaveSpeaker, ConclaveRecording,
     AnniversaryImage, InaugurationImage, GovernmentOrder, ContactMessage,
     Complaint, PollFeedback, MonthlyProgressReport, Internship, PhotoAlbum,
     Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff,
-    Document, Official, OngoingProject, CompletedProject
+    Document, Official, OngoingProject, CompletedProject, NavigationItem, PageContent
 )
 
 from .serializers import (
@@ -22,8 +23,7 @@ from .serializers import (
     MonthlyProgressReportSerializer, InternshipSerializer,
     PhotoAlbumSerializer, VideoSerializer, MediaItemSerializer,
     EventItemSerializer, ContactInfoSerializer, BoardMemberSerializer,
-    CEOSerializer, StaffSerializer, DocumentSerializer, OfficialSerializer, OngoingProjectSerializer, CompletedProjectSerializer
-
+    CEOSerializer, StaffSerializer, DocumentSerializer, OfficialSerializer, OngoingProjectSerializer, CompletedProjectSerializer, NavigationItemSerializer, PageContentSerializer
 )
 
 
@@ -280,3 +280,13 @@ class OngoingProjectViewSet(viewsets.ReadOnlyModelViewSet):
 class CompletedProjectViewSet(viewsets.ModelViewSet):
     queryset = CompletedProject.objects.all().order_by('-created_at')
     serializer_class = CompletedProjectSerializer
+
+
+class NavigationItemViewSet(viewsets.ModelViewSet):
+    queryset = NavigationItem.objects.filter(parent__isnull=True)
+    serializer_class = NavigationItemSerializer
+
+
+class PageContentViewSet(viewsets.ModelViewSet):
+    queryset = PageContent.objects.all()
+    serializer_class = PageContentSerializer

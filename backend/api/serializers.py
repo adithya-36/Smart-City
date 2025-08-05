@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import News,Career, Tender, ConclaveSpeaker,GovernmentOrder, ContactMessage, ConclaveRecording, AnniversaryImage, InaugurationImage,Complaint,PollFeedback,MonthlyProgressReport,Internship,PhotoAlbum, Photo,Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff, Document, Official,  OngoingProject, ProjectImage, CompletedProject, CompletedProjectImage
+from .models import News,Career, Tender, ConclaveSpeaker,GovernmentOrder, ContactMessage, ConclaveRecording, AnniversaryImage, InaugurationImage,Complaint,PollFeedback,MonthlyProgressReport,Internship,PhotoAlbum, Photo,Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff, Document, Official,  OngoingProject, ProjectImage, CompletedProject, CompletedProjectImage,NavigationItem, PageContent
 from django.utils import timezone
 
 class CareerSerializer(serializers.ModelSerializer):
@@ -113,6 +113,8 @@ class BoardMemberSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'position', 'field', 'image']
 
 class CEOSerializer(serializers.ModelSerializer):
+    joining_date = serializers.DateField(format="%d-%m-%Y")
+    relieving_date = serializers.DateField(format="%d-%m-%Y", allow_null=True)
     class Meta:
         model = CEO
         fields = '__all__'
@@ -164,3 +166,21 @@ class CompletedProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = CompletedProject
         fields = ['id', 'project_name', 'amount', 'images']
+
+
+class NavigationItemSerializer(serializers.ModelSerializer):
+    dropdown = serializers.SerializerMethodField()
+
+    class Meta:
+        model = NavigationItem
+        fields = ['id', 'name', 'href', 'parent', 'dropdown']
+
+    def get_dropdown(self, obj):
+        children = obj.dropdown.all()
+        return NavigationItemSerializer(children, many=True).data if children else None
+
+
+class PageContentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PageContent
+        fields = '__all__'
