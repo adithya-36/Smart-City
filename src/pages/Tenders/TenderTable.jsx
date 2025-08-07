@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PdfFile from '../../assets/images/pdfFile.png';
 import { Link } from 'react-router-dom';
-
+import { formatDateTime } from '../../data/dateFormatter';
 
 const TenderTable = () => {
   const [tenders, setTenders] = useState([]);
@@ -49,18 +49,6 @@ const TenderTable = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const formatDateTime = (isoDateString) => {
-    return new Date(isoDateString).toLocaleString('en-IN', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true,
-      timeZone: 'Asia/Kolkata',
-    });
-  };
-
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header Section */}
@@ -101,14 +89,14 @@ const TenderTable = () => {
           {loading ? (
             <p className="text-center py-10 text-gray-600">Loading tenders...</p>
           ) : (
-            <table className="w-full border-collapse">
+            <table className="w-full border-collapse text-sm md:text-base">
               <thead>
                 <tr className="bg-[#1E6091] text-white">
-                  <th className="p-4 text-left font-semibold border-b border-[#184E77]">Tender No.</th>
-                  <th className="p-4 text-left font-semibold border-b border-[#184E77]">Title</th>
-                  <th className="p-4 text-left font-semibold border-b border-[#184E77]">Status</th>
-                  <th className="p-4 text-left font-semibold border-b border-[#184E77]">Deadline</th>
-                  <th className="p-4 text-left font-semibold border-b border-[#184E77]">Documents</th>
+                  <th className="px-6 py-4 text-left font-semibold border-b border-[#184E77]">Tender No.</th>
+                  <th className="px-6 py-4 text-left font-semibold border-b border-[#184E77]">Title</th>
+                  <th className="px-6 py-4 text-left font-semibold border-b border-[#184E77]">Status</th>
+                  <th className="px-6 py-4 text-left font-semibold border-b border-[#184E77]">Deadline</th>
+                  <th className="px-6 py-4 text-left font-semibold border-b border-[#184E77]">Documents</th>
                 </tr>
               </thead>
               <tbody>
@@ -121,8 +109,8 @@ const TenderTable = () => {
                         key={index}
                         className={`border-b border-gray-200 hover:bg-gray-100 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
                       >
-                        <td className="p-4 font-medium text-gray-800">{tender.no}</td>
-                        <td className="p-4 text-gray-700">
+                        <td className="px-6 py-4 font-medium text-gray-800 whitespace-nowrap">{tender.no}</td>
+                        <td className="px-6 py-4 text-gray-700 leading-relaxed">
                           <Link
                             to={`/tenders/${tender.id}`}
                             className="text-[#1E6091] hover:underline"
@@ -130,38 +118,37 @@ const TenderTable = () => {
                             {tender.title}
                           </Link>
                         </td>
-                        <td className="p-4">
-                          <span className={`inline-block px-3 py-1 text-sm font-medium ${isExpired || tender.status === 'Closed'
-                            ? 'bg-gray-200 text-gray-800'
-                            : 'bg-green-100 text-green-800'
+                        <td className="px-6 py-4">
+                          <span className={`inline-block px-4 py-1 text-sm font-medium rounded-full ${isExpired || tender.status === 'Closed'
+                              ? 'bg-gray-200 text-gray-800'
+                              : 'bg-green-100 text-green-800'
                             }`}>
                             {isExpired ? 'Closed' : tender.status}
                           </span>
                         </td>
-                        <td className="p-4 text-gray-600">
+                        <td className="px-6 py-4 text-gray-600 whitespace-nowrap">
                           {formatDateTime(tender.last_date_to_submit)}
                           {isExpired && (
                             <span className="ml-2 text-red-600 text-sm font-semibold">(Expired)</span>
                           )}
                         </td>
-                        <td className="p-4">
+                        <td className="px-6 py-4">
                           <a
                             href={tender.pdf}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center text-[#1E6091] hover:text-[#184E77] transition-colors"
                           >
-                            <img className="w-6 h-6 mr-2" src={PdfFile} alt="PDF" />
-                            Download
+                            <img className="w-5 h-5 mr-2" src={PdfFile} alt="PDF" />
+                            <span className="underline">Download</span>
                           </a>
                         </td>
                       </tr>
-
                     );
                   })
                 ) : (
                   <tr>
-                    <td colSpan="5" className="p-4 text-center text-gray-500">
+                    <td colSpan="5" className="p-6 text-center text-gray-500">
                       No tenders found matching your criteria
                     </td>
                   </tr>
@@ -170,6 +157,7 @@ const TenderTable = () => {
             </table>
           )}
         </div>
+
 
         {/* Pagination */}
         {filteredTenders.length > itemsPerPage && (

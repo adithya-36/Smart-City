@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.timezone import localtime
 from .models import (
-    Career, Tender, News, ContactMessage, ConclaveSpeaker, 
+    Career, CareerResource, Tender, News, ContactMessage, ConclaveSpeaker, 
     ConclaveRecording, AnniversaryImage, InaugurationImage, 
     GovernmentOrder, Complaint,PollFeedback,MonthlyProgressReport,Internship,
     PhotoAlbum, Photo, Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff, Document, Official,OngoingProject, ProjectCategory, ProjectImage, CompletedProject, CompletedProjectImage,NavigationItem, PageContent
@@ -54,7 +54,6 @@ class CompletedProjectAdmin(admin.ModelAdmin):
     inlines = [CompletedProjectImageInline]
 
 # Registering other models
-admin.site.register(Career)
 admin.site.register(GovernmentOrder)
 admin.site.register(News)
 admin.site.register(ConclaveSpeaker)
@@ -73,6 +72,15 @@ admin.site.register(Official)
 admin.site.register(CompletedProject, CompletedProjectAdmin)
 admin.site.register(NavigationItem)
 admin.site.register(PageContent)
+
+class CareerResourceInline(admin.TabularInline):
+    model = CareerResource
+    extra = 1
+@admin.register(Career)
+class CareerAdmin(admin.ModelAdmin):
+    list_display = ['no', 'title', 'status', 'posted_on', 'last_date_to_apply']
+    fields = ['no', 'title', 'status', 'pdf', 'link', 'posted_on', 'last_date_to_apply']
+    inlines = [CareerResourceInline]
 @admin.register(BoardMember)
 class BoardMemberAdmin(admin.ModelAdmin):
     list_display = ['name', 'position', 'field']

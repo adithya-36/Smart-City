@@ -66,6 +66,7 @@ import InternshipDetail from './pages/Career/InternshipDetail'
 import FooterNewsDetail from './components/footer/FooterNewsDetail'
 import FooterEventDetail from './components/footer/FooterEventDetail'
 import DynamicPage from './components/layout/DynamicPage'
+import PageView from './components/layout/PageView'
 const App = () => {
   return (
     <div className="flex flex-col min-h-screen">
@@ -135,6 +136,8 @@ const App = () => {
           <Route path="/footer-news/:id" element={<FooterNewsDetail />} />
           <Route path="/footer-event/:id" element={<FooterEventDetail />} />
           <Route path="/:slug" element={<DynamicPage />} />
+          <Route path="/pages/:id" element={<PageView />} />
+    
         </Routes>
       </main>
       <Footer />

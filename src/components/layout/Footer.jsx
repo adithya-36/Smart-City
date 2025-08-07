@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Logo from '../../assets/images/SCTLLogo.png';
-import { FaXTwitter } from "react-icons/fa6";
+import { FaXTwitter, FaClock, FaCalendar } from "react-icons/fa6";
 import {
   FaPhoneAlt,
   FaEnvelope,
@@ -12,6 +12,7 @@ import {
   FaInstagram,
   FaYoutube,
 } from 'react-icons/fa';
+import { MdPeople } from "react-icons/md";
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom'; // ✅ Use React Router navigation
@@ -20,6 +21,47 @@ const Footer = () => {
   const { t } = useTranslation();
   const [mediaItems, setMediaItems] = useState([]);
   const [eventItems, setEventItems] = useState([]);
+  const [currentDateTime, setCurrentDateTime] = useState(new Date());
+  const [visitorCount, setVisitorCount] = useState(0);
+
+  useEffect(() => {
+  console.log("Visitor useEffect running");
+  const hasVisited = localStorage.getItem('hasVisited');
+
+  const endpoint = hasVisited
+    ? 'http://127.0.0.1:8000/api/visitors/?skip_increment=true'
+    : 'http://127.0.0.1:8000/api/visitors/';
+
+  axios.get(endpoint)
+    .then(res => {
+      console.log("Visitor response:", res.data);
+      setVisitorCount(res.data.count);
+      if (!hasVisited) {
+        localStorage.setItem('hasVisited', 'true');
+      }
+    })
+    .catch(err => console.error("Error fetching visitor count:", err));
+}, []);
+
+
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentDateTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer); // cleanup
+  }, []);
+
+  const formattedDate = currentDateTime.toLocaleDateString('en-GB', {
+    day: '2-digit', month: '2-digit', year: 'numeric', weekday: 'long'
+  });
+
+  const formattedTime = currentDateTime.toLocaleTimeString('en-GB', {
+    hour: '2-digit', minute: '2-digit', second: '2-digit',
+    hour12: false
+  });
+
 
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
@@ -44,10 +86,12 @@ const Footer = () => {
           <p className="text-sm leading-relaxed mb-4">
             {t('footer.description')}
           </p>
-          <div className="text-sm space-y-1">
-            <p className="flex items-center gap-2"><span>📅</span> {t('footer.date')}</p>
-            <p className="flex items-center gap-2"><span>⏰</span> {t('footer.time')}</p>
-            <p className="flex items-center gap-2"><span>👤</span> {t('footer.visitors')}: 125,847</p>
+          <div className=" space-y-1 text-md">
+            <p className="flex items-center gap-2"><span><FaCalendar /></span> {formattedDate}</p>
+            <p className="flex items-center gap-2"><span><FaClock /></span> {formattedTime}</p>
+
+            <p className="flex items-center gap-2"><MdPeople className="text-lg" /> {t('footer.visitors')}: {visitorCount.toLocaleString()}</p>
+
           </div>
         </div>
 
@@ -117,7 +161,7 @@ const Footer = () => {
                 4th Floor, Felicity Square Building<br />
                 Opp AG Office, Statue<br />
                 Thiruvananthapuram<br />
-                <strong>{t('footer.pincode')}: 695001</strong>
+                <strong>Pincode: 695001</strong>
               </span>
             </p>
           </div>
@@ -149,7 +193,6 @@ const Footer = () => {
       <div className="border-t border-gray-600 mt-10 pt-4 flex flex-col md:flex-row justify-between text-sm text-gray-300" data-aos="fade-in">
         <p>{t('footer.copyright')}</p>
         <div className="flex gap-4 mt-2 md:mt-0">
-          <a href="/covid" className="hover:text-white transition">{t('footer.covid')}</a>
           <a href="/terms" className="hover:text-white transition">{t('footer.terms')}</a>
           <a href="/privacy" className="hover:text-white transition">{t('footer.privacy')}</a>
           <a href="/disclaimer" className="hover:text-white transition">{t('footer.disclaimer')}</a>

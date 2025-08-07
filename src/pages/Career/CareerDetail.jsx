@@ -31,6 +31,16 @@ const CareerDetail = () => {
         <p><strong>Status:</strong> {career.status}</p>
         <p><strong>Posted On:</strong> {career.posted_on}</p>
         <p><strong>Career No:</strong> {career.no}</p>
+        <p><strong>Last Date to Apply:</strong> {career.last_date_to_apply || '—'}</p>
+        {career.link && (
+          <p className="mt-2">
+            <strong>Link:</strong>{' '}
+            <a href={career.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
+              {career.link}
+            </a>
+          </p>
+        )}
+
       </div>
       {career.pdf && (
         <a

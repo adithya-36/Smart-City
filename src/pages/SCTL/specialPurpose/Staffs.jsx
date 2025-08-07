@@ -226,7 +226,7 @@ const Staffs = () => {
         />
 
         <StaffSection
-          title="Consultants & Advisors"
+          title="PIU Team"
           icon={<Users className="h-6 w-6" />}
           staff={consultants}
           accentColor="text-[#1E6091]"

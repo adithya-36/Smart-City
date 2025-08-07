@@ -5,13 +5,13 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.pagination import PageNumberPagination
 from django.db.models import Q
 from rest_framework.generics import RetrieveAPIView
-
+from rest_framework.decorators import api_view
 from .models import (
     Career, Tender, News, ConclaveSpeaker, ConclaveRecording,
     AnniversaryImage, InaugurationImage, GovernmentOrder, ContactMessage,
     Complaint, PollFeedback, MonthlyProgressReport, Internship, PhotoAlbum,
     Video, MediaItem, EventItem, ContactInfo, BoardMember, CEO, Staff,
-    Document, Official, OngoingProject, CompletedProject, NavigationItem, PageContent
+    Document, Official, OngoingProject, CompletedProject, NavigationItem, PageContent, Visitor
 )
 
 from .serializers import (
@@ -23,7 +23,7 @@ from .serializers import (
     MonthlyProgressReportSerializer, InternshipSerializer,
     PhotoAlbumSerializer, VideoSerializer, MediaItemSerializer,
     EventItemSerializer, ContactInfoSerializer, BoardMemberSerializer,
-    CEOSerializer, StaffSerializer, DocumentSerializer, OfficialSerializer, OngoingProjectSerializer, CompletedProjectSerializer, NavigationItemSerializer, PageContentSerializer
+    CEOSerializer, StaffSerializer, DocumentSerializer, OfficialSerializer, OngoingProjectSerializer, CompletedProjectSerializer, NavigationItemSerializer, PageContentSerializer, VisitorSerializer
 )
 
 
@@ -290,3 +290,14 @@ class NavigationItemViewSet(viewsets.ModelViewSet):
 class PageContentViewSet(viewsets.ModelViewSet):
     queryset = PageContent.objects.all()
     serializer_class = PageContentSerializer
+
+
+@api_view(['GET'])
+def visitor_count(request):
+    visitor, _ = Visitor.objects.get_or_create(id=1)
+    skip = request.GET.get("skip_increment", "").lower() == "true"
+    if not skip:
+        visitor.count += 1
+        visitor.save()
+    serializer = VisitorSerializer(visitor)
+    return Response(serializer.data)

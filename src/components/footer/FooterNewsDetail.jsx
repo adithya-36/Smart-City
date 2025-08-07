@@ -22,7 +22,12 @@ const FooterNewsDetail = () => {
         />
       )}
       <p className="text-gray-600 mb-2">📅 {mediaItem.date}</p>
-      <p className="text-gray-700">This media item does not have a full description field, but you can extend the model to include it.</p>
+      {mediaItem.description ? (
+        <p className="text-gray-700 whitespace-pre-line">{mediaItem.description}</p>
+      ) : (
+        <p className="text-gray-500 italic">No description available.</p>
+      )}
+
     </div>
   );
 };

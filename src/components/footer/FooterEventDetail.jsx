@@ -22,7 +22,12 @@ const FooterEventDetail = () => {
         />
       )}
       <p className="text-gray-600 mb-2">📅 {eventItem.date}</p>
-      <p className="text-gray-700">This event does not yet have a full description field. You can update the model to include it.</p>
+      {eventItem.description ? (
+        <p className="text-gray-700 whitespace-pre-line">{eventItem.description}</p>
+      ) : (
+        <p className="text-gray-500 italic">No description available.</p>
+      )}
+
     </div>
   );
 };
