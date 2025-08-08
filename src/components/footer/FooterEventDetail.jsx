@@ -21,7 +21,10 @@ const FooterEventDetail = () => {
           className="w-full h-auto rounded shadow mb-6"
         />
       )}
-      <p className="text-gray-600 mb-2">📅 {eventItem.date}</p>
+      <p className="text-gray-600 mb-2">
+        📅 {new Date(eventItem.date).toLocaleDateString('en-GB')}
+      </p>
+
       {eventItem.description ? (
         <p className="text-gray-700 whitespace-pre-line">{eventItem.description}</p>
       ) : (

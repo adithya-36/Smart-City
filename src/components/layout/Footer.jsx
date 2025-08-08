@@ -15,7 +15,7 @@ import {
 import { MdPeople } from "react-icons/md";
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom'; // ✅ Use React Router navigation
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -23,34 +23,33 @@ const Footer = () => {
   const [eventItems, setEventItems] = useState([]);
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [visitorCount, setVisitorCount] = useState(0);
+  const [isLogoExpanded, setIsLogoExpanded] = useState(false); // New state for logo expansion
 
   useEffect(() => {
-  console.log("Visitor useEffect running");
-  const hasVisited = localStorage.getItem('hasVisited');
+    console.log("Visitor useEffect running");
+    const hasVisited = localStorage.getItem('hasVisited');
 
-  const endpoint = hasVisited
-    ? 'http://127.0.0.1:8000/api/visitors/?skip_increment=true'
-    : 'http://127.0.0.1:8000/api/visitors/';
+    const endpoint = hasVisited
+      ? 'http://127.0.0.1:8000/api/visitors/?skip_increment=true'
+      : 'http://127.0.0.1:8000/api/visitors/';
 
-  axios.get(endpoint)
-    .then(res => {
-      console.log("Visitor response:", res.data);
-      setVisitorCount(res.data.count);
-      if (!hasVisited) {
-        localStorage.setItem('hasVisited', 'true');
-      }
-    })
-    .catch(err => console.error("Error fetching visitor count:", err));
-}, []);
-
-
+    axios.get(endpoint)
+      .then(res => {
+        console.log("Visitor response:", res.data);
+        setVisitorCount(res.data.count);
+        if (!hasVisited) {
+          localStorage.setItem('hasVisited', 'true');
+        }
+      })
+      .catch(err => console.error("Error fetching visitor count:", err));
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentDateTime(new Date());
     }, 1000);
 
-    return () => clearInterval(timer); // cleanup
+    return () => clearInterval(timer);
   }, []);
 
   const formattedDate = currentDateTime.toLocaleDateString('en-GB', {
@@ -61,7 +60,6 @@ const Footer = () => {
     hour: '2-digit', minute: '2-digit', second: '2-digit',
     hour12: false
   });
-
 
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
@@ -77,21 +75,30 @@ const Footer = () => {
       .catch(err => console.error("Error fetching event items:", err));
   }, []);
 
+  const handleLogoClick = () => {
+    setIsLogoExpanded(!isLogoExpanded);
+  };
+
   return (
     <footer className="bg-[#184E77] text-white px-6 md:px-16 py-10 w-full" data-aos="fade-up" data-cy="footer">
       <div className="grid md:grid-cols-4 gap-10">
         {/* Column 1 */}
         <div data-aos="fade-up">
-          <img src={Logo} alt="Smart City Thiruvananthapuram Logo" className="w-24" />
+          <img
+            src={Logo}
+            alt="Smart City Thiruvananthapuram Logo"
+            className={`w-24 transition-all duration-300 ease-in-out cursor-pointer ${
+              isLogoExpanded ? 'w-full' : ''
+            }`}
+            onClick={handleLogoClick}
+          />
           <p className="text-sm leading-relaxed mb-4">
             {t('footer.description')}
           </p>
           <div className=" space-y-1 text-md">
             <p className="flex items-center gap-2"><span><FaCalendar /></span> {formattedDate}</p>
             <p className="flex items-center gap-2"><span><FaClock /></span> {formattedTime}</p>
-
             <p className="flex items-center gap-2"><MdPeople className="text-lg" /> {t('footer.visitors')}: {visitorCount.toLocaleString()}</p>
-
           </div>
         </div>
 
@@ -115,7 +122,7 @@ const Footer = () => {
                   >
                     {item.title}
                   </Link>
-                  <span className="text-gray-300">{item.date}</span>
+                  <span className="text-gray-300">{new Date(item.date).toLocaleDateString('en-GB')}</span>
                 </div>
               </li>
             ))}
@@ -142,7 +149,9 @@ const Footer = () => {
                   >
                     {event.title}
                   </Link>
-                  <span className="text-gray-300">{event.date}</span>
+                  <span className="text-gray-300">
+                    {new Date(event.date).toLocaleDateString('en-GB')}
+                  </span>
                 </div>
               </li>
             ))}

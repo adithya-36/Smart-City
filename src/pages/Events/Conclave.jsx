@@ -1,22 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Poster from '../../assets/images/conclave/poster.jpg';
 import axios from 'axios';
 import AOS from 'aos';
-import 'aos/dist/aos.css';
+import "aos/dist/aos.css";
 import { useTranslation } from 'react-i18next';
+
 const Conclave = () => {
   const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [speakers, setSpeakers] = useState([]);
   const [recordings, setRecordings] = useState([]);
+
+  // Helper function to get the YouTube embed URL
+  const getEmbedUrl = (url) => {
+    if (!url) return '';
+    try {
+      const videoId = url.split('v=')[1]?.split('&')[0];
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+    } catch (e) {
+      return url;
+    }
+  };
+
   useEffect(() => {
     AOS.init({ once: true, duration: 800 });
   }, []);
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   useEffect(() => {
     axios.get('http://localhost:8000/api/conclave-speakers/')
       .then(res => setSpeakers(res.data.map(sp => ({
@@ -29,6 +44,7 @@ const Conclave = () => {
       .then(res => setRecordings(res.data))
       .catch(err => console.error("Failed to load recordings", err));
   }, []);
+
   return (
     <div className="min-h-screen" data-cy="conclave-page">
       <div className="relative h-screen w-full" data-aos="fade-in">
@@ -91,7 +107,7 @@ const Conclave = () => {
                 <div className="relative pb-[56.25%] h-0 overflow-hidden">
                   <iframe
                     className="absolute top-0 left-0 w-full h-full"
-                    src={rec.youtube_link}
+                    src={getEmbedUrl(rec.youtube_link)} // <-- Use the helper function here
                     title={rec.title}
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

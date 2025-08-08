@@ -85,19 +85,6 @@ const Anniversary = () => {
           ))}
         </div>
       </div>
-      {/* Celebration message */}
-      <div className="max-w-4xl mx-auto mt-16 p-8 bg-gradient-to-r shadow-2xl text-center text-[#184E77]" data-aos="fade-up">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">A Journey to Remember</h2>
-        <p className="text-lg md:text-xl mb-6">
-          Over the past eight years, we've grown, innovated, and created lasting memories together. 
-          This gallery captures just a glimpse of our incredible journey.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <div className="bg-white/20 backdrop-blur-sm px-6 py-2 font-bold" data-aos="fade-right">X Projects</div>
-          <div className="bg-white/20 backdrop-blur-sm px-6 py-2 font-bold" data-aos="fade-right" data-aos-delay="100">X Team Members</div>
-          <div className="bg-white/20 backdrop-blur-sm px-6 py-2 font-bold" data-aos="fade-right" data-aos-delay="200">X Awards</div>
-        </div>
-      </div>
       {/* Lightbox */}
       {lightboxOpen && selectedImage && (
         <div

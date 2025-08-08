@@ -4,25 +4,18 @@ import { MdEmail } from "react-icons/md";
 import { IoPhonePortraitOutline } from "react-icons/io5";
 import Logo from '../../assets/images/SCTLLogo.png';
 import GovKerala from '../../assets/images/govKerala.png';
-
-// ✅ i18n hook import
 import { useTranslation } from 'react-i18next';
 import '../../i18n';
-
 const Header = () => {
-  // ✅ Removed manual language state
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { t, i18n } = useTranslation(); // ✅ Use i18next
-
+  const { t, i18n } = useTranslation(); 
   const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'ml' : 'en'; // ✅ Switch between en/ml
-    i18n.changeLanguage(newLang); // ✅ Trigger i18n switch
+    const newLang = i18n.language === 'en' ? 'ml' : 'en'; 
+    i18n.changeLanguage(newLang); 
   };
-
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
   return (
     <div className="bg-[#184E77] text-white" data-cy="header">
       {/* Main Header */}
@@ -30,14 +23,15 @@ const Header = () => {
         <div className="max-w-8xl mx-auto flex justify-between items-center py-3">
           {/* Logo Section */}
           <div className="flex items-center">
-            <div className="h-12 w-16 flex items-center justify-center">
+            <a href="/" className="h-12 w-16 flex items-center justify-center">
               <img src={Logo} alt="Smart city logo" className="h-full" />
-            </div>
+            </a>
             <div className="ml-2">
-              <img className='h-12' src={GovKerala} alt="Govt of kerala" />
+              <a href="https://tmc.lsgkerala.gov.in/en/home" target="_blank" rel="noopener noreferrer">
+                <img className='h-12' src={GovKerala} alt="Govt of kerala" />
+              </a>
             </div>
           </div>
-
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
             {/* Phone & Email */}
@@ -91,7 +85,7 @@ const Header = () => {
               href="#"
               className="flex items-center hover:text-gray-300 transition-colors text-sm"
             >
-              <IoPhonePortraitOutline className='w-5 h-5 mr-1'/>
+              <IoPhonePortraitOutline className='w-5 h-5 mr-1' />
               <span>{t('smart_app')}</span> {/* ✅ Translated text */}
             </a>
           </div>

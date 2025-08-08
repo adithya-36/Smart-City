@@ -147,6 +147,47 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
+            {menuOpen && (
+              <div className="lg:hidden bg-[#184E77] text-white w-full px-4 py-4 space-y-2">
+                {navigation.map(item => (
+                  <div key={item.name}>
+                    <NavLink
+                      to={item.href || '#'}
+                      className="block py-2 border-b border-[#1E6091]"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {t(`navbar.${item.name}`, item.name)}
+                    </NavLink>
+
+                    {(item.dropdown || item.pages.length > 0) && (
+                      <div className="pl-4 space-y-1">
+                        {item.dropdown && item.dropdown.map(sub => (
+                          <NavLink
+                            key={sub.name}
+                            to={sub.href}
+                            className="block py-1 text-sm border-b border-[#1E6091]"
+                            onClick={() => setMenuOpen(false)}
+                          >
+                            {t(`navbar.${sub.name}`, sub.name)}
+                          </NavLink>
+                        ))}
+                        {item.pages.map(p => (
+                          <NavLink
+                            key={p.name}
+                            to={p.href}
+                            className="block py-1 text-sm border-b border-[#1E6091]"
+                            onClick={() => setMenuOpen(false)}
+                          >
+                            {t(`navbar.${p.name}`, p.name)}
+                          </NavLink>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
             {showSearch && (
               <div className="w-full bg-white px-4 py-2 flex justify-center items-center border-t border-gray-200">
                 <input

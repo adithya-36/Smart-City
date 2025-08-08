@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Users } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Users, X } from 'lucide-react';
 import axios from 'axios';
 
 const BoardOfDirectors = () => {
   const [members, setMembers] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedMember, setSelectedMember] = useState(null);
 
   useEffect(() => {
     axios.get('http://localhost:8000/api/board-members/')
@@ -31,6 +32,24 @@ const BoardOfDirectors = () => {
     setCurrentSlide(slideIndex);
   };
 
+  useEffect(() => {
+    if (members.length > itemsPerSlide) {
+      const interval = setInterval(() => {
+        nextSlide();
+      }, 5000);
+
+      return () => clearInterval(interval);
+    }
+  }, [members, currentSlide, itemsPerSlide]);
+
+  const openModal = (member) => {
+    setSelectedMember(member);
+  };
+
+  const closeModal = () => {
+    setSelectedMember(null);
+  };
+
   return (
     <div className="bg-gradient-to-br from-slate-50 to-blue-50 py-16 px-4">
       <div className="max-w-7xl mx-auto">
@@ -46,7 +65,7 @@ const BoardOfDirectors = () => {
 
         <div className="relative">
           <div className="overflow-hidden rounded-xl bg-white shadow-lg">
-            <div 
+            <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
@@ -56,13 +75,14 @@ const BoardOfDirectors = () => {
                     {members
                       .slice(slideIndex * itemsPerSlide, (slideIndex + 1) * itemsPerSlide)
                       .map((member, index) => (
-                        <div 
+                        <div
                           key={index}
-                          className="group bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
+                          onClick={() => openModal(member)}
+                          className="group bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 cursor-pointer"
                         >
                           <div className="relative overflow-hidden rounded-t-lg">
-                            <img 
-                              src={member.image} 
+                            <img
+                              src={member.image}
                               alt={member.name}
                               className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                             />
@@ -107,14 +127,36 @@ const BoardOfDirectors = () => {
               key={index}
               onClick={() => goToSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide 
-                  ? 'bg-blue-600 w-8' 
+                index === currentSlide
+                  ? 'bg-blue-600 w-8'
                   : 'bg-gray-300 hover:bg-gray-400'
               }`}
             />
           ))}
         </div>
       </div>
+
+      {selectedMember && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm p-4">
+          <div className="relative bg-white rounded-lg shadow-xl max-w-3xl w-full p-8 md:p-12 overflow-y-auto max-h-[90vh]">
+            <button onClick={closeModal} className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 transition-colors">
+              <X className="w-6 h-6" />
+            </button>
+            <div className="text-center">
+              <img
+                src={selectedMember.image}
+                alt={selectedMember.name}
+                className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-full mx-auto shadow-lg mb-6 border-4 border-gray-200"
+              />
+              <h3 className="text-3xl font-bold text-gray-900 mb-2">{selectedMember.name}</h3>
+              <p className="text-blue-600 font-semibold text-lg mb-4">{selectedMember.position}</p>
+              {selectedMember.field && (
+                <p className="text-gray-600 text-md">{selectedMember.field}</p>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -21,7 +21,7 @@ const FooterNewsDetail = () => {
           className="w-full h-auto rounded shadow mb-6"
         />
       )}
-      <p className="text-gray-600 mb-2">📅 {mediaItem.date}</p>
+      <p className="text-gray-600 mb-2">📅 {new Date(mediaItem.date).toLocaleDateString('en-GB')}</p>
       {mediaItem.description ? (
         <p className="text-gray-700 whitespace-pre-line">{mediaItem.description}</p>
       ) : (
