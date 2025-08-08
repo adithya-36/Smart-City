@@ -25,7 +25,7 @@ const HomeItem2 = () => {
             {t('homeItem2.strategyText')}
           </p>
           
-          <a href="/MissonVision">
+          <a href="/misson-vision">
             <button className="bg-[#003049] hover:bg-[#001a2c] text-white px-8 py-3 text-lg font-medium transition duration-300 transform hover:scale-105">
               {t('homeItem2.readMore')}
             </button>
