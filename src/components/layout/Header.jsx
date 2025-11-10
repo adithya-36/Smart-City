@@ -77,7 +77,7 @@ const Header = () => {
               className="flex items-center hover:text-gray-300 transition-colors text-sm"
             >
               <FaUser className="mr-2 w-4 h-4" />
-              {t('citizen_portal')} {/* ✅ Translated text */}
+              {t('Smart_Chat')} {/* ✅ Translated text */}
             </a>
 
             {/* Smart App Link */}
@@ -145,7 +145,7 @@ const Header = () => {
                 className="w-full flex items-center justify-center px-3 py-2 hover:bg-[#184E77] transition-colors text-sm"
               >
                 <FaUser className="mr-2 w-4 h-4" />
-                {t('citizen_portal')} {/* ✅ */}
+                {t('SmartTVM')} {/* ✅ */}
               </a>
 
               {/* Smart App Link */}

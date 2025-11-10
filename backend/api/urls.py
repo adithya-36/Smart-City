@@ -7,7 +7,7 @@ from .views import (
     ComplaintViewSet, PollFeedbackCreateView, MonthlyProgressReportViewSet,
     InternshipViewSet, PhotoAlbumViewSet, VideoViewSet,MediaItemViewSet, EventItemViewSet, ContactInfoViewSet, SearchView, BoardMemberViewSet, CEOViewSet, StaffViewSet, DocumentViewSet, OfficialViewSet, OngoingProjectViewSet, CompletedProjectViewSet,NavigationItemViewSet, PageContentViewSet, visitor_count
 )
-
+from .views_chat import ChatView
 router = DefaultRouter()
 router.register(r'careers', CareerViewSet)
 router.register(r'tenders', TenderViewSet)
@@ -41,4 +41,5 @@ urlpatterns = [
     path('api/poll-feedback/', PollFeedbackCreateView.as_view(), name='poll-feedback'),
     path('search/', SearchView.as_view(), name='search'),
     path('visitors/', visitor_count),
+    path('chat/', ChatView.as_view(), name='chat'),
 ]

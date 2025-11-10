@@ -4,6 +4,10 @@ import Banner from '../../assets/banners/careerBanner.jpg';
 import { FaFilePdf } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 
+
+
+
+
 const Careers = () => {
   const [careers, setCareers] = useState([]);
   const [loading, setLoading] = useState(true);

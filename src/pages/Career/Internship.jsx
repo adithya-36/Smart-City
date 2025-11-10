@@ -3,6 +3,10 @@ import axios from 'axios';
 import Banner from '../../assets/banners/internshipBanner.jpg';
 import { FaFilePdf } from 'react-icons/fa6';
 import { FaExternalLinkAlt } from 'react-icons/fa';
+const internshipPdfMap = import.meta.glob(
+  "/src/pages/Career/InternshipFolder/*.pdf",
+  { eager: true, as: "url" }
+);
 const Internship = () => {
   const [internships, setInternships] = useState([]);
   const [loading, setLoading] = useState(true);

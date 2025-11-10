@@ -107,7 +107,8 @@ const Navbar = () => {
             className={`w-full left-0 min-h-[60px] transition-all duration-300 z-50 ${isScrolled ? 'fixed top-0 shadow-lg bg-[#184E77] backdrop-blur-sm' : 'sticky top-0'}`}
           >
             <div className="w-full mx-auto px-4 py-2 flex items-center justify-between">
-              <div className="hidden lg:flex flex-1 justify-center space-x-1 items-center overflow-visible">
+              <div className="flex flex-1 justify-center space-x-1 items-center overflow-visible">
+
                 {navigation.map(item => (
                   <div key={item.name} className="relative group" onMouseEnter={() => setActiveDropdown(item.name)} onMouseLeave={() => setActiveDropdown(null)}>
                     <NavLink

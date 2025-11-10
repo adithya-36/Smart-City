@@ -67,13 +67,14 @@ import FooterNewsDetail from './components/footer/FooterNewsDetail'
 import FooterEventDetail from './components/footer/FooterEventDetail'
 import DynamicPage from './components/layout/DynamicPage'
 import PageView from './components/layout/PageView'
+import ChatbotFinalDemo from "./components/ChatbotFinalDemo";
 const App = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <Navbar />
       <ScrollToTop />
-      <main className="flex-grow">
+      <main className="flex-grow pt-20">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/city-profile" element={<CityProfile />} />
@@ -139,6 +140,8 @@ const App = () => {
           <Route path="/pages/:id" element={<PageView />} />
     
         </Routes>
+            {/* your existing routes/layout */}
+      <ChatbotFinalDemo />
       </main>
       <Footer />
       <ScrollToTopButton />

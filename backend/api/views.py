@@ -282,14 +282,24 @@ class CompletedProjectViewSet(viewsets.ModelViewSet):
     serializer_class = CompletedProjectSerializer
 
 
-class NavigationItemViewSet(viewsets.ModelViewSet):
-    queryset = NavigationItem.objects.filter(parent__isnull=True)
+from rest_framework import viewsets
+from rest_framework.permissions import AllowAny
+from .models import NavigationItem, PageContent
+from .serializers import NavigationItemSerializer, PageContentSerializer
+
+class NavigationItemViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = NavigationItem.objects.filter(parent__isnull=True).order_by("id")
     serializer_class = NavigationItemSerializer
+    permission_classes = [AllowAny]
+    authentication_classes = []   # important → avoids SessionAuthentication CSRF
 
-
-class PageContentViewSet(viewsets.ModelViewSet):
+class PageContentViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = PageContent.objects.all()
     serializer_class = PageContentSerializer
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+
 
 
 @api_view(['GET'])
@@ -301,3 +311,4 @@ def visitor_count(request):
         visitor.save()
     serializer = VisitorSerializer(visitor)
     return Response(serializer.data)
+
